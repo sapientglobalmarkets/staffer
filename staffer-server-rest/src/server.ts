@@ -200,6 +200,7 @@ app.get('/needs', function (req: express.Request, res: express.Response) {
     let projectId = req.query.projectId ? parseInt(req.query.projectId) : null;
     let skillId = req.query.skillId ? parseInt(req.query.skillId) : null;
     let personId = req.query.personId ? parseInt(req.query.personId) : null;
+    let status = req.query.status || 'open';
 
     let needMap = {} as NeedMap;
     _.each(store.needMap, function (need) {
@@ -218,6 +219,12 @@ app.get('/needs', function (req: express.Request, res: express.Response) {
             isRejected = true;
         }
         else if (personId && need.personId !== personId) {
+            isRejected = true;
+        }
+        else if (status === 'open' && need.personId) {
+            isRejected = true;
+        }
+        else if (status === 'closed' && !need.personId) {
             isRejected = true;
         }
 
