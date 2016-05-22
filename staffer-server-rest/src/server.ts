@@ -161,16 +161,19 @@ app.delete('/people/:personId/needs/:needId', function (req: express.Request, re
         return;
     }
 
+    let result = {
+        people: <any>[],
+        need: need
+    };
+
     // Remove need from person
     removeNeedFromPerson(person, need.id);
+    result.people.push(person);
 
     // Remove person from need
     need.personId = null;
 
-    res.json({
-        person: person,
-        need: need
-    });
+    res.json(result);
 });
 
 function removeNeedFromPerson(person: Person, needId: number) {
