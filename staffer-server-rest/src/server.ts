@@ -128,16 +128,26 @@ app.post('/people/:personId/needs/:needId', function (req: express.Request, res:
         return;
     }
 
+    let result = {
+        people: <any>[],
+        need: need
+    };
+
+    // If need is assigned to another person, remove it from person
+    if (need.personId) {
+        let previousPerson = store.personMap[need.personId];
+        removeNeedFromPerson(previousPerson, need.id);
+        result.people.push(previousPerson);
+    }
+
     // Add need to person
     person.needIds.push(need.id);
+    result.people.push(person);
 
     // Add person to need
     need.personId = person.id;
 
-    res.json({
-        person: person,
-        need: need
-    });
+    res.json(result);
 });
 
 // Remove person from a need
@@ -152,12 +162,7 @@ app.delete('/people/:personId/needs/:needId', function (req: express.Request, re
     }
 
     // Remove need from person
-    let index = person.needIds.indexOf(need.id);
-    if (index < 0) {
-        res.send(400);  // Bad Request
-        return;
-    }
-    person.needIds.splice(index, 1);
+    removeNeedFromPerson(person, need.id);
 
     // Remove person from need
     need.personId = null;
@@ -167,6 +172,13 @@ app.delete('/people/:personId/needs/:needId', function (req: express.Request, re
         need: need
     });
 });
+
+function removeNeedFromPerson(person: Person, needId: number) {
+    let index = person.needIds.indexOf(needId);
+    if (index >= 0) {
+        person.needIds.splice(index, 1);
+    }
+}
 
 app.get('/companies', function (req: express.Request, res: express.Response) {
     res.json(store.companyMap);
