@@ -83,7 +83,8 @@ app.get('/skills', function (req: express.Request, res: express.Response) {
 app.get('/people', function (req: express.Request, res: express.Response) {
 
     // Filter people based on the query
-    let skillId = req.query.skillId ? parseInt(req.query.skillId) : null;
+    let needId = req.query.needId ? parseInt(req.query.needId) : -1;
+    let skillId = req.query.skillId ? parseInt(req.query.skillId) : -1;
     let availableFrom = req.query.availableFrom ? new Date(req.query.availableFrom) : null;
     let availableTo = req.query.availableTo ? new Date(req.query.availableTo) : null;
 
@@ -91,7 +92,10 @@ app.get('/people', function (req: express.Request, res: express.Response) {
     _.each(store.personMap, function (person: Person) {
         let isRejected = false;
 
-        if (skillId && person.skillIds.indexOf(skillId) < 0) {
+        if (needId > -1 && store.needMap[needId] && store.needMap[needId].personId === person.id) {
+            // Do nothing, we want this person - she is the one assigned to this need
+        }
+        else if (skillId > -1 && person.skillIds.indexOf(skillId) < 0) {
             isRejected = true;
         }
         else if (availableFrom && availableTo) {
