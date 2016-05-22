@@ -42,32 +42,12 @@ class Need {
     personId: number;
 }
 
-interface SkillMap {
-    [id: string]: Skill;
-}
-
-interface PersonMap {
-    [id: string]: Person;
-}
-
-interface CompanyMap {
-    [id: string]: Company;
-}
-
-interface ProjectMap {
-    [id: string]: Project;
-}
-
-interface NeedMap {
-    [id: string]: Need;
-}
-
 class Store {
-    skillMap: SkillMap;
-    personMap: PersonMap;
-    companyMap: CompanyMap;
-    projectMap: ProjectMap;
-    needMap: NeedMap;
+    skillMap: any;
+    personMap: any;
+    companyMap: any;
+    projectMap: any;
+    needMap: any;
 }
 
 // -----------------------------------------------------------------------------
@@ -107,8 +87,8 @@ app.get('/people', function (req: express.Request, res: express.Response) {
     let availableFrom = req.query.availableFrom ? new Date(req.query.availableFrom) : null;
     let availableTo = req.query.availableTo ? new Date(req.query.availableTo) : null;
 
-    let personMap = {} as PersonMap;
-    _.each(store.personMap, function (person) {
+    let personMap: any = {};
+    _.each(store.personMap, function (person: Person) {
         let isRejected = false;
 
         if (skillId && person.skillIds.indexOf(skillId) < 0) {
@@ -116,8 +96,8 @@ app.get('/people', function (req: express.Request, res: express.Response) {
         }
         else if (availableFrom && availableTo) {
             // Find a need that clashes with the availability range
-            let clashingNeed = _.find(person.needIds, function(needId) {
-                let need = store.needMap[needId];
+            let clashingNeed = _.find(person.needIds, function(needId: number) {
+                let need: Need = store.needMap[needId];
                 return (need.startDate <= availableTo && need.endDate >= availableFrom) ? true : false;
             });
             if (clashingNeed) {
@@ -197,12 +177,12 @@ app.get('/needs', function (req: express.Request, res: express.Response) {
     // Filter needs based on the query
     let minStartDate = req.query.minStartDate ? new Date(req.query.minStartDate) : null;
     let maxStartDate = req.query.maxStartDate ? new Date(req.query.maxStartDate) : null;
-    let projectId = req.query.projectId ? parseInt(req.query.projectId) : null;
-    let skillId = req.query.skillId ? parseInt(req.query.skillId) : null;
-    let personId = req.query.personId ? parseInt(req.query.personId) : null;
-    let status = req.query.status || 'open';
+    let projectId = req.query.projectId ? parseInt(req.query.projectId) : -1;
+    let skillId = req.query.skillId ? parseInt(req.query.skillId) : -1;
+    let personId = req.query.personId ? parseInt(req.query.personId) : -1;
+    let status = req.query.status || 'all';
 
-    let needMap = {} as NeedMap;
+    let needMap: any = {};
     _.each(store.needMap, function (need) {
         let isRejected = false;
 
@@ -212,13 +192,13 @@ app.get('/needs', function (req: express.Request, res: express.Response) {
         else if (maxStartDate && need.startDate > maxStartDate) {
             isRejected = true;
         }
-        else if (projectId && need.projectId !== projectId) {
+        else if (projectId > -1 && need.projectId !== projectId) {
             isRejected = true;
         }
-        else if (skillId && need.skillId !== skillId) {
+        else if (skillId > -1 && need.skillId !== skillId) {
             isRejected = true;
         }
-        else if (personId && need.personId !== personId) {
+        else if (personId > -1 && need.personId !== personId) {
             isRejected = true;
         }
         else if (status === 'open' && need.personId) {
@@ -275,7 +255,7 @@ process.on('SIGINT', function () {
 
 ///////// Utility Functions ///////////
 
-function generateSkills(): SkillMap {
+function generateSkills(): any {
 
     let skills = [
         'HTML/CSS/JavaScript',
@@ -290,7 +270,7 @@ function generateSkills(): SkillMap {
         'Business Consultant'
     ];
 
-    let skillMap = {} as SkillMap;
+    let skillMap: any = {};
 
     _.each(skills, skill => {
         let id = nextId++;
@@ -300,11 +280,11 @@ function generateSkills(): SkillMap {
     return skillMap;
 }
 
-function generatePeople(): PersonMap {
+function generatePeople(): any {
 
     let skillIds = Object.keys(store.skillMap);
 
-    let personMap = {} as PersonMap;
+    let personMap: any = {};
 
     for (let i = 0; i < 50; i++) {
         let id = nextId++;
@@ -325,7 +305,7 @@ function generatePeople(): PersonMap {
     return personMap;
 }
 
-function generateCompanies(): CompanyMap {
+function generateCompanies(): any {
 
     let companies = [
         'Apple',
@@ -340,7 +320,7 @@ function generateCompanies(): CompanyMap {
         'Uber'
     ];
 
-    let companyMap = {} as CompanyMap;
+    let companyMap: any = {};
 
     _.each(companies, company => {
         let id = nextId++;
@@ -350,7 +330,7 @@ function generateCompanies(): CompanyMap {
     return companyMap;
 }
 
-function generateProjects(): ProjectMap {
+function generateProjects(): any {
 
     let companyIds = Object.keys(store.companyMap);
 
@@ -387,7 +367,7 @@ function generateProjects(): ProjectMap {
         'Maroon Five'
     ];
 
-    let projectMap = {} as ProjectMap;
+    let projectMap: any = {};
 
     _.each(projects, company => {
         let id = nextId++;
@@ -401,12 +381,12 @@ function generateProjects(): ProjectMap {
     return projectMap;
 }
 
-function generateNeeds(): NeedMap {
+function generateNeeds(): any {
 
     let skillIds = Object.keys(store.skillMap);
     let projectIds = Object.keys(store.projectMap);
 
-    let needMap = {} as NeedMap;
+    let needMap: any = {};
 
     for (let i = 0; i < 50; i++) {
         let id = nextId++;
@@ -432,9 +412,9 @@ function generateNeeds(): NeedMap {
     return needMap;
 }
 
-function getProjectsForNeeds(needMap: NeedMap): ProjectMap {
+function getProjectsForNeeds(needMap: any): any {
 
-    let projectMap = {} as ProjectMap;
+    let projectMap: any = {};
 
     _.each(needMap, function (need) {
         projectMap[need.projectId] = store.projectMap[need.projectId];
@@ -443,9 +423,9 @@ function getProjectsForNeeds(needMap: NeedMap): ProjectMap {
     return projectMap;
 }
 
-function getSkillsForNeeds(needMap: NeedMap): SkillMap {
+function getSkillsForNeeds(needMap: any): any {
 
-    let skillMap = {} as SkillMap;
+    let skillMap: any = {};
 
     _.each(needMap, function (need) {
         skillMap[need.skillId] = store.skillMap[need.skillId];
@@ -454,9 +434,9 @@ function getSkillsForNeeds(needMap: NeedMap): SkillMap {
     return skillMap;
 }
 
-function getPeopleForNeeds(needMap: NeedMap): PersonMap {
+function getPeopleForNeeds(needMap: any): any {
 
-    let personMap = {} as PersonMap;
+    let personMap: any = {};
 
     _.each(needMap, function (need) {
         if (need.personId) {
