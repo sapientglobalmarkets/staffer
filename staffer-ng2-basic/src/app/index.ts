@@ -1,2 +1,2 @@
-export { environment } from './environment';
-export { StafferNg2AppComponent } from './staffer-ng2.component';
+export * from './environment';
+export * from './staffer-ng2.component';
