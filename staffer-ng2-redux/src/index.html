@@ -15,6 +15,13 @@
 <body>
     <staffer-ng2-app>Loading...</staffer-ng2-app>
 
+    <script>
+        // This is a hack to work around Redux's requirement to have a global variable called 'process'
+        process = {
+            env: { NODE_ENV: 'development' }
+        }
+    </script>
+
     {{#each scripts.polyfills}}<script src="{{.}}"></script>{{/each}}
     <script>
         System.import('system-config.js').then(function() {

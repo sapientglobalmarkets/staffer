@@ -13,7 +13,11 @@ module.exports = function(defaults) {
       'rxjs/**/*.+(js|js.map)',
       'lodash/**/*.js',
       '@angular/**/*.+(js|js.map)',
-      '@angular2-material/**/*.+(js|js.map)'
+      '@angular2-material/**/*.+(js|js.map)',
+      'ng2-redux/**/*.+(js|js.map)',
+      'redux/**/*.+(js|js.map)',
+      'redux-thunk/**/*.+(js|js.map)',
+      'symbol-observable/**/*.js'
     ]
   });
 };

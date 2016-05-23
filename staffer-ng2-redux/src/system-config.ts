@@ -45,6 +45,26 @@ const packages: any = {
         format: 'cjs',
         defaultExtension: 'js',
         main: 'toolbar.js'
+    },
+    'ng2-redux': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'lib/index.js'
+    },
+    'redux': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'lib/index.js'
+    },
+    'redux-thunk': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'lib/index.js'
+    },
+    'symbol-observable': {
+        format: 'cjs',
+        defaultExtension: 'js',
+        main: 'index.js'
     }
 };
 
@@ -91,6 +111,10 @@ System.config({
         '@angular2-material': 'vendor/@angular2-material',
         'rxjs': 'vendor/rxjs',
         'lodash': 'vendor/lodash',
+        'ng2-redux': 'vendor/ng2-redux',
+        'redux': 'vendor/redux',
+        'redux-thunk': 'vendor/redux-thunk',
+        'symbol-observable': 'vendor/symbol-observable',
         'main': 'main.js'
     },
     packages: cliSystemConfigPackages
