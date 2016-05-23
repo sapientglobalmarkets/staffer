@@ -1,0 +1,47 @@
+$app-text-color: rgba(0, 0, 0, .87);
+$app-text-color-medium: rgba(0, 0, 0, .65);
+$app-text-color-light: rgba(0, 0, 0, .54);
+$color-highlight: #e3f2fd;
+
+:host {
+    flex: 1;
+    margin-top: 16px;
+    overflow: auto;
+}
+
+.needs-table {
+    width: 100%;
+}
+
+.need-row.selected {
+    background-color: $color-highlight;
+}
+
+.skill {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.project {
+    font-size: 14px;
+    font-weight: 500;
+    color: $app-text-color-medium;
+}
+
+.start-date {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: $app-text-color-medium;
+}
+
+.end-date {
+    font-size: 14px;
+    color: $app-text-color-light;
+}
+
+.assignment {
+    font-size: 14px;
+    font-weight: 500;
+    color: $app-text-color-medium;
+}

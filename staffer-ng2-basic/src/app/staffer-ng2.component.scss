@@ -1,0 +1,35 @@
+$app-border-color: rgba(0, 0, 0, 0.12);
+
+:host {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.toolbar {
+    font-size: 16px;
+}
+
+.toolbar-title {
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: .1px;
+}
+
+.toolbar-gap {
+    flex: 1;
+}
+
+.toolbar-open, .toolbar-closed {
+    margin-right: 10px;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.divider {
+    border-right: 1px solid $app-border-color;
+}

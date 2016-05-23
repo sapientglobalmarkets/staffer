@@ -1,0 +1,19 @@
+<md-toolbar class="toolbar" color="primary">
+    <h1 class="toolbar-title">{{title}}</h1>
+    <span class="toolbar-gap"></span>
+    <span class="toolbar-open">Open: {{needsSummary.open}}</span>
+    <span class="toolbar-closed">Closed: {{needsSummary.closed}}</span>
+    <span class="toolbar-total">Total: {{needsSummary.total}}</span>
+</md-toolbar>
+
+<div class="main-content">
+    <app-needs-panel
+        class="app-content"
+        (needsSummaryChanged)="handleNeedsSummaryChanged($event)">
+    </app-needs-panel>
+
+    <div class="divider"></div>
+
+    <app-people-panel class="app-content">
+    </app-people-panel>
+</div>
