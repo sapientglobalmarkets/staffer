@@ -48,9 +48,12 @@ export class PeopleService {
 
         let result = response.json();
 
-        // If result has a need, convert ISO dates to Date objects
-        if (result.need) {
-            Need.parse(result.need);
+        // If result has a needMap, convert ISO dates to Date objects
+        // This is the case for assign and unassign results
+        if (result.needMap) {
+            _.each(result.needMap, function(need) {
+                Need.parse(need);
+            });
         };
 
         return result;

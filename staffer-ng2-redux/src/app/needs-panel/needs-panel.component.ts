@@ -24,6 +24,7 @@ import { AppState } from '../shared/store/reducer';
 })
 export class NeedsPanelComponent implements OnInit, OnDestroy {
 
+    needMap: any;
     personMap: any;
     projectMap: any;
     skillMap: any;
@@ -31,10 +32,11 @@ export class NeedsPanelComponent implements OnInit, OnDestroy {
     allProjects: Project[];
     allSkills: Skill[];
 
-    filteredNeeds: Need[];
+    filteredNeeds: number[];
 
     selectedNeedId: number;
 
+    private needMapSubscription: Subscription;
     private personMapSubscription: Subscription;
     private projectMapSubscription: Subscription;
     private skillMapSubscription: Subscription;
@@ -51,6 +53,13 @@ export class NeedsPanelComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.needMapSubscription = this.ngRedux
+            .select<any>(state => state.needMap)
+            .subscribe(needMap => {
+                console.log('PeoplePanel.needMap', needMap);
+                this.needMap = needMap;
+            });
+
         this.personMapSubscription = this.ngRedux
             .select<any>(state => state.personMap)
             .subscribe(personMap => {
@@ -87,7 +96,7 @@ export class NeedsPanelComponent implements OnInit, OnDestroy {
             });
 
         this.filteredNeedsSubscription = this.ngRedux
-            .select<Need[]>(state => state.filteredNeeds)
+            .select<number[]>(state => state.filteredNeeds)
             .subscribe(filteredNeeds => {
                 console.log('NeedsPanel.filteredNeeds', filteredNeeds);
                 this.filteredNeeds = filteredNeeds;
@@ -106,6 +115,7 @@ export class NeedsPanelComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        this.needMapSubscription.unsubscribe();
         this.personMapSubscription.unsubscribe();
         this.projectMapSubscription.unsubscribe();
         this.skillMapSubscription.unsubscribe();

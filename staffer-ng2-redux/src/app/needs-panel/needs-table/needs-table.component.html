@@ -5,15 +5,15 @@
         <th>Date</th>
         <th>Assignment</th>
     </tr>
-    <tr class="need-row pointer" *ngFor="let need of filteredNeeds"
-        (click)="handleClick(need)"
-        [ngClass]="{ selected: (selectedNeedId === need.id) }">
-        <td class="skill">{{getSkillName(need.skillId)}}</td>
-        <td class="project">{{getProjectName(need.projectId)}}</td>
+    <tr class="need-row pointer" *ngFor="let needId of filteredNeeds"
+        (click)="handleClick(needId)"
+        [ngClass]="{ selected: (selectedNeedId === needId) }">
+        <td class="skill">{{getSkillName(needId)}}</td>
+        <td class="project">{{getProjectName(needId)}}</td>
         <td>
-            <span class="start-date">{{need.startDate | date:'shortDate'}}</span><br>
-            <span class="end-date">{{need.endDate | date:'shortDate'}}</span>
+            <span class="start-date">{{getStartDate(needId) | date:'shortDate'}}</span><br>
+            <span class="end-date">{{getEndDate(needId) | date:'shortDate'}}</span>
         </td>
-        <td class="assignment">{{getPersonName(need.personId)}}</td>
+        <td class="assignment">{{getPersonName(needId)}}</td>
     </tr>
 </table>

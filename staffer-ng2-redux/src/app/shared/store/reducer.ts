@@ -16,7 +16,7 @@ export class AppState {
         public skillMap: any = {},
         public allProjects: Project[] = [],
         public allSkills: Skill[] = [],
-        public filteredNeeds: Need[] = [],
+        public filteredNeeds: number[] = [],
         public matchedPeople: Person[] = [],
         public selectedNeedId: number = null) {
     }
@@ -35,7 +35,6 @@ export var reducer = (state: AppState = initialState, action: any) => {
     let projectMap: any;
     let skillMap: any;
 
-    let needsArray: Need[];
     let peopleArray: Person[];
     let projectsArray: Project[];
     let skillsArray: Skill[];
@@ -62,8 +61,7 @@ export var reducer = (state: AppState = initialState, action: any) => {
 
         case RECEIVE_ASSIGNMENT_RESPONSE:
             // Merge response maps with state maps (make sure elements in response maps override those in state)
-            let needId = action.response.need.id;
-            needMap = _.extend({}, state.needMap, { needId: action.response.need });
+            needMap = _.extend({}, state.needMap, action.response.needMap);
             personMap = _.extend({}, state.personMap, action.response.personMap);
 
             nextState = Object.assign({}, state, {
@@ -79,14 +77,18 @@ export var reducer = (state: AppState = initialState, action: any) => {
             projectMap = _.extend({}, state.projectMap, action.response.projectMap);
             skillMap = _.extend({}, state.skillMap, action.response.skillMap);
 
-            needsArray = _.values(action.response.needMap) as Need[];
+            let filteredNeeds = _.chain(action.response.needMap)
+                .values()
+                .sortBy('startDate')
+                .map((need: Need) => need.id)
+                .value();
 
             nextState = Object.assign({}, state, {
                 needMap: needMap,
                 projectMap: projectMap,
                 personMap: personMap,
                 skillMap: skillMap,
-                filteredNeeds: _.sortBy(needsArray, 'startDate') as Need[]
+                filteredNeeds: filteredNeeds
             });
             break;
 

@@ -11,11 +11,12 @@ import { Need } from '../../shared/models/index'
 })
 export class NeedsTableComponent implements OnInit, OnChanges {
 
+    @Input() needMap: any;
     @Input() personMap: any;
     @Input() projectMap: any;
     @Input() skillMap: any;
 
-    @Input() filteredNeeds: Need[];
+    @Input() filteredNeeds: number[];
 
     @Input() selectedNeedId: number;
 
@@ -33,19 +34,30 @@ export class NeedsTableComponent implements OnInit, OnChanges {
         }
     }
 
-    handleClick(need) {
-        this.needSelected.emit(need.id);
+    handleClick(needId) {
+        this.needSelected.emit(needId);
     }
 
-    getProjectName(projectId) {
+    getStartDate(needId) {
+        return this.needMap[needId].startDate;
+    }
+
+    getEndDate(needId) {
+        return this.needMap[needId].endDate;
+    }
+
+    getProjectName(needId) {
+        let projectId = this.needMap[needId].projectId;
         return this.projectMap[projectId] ? this.projectMap[projectId].name : null;
     }
 
-    getSkillName(skillId) {
+    getSkillName(needId) {
+        let skillId = this.needMap[needId].skillId;
         return this.skillMap[skillId] ? this.skillMap[skillId].name : null;
     }
 
-    getPersonName(personId) {
+    getPersonName(needId) {
+        let personId = this.needMap[needId].personId;
         if (personId && this.personMap[personId]) {
             return this.personMap[personId].name;
         }
