@@ -27,16 +27,16 @@ export class PeopleService {
             .catch(this.handleError);
     }
 
-    assign(person: Person, need: Need) {
+    assign(personId: number, needId: number) {
         return this.http
-            .post(peopleUrl + '/' + person.id + '/needs/' + need.id, '')
+            .post(peopleUrl + '/' + personId + '/needs/' + needId, '')
             .map(response => this.extractData(response))
             .catch(this.handleError);
     }
 
-    unassign(person: Person, need: Need) {
+    unassign(personId: number, needId: number) {
         return this.http
-            .delete(peopleUrl + '/' + person.id + '/needs/' + need.id)
+            .delete(peopleUrl + '/' + personId + '/needs/' + needId)
             .map(response => this.extractData(response))
             .catch(this.handleError);
     }

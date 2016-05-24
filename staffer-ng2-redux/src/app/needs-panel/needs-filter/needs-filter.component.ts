@@ -21,8 +21,9 @@ export class NeedsFilterComponent implements OnInit {
         { id: 'closed', name: 'Closed'}
     ];
 
-    @Input() projects: Project[];
-    @Input() skills: Skill[];
+    @Input() allProjects: Project[];
+    @Input() allSkills: Skill[];
+
     @Output() filterChanged = new EventEmitter();
 
     constructor() {

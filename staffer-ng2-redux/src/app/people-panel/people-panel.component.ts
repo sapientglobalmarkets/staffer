@@ -1,9 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgRedux } from 'ng2-redux';
+import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 
 import { PeopleTableComponent } from './people-table';
-import { EventService, PeopleService } from '../shared'
+import { PeopleService } from '../shared'
 import { Need, Person } from '../shared/models/index'
+import {
+    receiveAssignmentResponse,
+    receiveMatchedPeople
+} from '../shared/store/actions';
+import { AppState } from '../shared/store/reducer';
 
 @Component({
     moduleId: module.id,
@@ -12,56 +19,71 @@ import { Need, Person } from '../shared/models/index'
     styleUrls: ['people-panel.component.css'],
     directives: [PeopleTableComponent]
 })
-export class PeoplePanelComponent implements OnInit {
+export class PeoplePanelComponent implements OnInit, OnDestroy {
 
-    people: Person[] = [];
-    selectedNeed: Need = null;
+    needMap: any;
+
+    matchedPeople: Person[];
+
+    selectedNeedId: number;
+
+    private needMapSubscription: Subscription;
+    private matchedPeopleSubscription: Subscription;
+    private selectedNeedSubscription: Subscription;
 
     constructor(
         private peopleService: PeopleService,
-        private eventService: EventService) {
+        private ngRedux: NgRedux<AppState>) {
     }
 
     ngOnInit() {
-        this.eventService.selectedNeed$
-            .subscribe(selectedNeed => this.handleNeedSelected(selectedNeed));
+        this.needMapSubscription = this.ngRedux
+            .select<any>(state => state.needMap)
+            .subscribe(needMap => {
+                console.log('PeoplePanel.needMap', needMap);
+                this.needMap = needMap;
+            });
+
+        this.matchedPeopleSubscription = this.ngRedux
+            .select<Person[]>(state => state.matchedPeople)
+            .subscribe(matchedPeople => {
+                console.log('NeedsPanel.matchedPeople', matchedPeople);
+                this.matchedPeople = matchedPeople;
+            });
+
+        this.selectedNeedSubscription = this.ngRedux
+            .select<number>(state => state.selectedNeedId)
+            .subscribe(selectedNeedId => {
+                console.log('PeoplePanel.selectedNeedId', selectedNeedId);
+                this.selectedNeedId = selectedNeedId;
+                this.handleNeedSelected(selectedNeedId);
+            });
     }
 
-    handleNeedSelected(selectedNeed: Need) {
-        this.selectedNeed = selectedNeed;
-        this.peopleService.getPeople(selectedNeed)
-            .subscribe(personMap => this.extractPeople(personMap));
+    ngOnDestroy() {
+        this.needMapSubscription.unsubscribe();
+        this.matchedPeopleSubscription.unsubscribe();
+        this.selectedNeedSubscription.unsubscribe();
     }
 
-    extractPeople(personMap: any) {
-        let peopleArray = _.values(personMap);
-        this.people = _.sortBy(peopleArray, 'name') as Person[];
+    handleNeedSelected(selectedNeedId: number) {
+        // Guard against selectedNeedId = null
+        if (!selectedNeedId) return;
+
+        this.peopleService.getPeople(this.needMap[selectedNeedId])
+            .subscribe(personMap => this.ngRedux.dispatch(receiveMatchedPeople(personMap)));
     }
 
     handlePersonClicked(event: any) {
         if (event.isChecked) {
             // Assign the person to the selected need
-            this.peopleService.assign(event.person, this.selectedNeed)
-                .subscribe(result => this.mergeAssignmentResult(result));
+            this.peopleService.assign(event.person.id, this.selectedNeedId)
+                .subscribe(response => this.ngRedux.dispatch(receiveAssignmentResponse(response)));
         }
         else {
             // Unassign the person from the selected need
-            this.peopleService.unassign(event.person, this.selectedNeed)
-                .subscribe(result => this.mergeAssignmentResult(result));
+            this.peopleService.unassign(event.person.id, this.selectedNeedId)
+                .subscribe(response => this.ngRedux.dispatch(receiveAssignmentResponse(response)));
         }
-    }
-
-    mergeAssignmentResult(result: any) {
-
-        // Merge need
-        this.selectedNeed = Object.assign({}, this.selectedNeed, result.need);
-
-        // Merge people
-        _.each(result.people, person => {
-            let existingPerson = _.find(this.people, {'id': person.id});
-            if (existingPerson) {
-                Object.assign(existingPerson, person);
-            }
-        });
     }
 }

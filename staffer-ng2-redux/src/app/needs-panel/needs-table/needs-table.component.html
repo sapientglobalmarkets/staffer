@@ -5,9 +5,9 @@
         <th>Date</th>
         <th>Assignment</th>
     </tr>
-    <tr class="need-row pointer" *ngFor="let need of needs"
+    <tr class="need-row pointer" *ngFor="let need of filteredNeeds"
         (click)="handleClick(need)"
-        [ngClass]="{ selected: (selectedNeed === need) }">
+        [ngClass]="{ selected: (selectedNeedId === need.id) }">
         <td class="skill">{{getSkillName(need.skillId)}}</td>
         <td class="project">{{getProjectName(need.projectId)}}</td>
         <td>

@@ -1,7 +1,8 @@
 <h1 class="title">People</h1>
 
 <app-people-table
-    [people]="people"
-    [selectedNeed]="selectedNeed"
+    [needMap]="needMap"
+    [matchedPeople]="matchedPeople"
+    [selectedNeedId]="selectedNeedId"
     (personClicked)="handlePersonClicked($event)">
 </app-people-table>

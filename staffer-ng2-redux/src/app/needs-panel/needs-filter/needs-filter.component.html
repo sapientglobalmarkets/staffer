@@ -7,7 +7,7 @@
     <select required
             [(ngModel)]="filterState.projectId">
         <option [value]="-1">All</option>
-        <option *ngFor="let p of projects" [value]="p.id">{{p.name}}</option>
+        <option *ngFor="let p of allProjects" [value]="p.id">{{p.name}}</option>
     </select>
 </div>
 
@@ -16,7 +16,7 @@
     <select required
         [(ngModel)]="filterState.skillId">
         <option [value]="-1">All</option>
-        <option *ngFor="let s of skills" [value]="s.id">{{s.name}}</option>
+        <option *ngFor="let s of allSkills" [value]="s.id">{{s.name}}</option>
     </select>
 </div>
 

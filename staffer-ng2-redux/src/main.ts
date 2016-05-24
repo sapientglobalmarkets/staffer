@@ -3,7 +3,7 @@ import { enableProdMode } from '@angular/core';
 import { provider } from 'ng2-redux';
 
 import { StafferNg2AppComponent, environment } from './app/';
-import { createStoreInstance } from './app/shared/store/app.store';
+import { createStoreInstance } from './app/shared/store/index';
 
 if (environment.production) {
     enableProdMode();

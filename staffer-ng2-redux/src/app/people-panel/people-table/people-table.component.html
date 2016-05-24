@@ -5,7 +5,7 @@
         <th>Email</th>
         <th>Phone</th>
     </tr>
-    <tr class="person-row" *ngFor="let person of people">
+    <tr class="person-row" *ngFor="let person of matchedPeople">
         <td>
             <input type="checkbox"
                 [ngModel]="isAssignedToSelectedNeed(person)"

@@ -2,16 +2,17 @@
 
 <div class="needs-panel-subcontainer">
     <app-needs-filter
-        [projects]="allProjects"
-        [skills]="allSkills"
+        [allProjects]="allProjects"
+        [allSkills]="allSkills"
         (filterChanged)="handleFilterChanged($event)">
     </app-needs-filter>
 
     <app-needs-table
-        [needs]="needs"
+        [personMap]="personMap"
         [projectMap]="projectMap"
         [skillMap]="skillMap"
-        [personMap]="personMap"
+        [filteredNeeds]="filteredNeeds"
+        [selectedNeedId]="selectedNeedId"
         (needSelected)="handleNeedSelected($event)">
     </app-needs-table>
 </div>
