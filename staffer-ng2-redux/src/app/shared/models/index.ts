@@ -58,4 +58,10 @@ export class NeedsSummary {
         public closed: number = 0,
         public total: number = 0) {
     }
+
+    reset() {
+        this.open = 0;
+        this.closed = 0;
+        this.total = 0;
+    }
 }

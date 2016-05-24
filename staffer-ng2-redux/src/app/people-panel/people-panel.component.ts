@@ -22,12 +22,14 @@ import { AppState } from '../shared/store/reducer';
 export class PeoplePanelComponent implements OnInit, OnDestroy {
 
     needMap: any;
+    personMap: any;
 
-    matchedPeople: Person[];
+    matchedPeople: number[];
 
     selectedNeedId: number;
 
     private needMapSubscription: Subscription;
+    private personMapSubscription: Subscription;
     private matchedPeopleSubscription: Subscription;
     private selectedNeedSubscription: Subscription;
 
@@ -40,21 +42,28 @@ export class PeoplePanelComponent implements OnInit, OnDestroy {
         this.needMapSubscription = this.ngRedux
             .select<any>(state => state.needMap)
             .subscribe(needMap => {
-                console.log('PeoplePanel.needMap', needMap);
+                // console.log('PeoplePanel.needMap', needMap);
                 this.needMap = needMap;
             });
 
+        this.personMapSubscription = this.ngRedux
+            .select<any>(state => state.personMap)
+            .subscribe(personMap => {
+                // console.log('PeoplePanel.personMap', personMap);
+                this.personMap = personMap;
+            });
+
         this.matchedPeopleSubscription = this.ngRedux
-            .select<Person[]>(state => state.matchedPeople)
+            .select<number[]>(state => state.matchedPeople)
             .subscribe(matchedPeople => {
-                console.log('NeedsPanel.matchedPeople', matchedPeople);
+                // console.log('PeoplePanel.matchedPeople', matchedPeople);
                 this.matchedPeople = matchedPeople;
             });
 
         this.selectedNeedSubscription = this.ngRedux
             .select<number>(state => state.selectedNeedId)
             .subscribe(selectedNeedId => {
-                console.log('PeoplePanel.selectedNeedId', selectedNeedId);
+                // console.log('PeoplePanel.selectedNeedId', selectedNeedId);
                 this.selectedNeedId = selectedNeedId;
                 this.handleNeedSelected(selectedNeedId);
             });
@@ -62,6 +71,7 @@ export class PeoplePanelComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.needMapSubscription.unsubscribe();
+        this.personMapSubscription.unsubscribe();
         this.matchedPeopleSubscription.unsubscribe();
         this.selectedNeedSubscription.unsubscribe();
     }
@@ -77,12 +87,12 @@ export class PeoplePanelComponent implements OnInit, OnDestroy {
     handlePersonClicked(event: any) {
         if (event.isChecked) {
             // Assign the person to the selected need
-            this.peopleService.assign(event.person.id, this.selectedNeedId)
+            this.peopleService.assign(event.personId, this.selectedNeedId)
                 .subscribe(response => this.ngRedux.dispatch(receiveAssignmentResponse(response)));
         }
         else {
             // Unassign the person from the selected need
-            this.peopleService.unassign(event.person.id, this.selectedNeedId)
+            this.peopleService.unassign(event.personId, this.selectedNeedId)
                 .subscribe(response => this.ngRedux.dispatch(receiveAssignmentResponse(response)));
         }
     }

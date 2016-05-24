@@ -12,8 +12,9 @@ import { Need, Person } from '../../shared/models/index';
 export class PeopleTableComponent implements OnInit {
 
     @Input() needMap: any;
+    @Input() personMap: any;
 
-    @Input() matchedPeople: Person[];
+    @Input() matchedPeople: number[];
 
     @Input() selectedNeedId: number;
 
@@ -25,14 +26,26 @@ export class PeopleTableComponent implements OnInit {
     ngOnInit() {
     }
 
-    isAssignedToSelectedNeed(person: Person) {
-        return person.id === this.needMap[this.selectedNeedId].personId;
+    isAssignedToSelectedNeed(personId: number) {
+        return personId === this.needMap[this.selectedNeedId].personId;
     }
 
-    handleClick(event, person) {
+    handleClick(event, personId) {
         this.personClicked.emit({
-            person: person,
+            personId: personId,
             isChecked: event.target.checked
         });
+    }
+
+    getName(personId: number) {
+        return this.personMap[personId].name;
+    }
+
+    getEmail(personId: number) {
+        return this.personMap[personId].email;
+    }
+
+    getPhone(personId: number) {
+        return this.personMap[personId].phone;
     }
 }

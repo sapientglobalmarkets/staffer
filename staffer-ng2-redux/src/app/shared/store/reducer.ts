@@ -17,7 +17,7 @@ export class AppState {
         public allProjects: Project[] = [],
         public allSkills: Skill[] = [],
         public filteredNeeds: number[] = [],
-        public matchedPeople: Person[] = [],
+        public matchedPeople: number[] = [],
         public selectedNeedId: number = null) {
     }
 }
@@ -26,7 +26,7 @@ export const initialState: AppState = new AppState();
 
 export var reducer = (state: AppState = initialState, action: any) => {
 
-    console.log('reducer - action:', action);
+    // console.log('reducer - action:', action);
 
     let nextState: AppState;
 
@@ -96,11 +96,15 @@ export var reducer = (state: AppState = initialState, action: any) => {
             // Merge response maps with state maps (make sure elements in response maps override those in state)
             personMap = _.extend({}, state.personMap, action.personMap);
 
-            peopleArray = _.values(action.personMap) as Person[];
+            let matchedPeople = _.chain(action.personMap)
+                .values()
+                .sortBy('name')
+                .map((person: Person) => person.id)
+                .value();
 
             nextState = Object.assign({}, state, {
                 personMap: personMap,
-                matchedPeople: _.sortBy(peopleArray, 'name') as Person[]
+                matchedPeople: matchedPeople
             });
             break;
 
