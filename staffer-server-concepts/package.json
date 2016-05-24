@@ -1,0 +1,21 @@
+{
+  "name": "staffer-server-concepts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "falcor": "^0.1.17",
+    "falcor-express": "^0.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
+  }
+}
