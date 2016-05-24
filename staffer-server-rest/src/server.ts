@@ -129,23 +129,24 @@ app.post('/people/:personId/needs/:needId', function (req: express.Request, res:
     }
 
     let result = {
-        people: <any>[],
-        need: need
+        needMap: {} as any,
+        personMap: {} as any
     };
 
     // If need is assigned to another person, remove it from person
     if (need.personId) {
         let previousPerson = store.personMap[need.personId];
         removeNeedFromPerson(previousPerson, need.id);
-        result.people.push(previousPerson);
+        result.personMap[previousPerson.id] = previousPerson;
     }
 
     // Add need to person
     person.needIds.push(need.id);
-    result.people.push(person);
+    result.personMap[person.id] = person;
 
     // Add person to need
     need.personId = person.id;
+    result.needMap[need.id] = need;
 
     res.json(result);
 });
@@ -162,16 +163,17 @@ app.delete('/people/:personId/needs/:needId', function (req: express.Request, re
     }
 
     let result = {
-        people: <any>[],
-        need: need
+        needMap: {} as any,
+        personMap: {} as any
     };
 
     // Remove need from person
     removeNeedFromPerson(person, need.id);
-    result.people.push(person);
+    result.personMap[person.id] = person;
 
     // Remove person from need
     need.personId = null;
+    result.needMap[need.id] = need;
 
     res.json(result);
 });
