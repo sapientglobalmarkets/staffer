@@ -54,10 +54,13 @@ export class PeoplePanelComponent implements OnInit {
     mergeAssignmentResult(result: any) {
 
         // Merge need
-        this.selectedNeed = Object.assign({}, this.selectedNeed, result.need);
+        let needId = this.selectedNeed.id;
+        if (result.needMap[needId]) {
+            this.selectedNeed = Object.assign({}, this.selectedNeed, result.needMap[needId]);
+        }
 
         // Merge people
-        _.each(result.people, person => {
+        _.each(result.personMap, person => {
             let existingPerson = _.find(this.people, {'id': person.id});
             if (existingPerson) {
                 Object.assign(existingPerson, person);
