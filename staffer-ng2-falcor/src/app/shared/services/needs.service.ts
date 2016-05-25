@@ -3,16 +3,36 @@ import { Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 
+import { FalcorService } from './falcor.service';
 import { needsUrl } from '../config/app.config';
 import { FilterState, Need } from '../models/index'
 
 @Injectable()
 export class NeedsService {
 
-    constructor(private http: Http) {
+    constructor(private falcorService: FalcorService, private http: Http) {
     }
 
     getNeeds(filterState: FilterState): Observable<any> {
+
+        this.falcorService.get([
+                'needs',
+                {from: 0, to: 100},
+                ['id', 'startDate', 'endDate', 'project', 'skill', 'person'],
+                ['name', 'email', 'phone']
+            ])
+        .then((response) => {
+            _.each(response.json.needs, need => {
+                console.log(
+                    need.skill.name + ', ' +
+                    need.project.name + ', ' +
+                    need.startDate + ', ' +
+                    need.endDate + ', ' +
+                    (need.person ? need.person.name : '-'));
+            });
+
+            return 0;
+        });
 
         let searchParams: URLSearchParams = new URLSearchParams();
         if (filterState.minStartDate) {

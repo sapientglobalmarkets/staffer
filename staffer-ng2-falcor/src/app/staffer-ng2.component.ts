@@ -4,7 +4,7 @@ import { MdToolbar } from '@angular2-material/toolbar';
 
 import { NeedsPanelComponent } from './needs-panel';
 import { PeoplePanelComponent } from './people-panel';
-import { NeedsService, EventService, PeopleService, ProjectsService, SkillsService } from './shared';
+import { FalcorService, NeedsService, EventService, PeopleService, ProjectsService, SkillsService } from './shared';
 import { NeedsSummary } from './shared/models/index';
 
 @Component({
@@ -13,7 +13,7 @@ import { NeedsSummary } from './shared/models/index';
     templateUrl: 'staffer-ng2.component.html',
     styleUrls: ['staffer-ng2.component.css'],
     directives: [MdToolbar, NeedsPanelComponent, PeoplePanelComponent],
-    providers: [HTTP_PROVIDERS, EventService, NeedsService, PeopleService, ProjectsService, SkillsService]
+    providers: [HTTP_PROVIDERS, FalcorService, EventService, NeedsService, PeopleService, ProjectsService, SkillsService]
 })
 export class StafferNg2AppComponent {
 

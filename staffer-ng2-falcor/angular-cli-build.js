@@ -13,7 +13,8 @@ module.exports = function(defaults) {
       'rxjs/**/*.+(js|js.map)',
       'lodash/**/*.js',
       '@angular/**/*.+(js|js.map)',
-      '@angular2-material/**/*.+(js|js.map)'
+      '@angular2-material/**/*.+(js|js.map)',
+      'falcor/**/*.js'
     ]
   });
 };
