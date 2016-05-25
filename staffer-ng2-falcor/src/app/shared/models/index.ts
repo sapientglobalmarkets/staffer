@@ -40,6 +40,18 @@ export class Need {
     }
 }
 
+export class FalcorNeed {
+    id: number;
+    startDate: Date;
+    endDate: Date;
+    projectId: number;
+    projectName: string;
+    skillId: number;
+    skillName: string;
+    personId: number;
+    personName: string;
+}
+
 export class FilterState {
 
     constructor(

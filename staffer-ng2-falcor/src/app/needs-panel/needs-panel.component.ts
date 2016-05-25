@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { NeedsFilterComponent } from './needs-filter';
 import { NeedsTableComponent } from './needs-table';
 import { EventService, NeedsService, ProjectsService, SkillsService } from '../shared';
-import { FilterState, Need, NeedsSummary, Project, Skill } from '../shared/models/index'
+import { FilterState, FalcorNeed, Need, NeedsSummary, Project, Skill } from '../shared/models/index'
 
 @Component({
     moduleId: module.id,
@@ -21,6 +21,7 @@ export class NeedsPanelComponent implements OnInit {
     personMap: any = {};
 
     needs: Need[] = [];
+    falcorNeeds: FalcorNeed[] = [];
 
     @Output() needsSummaryChanged = new EventEmitter();
 
@@ -44,13 +45,22 @@ export class NeedsPanelComponent implements OnInit {
          this.getNeeds(filterState);
     }
 
-    handleNeedSelected(selectedNeed: Need) {
+    handleNeedSelected(selectedNeed: FalcorNeed) {
         this.eventService.selectNeed(selectedNeed);
     }
 
     getNeeds(filterState: FilterState) {
+
         this.needsService.getNeeds(filterState)
             .subscribe(result => this.extractNeeds(result));
+
+        // TODO: Why is this set to null inside the then clause?
+        let self = this;
+        this.needsService.getFalcorNeeds(filterState)
+            .then(falcorNeeds => {
+                self.falcorNeeds = falcorNeeds;
+                return falcorNeeds;
+            });
     }
 
     extractNeeds(result: any) {

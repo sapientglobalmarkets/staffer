@@ -5,15 +5,15 @@
         <th>Date</th>
         <th>Assignment</th>
     </tr>
-    <tr class="need-row pointer" *ngFor="let need of needs"
+    <tr class="need-row pointer" *ngFor="let need of falcorNeeds"
         (click)="handleClick(need)"
         [ngClass]="{ selected: (selectedNeed === need) }">
-        <td class="skill">{{getSkillName(need.skillId)}}</td>
-        <td class="project">{{getProjectName(need.projectId)}}</td>
+        <td class="skill">{{need.skillName}}</td>
+        <td class="project">{{need.projectName}}</td>
         <td>
             <span class="start-date">{{need.startDate | date:'shortDate'}}</span><br>
             <span class="end-date">{{need.endDate | date:'shortDate'}}</span>
         </td>
-        <td class="assignment">{{getPersonName(need.personId)}}</td>
+        <td class="assignment">{{need.personName}}</td>
     </tr>
 </table>

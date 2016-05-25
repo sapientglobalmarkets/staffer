@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 
 import { PeopleTableComponent } from './people-table';
 import { EventService, PeopleService } from '../shared'
-import { Need, Person } from '../shared/models/index'
+import { FalcorNeed, Person } from '../shared/models/index'
 
 @Component({
     moduleId: module.id,
@@ -15,7 +15,7 @@ import { Need, Person } from '../shared/models/index'
 export class PeoplePanelComponent implements OnInit {
 
     people: Person[] = [];
-    selectedNeed: Need = null;
+    selectedNeed: FalcorNeed = null;
 
     constructor(
         private peopleService: PeopleService,
@@ -27,7 +27,7 @@ export class PeoplePanelComponent implements OnInit {
             .subscribe(selectedNeed => this.handleNeedSelected(selectedNeed));
     }
 
-    handleNeedSelected(selectedNeed: Need) {
+    handleNeedSelected(selectedNeed: FalcorNeed) {
         this.selectedNeed = selectedNeed;
         this.peopleService.getPeople(selectedNeed)
             .subscribe(personMap => this.extractPeople(personMap));

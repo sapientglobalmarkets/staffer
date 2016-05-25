@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-import { Need } from '../models/index';
+import { FalcorNeed } from '../models/index';
 
 @Injectable()
 export class EventService {
@@ -9,11 +9,11 @@ export class EventService {
     constructor() {
     }
 
-    private selectedNeedSource = new Subject<Need>();
+    private selectedNeedSource = new Subject<FalcorNeed>();
 
     selectedNeed$ = this.selectedNeedSource.asObservable();
 
-    selectNeed(need: Need) {
+    selectNeed(need: FalcorNeed) {
         this.selectedNeedSource.next(need);
     }
 

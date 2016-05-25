@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 
 import { FalcorService } from './falcor.service';
 import { needsUrl } from '../config/app.config';
-import { FilterState, Need } from '../models/index'
+import { FilterState, FalcorNeed, Need } from '../models/index'
 
 @Injectable()
 export class NeedsService {
@@ -14,25 +14,6 @@ export class NeedsService {
     }
 
     getNeeds(filterState: FilterState): Observable<any> {
-
-        this.falcorService.get([
-                'needs',
-                {from: 0, to: 100},
-                ['id', 'startDate', 'endDate', 'project', 'skill', 'person'],
-                ['name', 'email', 'phone']
-            ])
-        .then((response) => {
-            _.each(response.json.needs, need => {
-                console.log(
-                    need.skill.name + ', ' +
-                    need.project.name + ', ' +
-                    need.startDate + ', ' +
-                    need.endDate + ', ' +
-                    (need.person ? need.person.name : '-'));
-            });
-
-            return 0;
-        });
 
         let searchParams: URLSearchParams = new URLSearchParams();
         if (filterState.minStartDate) {
@@ -79,4 +60,29 @@ export class NeedsService {
             (errorResponse.statusText || 'unknown error');
         return Observable.throw(message);
     }
+
+    getFalcorNeeds(filterState: FilterState): Promise<FalcorNeed[]> {
+        return this.falcorService.get([
+                'needs',
+                {from: 0, to: 100},
+                ['id', 'startDate', 'endDate', 'project', 'skill', 'person'],
+                ['id', 'name', 'email', 'phone']
+            ])
+        .then((response) => {
+            return _.map(response.json.needs, (need: any) => {
+                return {
+                    id: need.id,
+                    startDate: new Date(need.startDate),
+                    endDate: new Date(need.endDate),
+                    projectId: need.project.id,
+                    projectName: need.project.name,
+                    skillId: need.skill.id,
+                    skillName: need.skill.name,
+                    personId: need.person ? need.person.id : null,
+                    personName: need.person ? need.person.name : null
+                } as FalcorNeed;
+            });
+        });
+    }
+
 }
