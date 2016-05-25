@@ -86,6 +86,10 @@ var needs_fully_expanded_with_duplicates = [
 ];
 
 var needs_represented_as_a_graph = {
+    needs: [
+        101,
+        102
+    ],
     needMap: {
         101: {
             id: 101,
