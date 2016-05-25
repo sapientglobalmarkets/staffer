@@ -1,0 +1,17 @@
+<h1 class="title">Needs</h1>
+
+<div class="needs-panel-subcontainer">
+    <app-needs-filter
+        [projects]="allProjects"
+        [skills]="allSkills"
+        (filterChanged)="handleFilterChanged($event)">
+    </app-needs-filter>
+
+    <app-needs-table
+        [needs]="needs"
+        [projectMap]="projectMap"
+        [skillMap]="skillMap"
+        [personMap]="personMap"
+        (needSelected)="handleNeedSelected($event)">
+    </app-needs-table>
+</div>

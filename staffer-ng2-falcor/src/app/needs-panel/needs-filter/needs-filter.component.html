@@ -1,0 +1,31 @@
+<md-input type="date" [(ngModel)]="filterState.minStartDate" placeholder="" aria-label="From Date"></md-input>
+
+<md-input type="date" [(ngModel)]="filterState.maxStartDate" placeholder="" aria-label="To Date"></md-input>
+
+<div class="input-container">
+    <label>Project</label>
+    <select required
+            [(ngModel)]="filterState.projectId">
+        <option [value]="-1">All</option>
+        <option *ngFor="let p of projects" [value]="p.id">{{p.name}}</option>
+    </select>
+</div>
+
+<div class="input-container">
+    <label>Skill</label>
+    <select required
+        [(ngModel)]="filterState.skillId">
+        <option [value]="-1">All</option>
+        <option *ngFor="let s of skills" [value]="s.id">{{s.name}}</option>
+    </select>
+</div>
+
+<div class="input-container">
+    <label>Status</label>
+    <select required
+        [(ngModel)]="filterState.status">
+        <option *ngFor="let s of statuses" [value]="s.id">{{s.name}}</option>
+    </select>
+</div>
+
+<button md-raised-button class="search-button" color="primary" (click)="handleFilterChanged()">Search</button>
