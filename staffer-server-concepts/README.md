@@ -12,3 +12,5 @@ $ npm start
 
 1. A sample REST endpoint is now available at [http://localhost:9090/needs](http://localhost:9090/needs).
 2. A Falcore demo is available at [http://localhost:9090/](http://localhost:9090/). Just point your browser to this URL and open the browser console.
+
+To experiment with different versions of data, copy the appropriate fragments from data.js to server.js.
