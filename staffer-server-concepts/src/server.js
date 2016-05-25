@@ -64,7 +64,12 @@ var model = new falcor.Model({
 var app = express();
 
 // Add middleware to enable CORS
-app.use(cors());
+// The options below are needed to make CORS work with the staffer client.
+var corsOptions = {
+  origin: 'http://localhost:4200',
+  credentials: true
+};
+app.use(cors(corsOptions));
 
 // Add middleware to parse the POST data of the body
 app.use(bodyParser.urlencoded({extended: true}));
@@ -86,7 +91,7 @@ app.use('/model.json', falcorExpress.dataSourceRoute(function(req, res) {
 // -----------------------------------------------------------------------------
 // Start the HTTP Server using the Express App
 // -----------------------------------------------------------------------------
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 9090;
 
 var server = require('http').createServer(app);
 

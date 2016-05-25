@@ -5,8 +5,8 @@ var model = new falcor.Model({
 var needId = 101;
 
 model.get(['needMap', needId, ['startDate', 'endDate']])
-.then(function(json) {
-    console.log(JSON.stringify(json, null, 4));
+.then(function(response) {
+    console.log(JSON.stringify(response, null, 4));
     return 0;
 });
 
@@ -16,7 +16,7 @@ model.get(['needMap', needId, ['startDate', 'endDate']])
 //         ['startDate', 'endDate', 'project', 'skill', 'person'],
 //         ['name', 'email', 'phone']
 //     ])
-// .then(function(json) {
-//     console.log(JSON.stringify(json, null, 4));
+// .then(function(response) {
+//     console.log(JSON.stringify(response, null, 4));
 //     return 0;
 // });
