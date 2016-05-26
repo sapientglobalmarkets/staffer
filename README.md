@@ -5,11 +5,11 @@ Developers today are overloaded with choices when it comes to selecting state ma
 
 To solve this problem, we created Staffer - you can think of it as the [Todo App](https://github.com/tastejs/todomvc) on steroids for understanding state management techniques. Obviously, state management is a complex topic - so we had to come up with a more complex domain that will allows us to illustrate the patterns and techniques effectively. The domain we picked is *Staffing*. Think of a consulting firm that provides custom solutions for their clients. The staffing coordinator at this firm must look at all open needs and match them to people with the required skills. Here's the domain model for this problem:
 
-<img src="domain-model/staffer-domain-model.png" width="400">
+<img src="domain-model/staffer-domain-model.png">
 
 The solution is the Staffer app (see screenshot below). It consists of a single screen showing open needs on the left and matching people on the right. When a specific need is selected, the People Panel on the right should show all the people who have the required skill and are available for the duration of the need. The staffing coordinator should be able to select a subset of the needs by setting appropriate filters on the left. To staff a person, she must click on the checkbox next to the person. This should send a request to the server to staff the person and display the resulting state in the front-end. Specifically, the Needs Panel should show the name of the assigned person and the summary at the top should reflect one more need closed.
 
-<img src="assets/screen-shot.png" width="400">
+<img src="assets/screen-shot.png">
 
 Implementations
 ---------------
