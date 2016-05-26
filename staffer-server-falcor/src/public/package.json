@@ -1,0 +1,13 @@
+{
+  "name": "staffer-server-concepts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "falcor": "^0.1.17"
+  }
+}
