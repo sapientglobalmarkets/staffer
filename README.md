@@ -43,9 +43,9 @@ We hope that this project is able to offer assistance in deciding what patterns 
 
 Contributors
 ------------
-[<img alt="nareshbhatia" src="https://avatars.githubusercontent.com/u/1220198?v=3&s=117" width="117">](https://github.com/nareshbhatia) |
+[<img alt="Naresh Bhatia" src="https://avatars.githubusercontent.com/u/1220198?v=3&s=117" width="117">](https://github.com/nareshbhatia) |
 :---: |
-[nareshbhatia](https://github.com/nareshbhatia) |
+[Naresh Bhatia](https://github.com/nareshbhatia) |
 
 Contributing
 ------------
