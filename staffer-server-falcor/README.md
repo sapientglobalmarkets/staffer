@@ -1,4 +1,4 @@
-# staffer-server-concepts
+# staffer-server-falcor
 
 To run this application:
 
