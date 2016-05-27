@@ -51,4 +51,4 @@ Contributions welcome! If you are passionate about specific state management pat
 
 Resources
 ---------
-- [Comparing Redux, Relay and Falcor for State Management]() - A presentation by Naresh Bhatia explaining various state management techniques.
+- [Comparing Redux, Relay and Falcor for State Management](https://drive.google.com/file/d/0Bxd0x47hCRbTSnNpY0ZFV3dYMDQ/view?usp=sharing) - A presentation by Naresh Bhatia explaining various state management techniques.
