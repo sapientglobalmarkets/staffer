@@ -53,6 +53,7 @@ CREATE TABLE projects (
 
   company_id INTEGER NOT NULL
 );
+CREATE INDEX location_idx ON projects (location);
 
 CREATE TABLE skills (
   id SERIAL PRIMARY KEY,

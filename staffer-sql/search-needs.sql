@@ -19,7 +19,7 @@ FROM   needs n
                     ON n.person_id = per.id
 WHERE  n.start_date >= :'min_start_date'
   AND  n.start_date <  :'max_start_date'
-  AND  p.id = :'project_id'
+  -- AND  p.id = :'project_id'
   AND  p.location = :'project_location'
-  AND  s.id = :'skill_id'
+  -- AND  s.id = :'skill_id'
 ORDER  BY n.start_date, p.id, s.id;
