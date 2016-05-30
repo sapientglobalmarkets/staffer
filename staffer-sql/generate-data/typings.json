@@ -1,0 +1,9 @@
+{
+  "ambientDependencies": {
+    "chance": "registry:dt/chance#0.7.3+20160317120654",
+    "lodash": "registry:dt/lodash#3.10.0+20160330154726",
+    "moment": "registry:dt/moment#2.8.0+20160316155526",
+    "moment-node": "registry:dt/moment-node#2.11.1+20160511043338",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#eeede9d1ad03e27fe3537334c17ff09a77ac5819"
+  }
+}
