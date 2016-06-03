@@ -3,57 +3,71 @@ import * as _ from 'lodash';
 
 import { NeedsFilterComponent } from './needs-filter';
 import { NeedsTableComponent } from './needs-table';
-import { EventService, NeedsService, ProjectsService, SkillsService } from '../shared';
-import { FilterState, Need, NeedsSummary, Project, Skill } from '../shared/models/index'
+import {
+    EventService,
+    NeedsService,
+    ProjectsService,
+    SkillsService
+} from '../shared';
+import {
+    FilterState,
+    Need,
+    NeedsSummary,
+    Project,
+    Skill, AppState
+} from '../shared/models/index'
+import { Store } from "@ngrx/store";
 
 @Component({
     moduleId: module.id,
     selector: 'app-needs-panel',
     templateUrl: 'needs-panel.component.html',
-    styleUrls: ['needs-panel.component.css'],
-    directives: [NeedsFilterComponent, NeedsTableComponent]
+    styleUrls: [ 'needs-panel.component.css' ],
+    directives: [ NeedsFilterComponent, NeedsTableComponent ]
 })
 export class NeedsPanelComponent implements OnInit {
 
-    needMap: any = {};
-    projectMap: any = {};
-    skillMap: any = {};
-    personMap: any = {};
+    needMap:any = {};
+    projectMap:any = {};
+    skillMap:any = {};
+    personMap:any = {};
 
-    needs: Need[] = [];
+    needs:Need[] = [];
 
     @Output() needsSummaryChanged = new EventEmitter();
 
     // Full list needed for filters
-    allProjects: Project[] = [];
-    allSkills: Skill[] = [];
+    allProjects:Project[] = [];
+    allSkills:Skill[] = [];
 
-    constructor(
-        private eventService: EventService,
-        private needsService: NeedsService,
-        private projectsService: ProjectsService,
-        private skillsService: SkillsService) {
+    constructor(private eventService:EventService,
+                private needsService:NeedsService,
+                private projectsService:ProjectsService,
+                private skillsService:SkillsService,
+                private store:Store<AppState>) {
+
     }
 
     ngOnInit() {
         this.getAllProjects();
         this.getAllSkills();
+
+        this.store.select('filter')
+            .subscribe((filterState:FilterState)=> {
+                this.getNeeds(filterState);
+            });
     }
 
-    handleFilterChanged(filterState: FilterState) {
-         this.getNeeds(filterState);
-    }
-
-    handleNeedSelected(selectedNeed: Need) {
+    handleNeedSelected(selectedNeed:Need) {
         this.eventService.selectNeed(selectedNeed);
     }
 
-    getNeeds(filterState: FilterState) {
+    getNeeds(filterState:FilterState) {
         this.needsService.getNeeds(filterState)
             .subscribe(result => this.extractNeeds(result));
     }
 
-    extractNeeds(result: any) {
+    extractNeeds(result:any) {
         this.needMap = result.needMap;
         this.projectMap = result.projectMap;
         this.skillMap = result.skillMap;
@@ -70,9 +84,9 @@ export class NeedsPanelComponent implements OnInit {
         this.needsSummaryChanged.emit(needsSummary);
     }
 
-    calculateNeedsSummary(needs: Need[]) : NeedsSummary {
+    calculateNeedsSummary(needs:Need[]):NeedsSummary {
         let needsSummary = new NeedsSummary();
-        _.each(needs, (need: Need) => {
+        _.each(needs, (need:Need) => {
             need.personId ? needsSummary.closed++ : needsSummary.open++;
         });
         needsSummary.total = needs.length;
@@ -84,7 +98,7 @@ export class NeedsPanelComponent implements OnInit {
             .subscribe(projectMap => this.extractProjects(projectMap));
     }
 
-    extractProjects(projectMap: any) {
+    extractProjects(projectMap:any) {
         let projectsArray = _.values(projectMap);
         this.allProjects = _.sortBy(projectsArray, 'name') as Project[];
     }
@@ -94,7 +108,7 @@ export class NeedsPanelComponent implements OnInit {
             .subscribe(skillMap => this.extractSkills(skillMap));
     }
 
-    extractSkills(skillMap: any) {
+    extractSkills(skillMap:any) {
         let skillsArray = _.values(skillMap);
         this.allSkills = _.sortBy(skillsArray, 'name') as Skill[];
     }

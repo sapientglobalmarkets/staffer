@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChange
+} from '@angular/core';
 
 import { Need } from '../../shared/models/index'
 
@@ -6,14 +14,14 @@ import { Need } from '../../shared/models/index'
     moduleId: module.id,
     selector: 'app-needs-table',
     templateUrl: 'needs-table.component.html',
-    styleUrls: ['needs-table.component.css']
+    styleUrls: [ 'needs-table.component.css' ]
 })
 export class NeedsTableComponent implements OnInit, OnChanges {
 
-    @Input() needs: Need[];
-    @Input() projectMap: any;
-    @Input() skillMap: any;
-    @Input() personMap: any;
+    @Input() needs:Need[];
+    @Input() projectMap:any;
+    @Input() skillMap:any;
+    @Input() personMap:any;
     @Output() needSelected = new EventEmitter();
 
     selectedNeed = null;
@@ -24,9 +32,9 @@ export class NeedsTableComponent implements OnInit, OnChanges {
     ngOnInit() {
     }
 
-    ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-        if (changes['needs'] && changes['needs'].currentValue.length > 0) {
-            this.handleClick(changes['needs'].currentValue[0]);
+    ngOnChanges(changes:{[propName:string]:SimpleChange}) {
+        if (changes[ 'needs' ] && changes[ 'needs' ].currentValue.length > 0) {
+            this.handleClick(changes[ 'needs' ].currentValue[ 0 ]);
         }
     }
 
@@ -36,14 +44,14 @@ export class NeedsTableComponent implements OnInit, OnChanges {
     }
 
     getProjectName(projectId) {
-        return this.projectMap[projectId].name;
+        return this.projectMap[ projectId ].name;
     }
 
     getSkillName(skillId) {
-        return this.skillMap[skillId].name;
+        return this.skillMap[ skillId ].name;
     }
 
     getPersonName(personId) {
-        return personId ? this.personMap[personId].name : null;
+        return personId ? this.personMap[ personId ].name : null;
     }
 }

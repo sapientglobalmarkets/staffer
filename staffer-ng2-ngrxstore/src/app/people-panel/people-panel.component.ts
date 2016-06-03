@@ -9,17 +9,16 @@ import { Need, Person } from '../shared/models/index'
     moduleId: module.id,
     selector: 'app-people-panel',
     templateUrl: 'people-panel.component.html',
-    styleUrls: ['people-panel.component.css'],
-    directives: [PeopleTableComponent]
+    styleUrls: [ 'people-panel.component.css' ],
+    directives: [ PeopleTableComponent ]
 })
 export class PeoplePanelComponent implements OnInit {
 
-    people: Person[] = [];
-    selectedNeed: Need = null;
+    people:Person[] = [];
+    selectedNeed:Need = null;
 
-    constructor(
-        private peopleService: PeopleService,
-        private eventService: EventService) {
+    constructor(private peopleService:PeopleService,
+                private eventService:EventService) {
     }
 
     ngOnInit() {
@@ -27,18 +26,18 @@ export class PeoplePanelComponent implements OnInit {
             .subscribe(selectedNeed => this.handleNeedSelected(selectedNeed));
     }
 
-    handleNeedSelected(selectedNeed: Need) {
+    handleNeedSelected(selectedNeed:Need) {
         this.selectedNeed = selectedNeed;
         this.peopleService.getPeople(selectedNeed)
             .subscribe(personMap => this.extractPeople(personMap));
     }
 
-    extractPeople(personMap: any) {
+    extractPeople(personMap:any) {
         let peopleArray = _.values(personMap);
         this.people = _.sortBy(peopleArray, 'name') as Person[];
     }
 
-    handlePersonClicked(event: any) {
+    handlePersonClicked(event:any) {
         if (event.isChecked) {
             // Assign the person to the selected need
             this.peopleService.assign(event.person, this.selectedNeed)
@@ -51,17 +50,17 @@ export class PeoplePanelComponent implements OnInit {
         }
     }
 
-    mergeAssignmentResult(result: any) {
+    mergeAssignmentResult(result:any) {
 
         // Merge need
         let needId = this.selectedNeed.id;
-        if (result.needMap[needId]) {
-            this.selectedNeed = Object.assign({}, this.selectedNeed, result.needMap[needId]);
+        if (result.needMap[ needId ]) {
+            this.selectedNeed = Object.assign({}, this.selectedNeed, result.needMap[ needId ]);
         }
 
         // Merge people
         _.each(result.personMap, person => {
-            let existingPerson = _.find(this.people, {'id': person.id});
+            let existingPerson = _.find(this.people, { 'id': person.id });
             if (existingPerson) {
                 Object.assign(existingPerson, person);
             }

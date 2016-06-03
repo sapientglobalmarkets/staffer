@@ -1,39 +1,39 @@
 export class Skill {
-    id: number;
-    name: string;
+    id:number;
+    name:string;
 }
 
 export class Person {
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    skillIds: number[];
-    needIds: number[];
+    id:number;
+    name:string;
+    email:string;
+    phone:string;
+    skillIds:number[];
+    needIds:number[];
 }
 
 export class Company {
-    id: number;
-    name: string;
+    id:number;
+    name:string;
 }
 
 export class Project {
-    id: number;
-    name: string;
-    companyId: number;
+    id:number;
+    name:string;
+    companyId:number;
 }
 
 export class Need {
-    id: number;
-    startDate: Date;
-    endDate: Date;
-    projectId: number;
-    skillId: number;
-    personId: number;
+    id:number;
+    startDate:Date;
+    endDate:Date;
+    projectId:number;
+    skillId:number;
+    personId:number;
 
     // Parses the raw need returned by the server.
     // Converts string dates to Date objects.
-    static parse(need: any): Need {
+    static parse(need:any):Need {
         need.startDate = new Date(need.startDate);
         need.endDate = new Date(need.endDate);
         return need;
@@ -42,20 +42,22 @@ export class Need {
 
 export class FilterState {
 
-    constructor(
-        public minStartDate: string = null,
-        public maxStartDate: string = null,
-        public projectId: number = -1,
-        public skillId: number = -1,
-        public status: string = 'open') {
+    constructor(public minStartDate:string = null,
+                public maxStartDate:string = null,
+                public projectId:number = -1,
+                public skillId:number = -1,
+                public status:string = 'open') {
     }
 }
 
 export class NeedsSummary {
 
-    constructor(
-        public open: number = 0,
-        public closed: number = 0,
-        public total: number = 0) {
+    constructor(public open:number = 0,
+                public closed:number = 0,
+                public total:number = 0) {
     }
+}
+
+export interface AppState {
+    filter:FilterState;
 }

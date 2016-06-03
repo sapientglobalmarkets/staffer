@@ -8,12 +8,12 @@ import { peopleUrl } from '../config/app.config';
 @Injectable()
 export class PeopleService {
 
-    constructor(private http: Http) {
+    constructor(private http:Http) {
     }
 
-    getPeople(need: Need): Observable<any> {
+    getPeople(need:Need):Observable<any> {
 
-        let searchParams: URLSearchParams = new URLSearchParams();
+        let searchParams:URLSearchParams = new URLSearchParams();
         if (need) {
             searchParams.set('needId', need.id.toString());
             searchParams.set('skillId', need.skillId.toString());
@@ -27,21 +27,21 @@ export class PeopleService {
             .catch(this.handleError);
     }
 
-    assign(person: Person, need: Need) {
+    assign(person:Person, need:Need) {
         return this.http
             .post(peopleUrl + '/' + person.id + '/needs/' + need.id, '')
             .map(response => this.extractData(response))
             .catch(this.handleError);
     }
 
-    unassign(person: Person, need: Need) {
+    unassign(person:Person, need:Need) {
         return this.http
             .delete(peopleUrl + '/' + person.id + '/needs/' + need.id)
             .map(response => this.extractData(response))
             .catch(this.handleError);
     }
 
-    private extractData(response: Response) {
+    private extractData(response:Response) {
         if (response.status < 200 || response.status >= 300) {
             throw new Error('Bad response status: ' + response.status);
         }
@@ -51,15 +51,16 @@ export class PeopleService {
         // If result has a needMap, convert ISO dates to Date objects
         // This is the case for assign and unassign results
         if (result.needMap) {
-            _.each(result.needMap, function(need) {
+            _.each(result.needMap, function (need) {
                 Need.parse(need);
             });
-        };
+        }
+        ;
 
         return result;
     }
 
-    private handleError(errorResponse: Response) {
+    private handleError(errorResponse:Response) {
         let body = errorResponse.json();
         let message = body.message ?
             body.message :

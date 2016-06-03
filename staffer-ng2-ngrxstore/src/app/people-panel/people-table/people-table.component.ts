@@ -6,12 +6,12 @@ import { Need, Person } from '../../shared/models/index';
     moduleId: module.id,
     selector: 'app-people-table',
     templateUrl: 'people-table.component.html',
-    styleUrls: ['people-table.component.css']
+    styleUrls: [ 'people-table.component.css' ]
 })
 export class PeopleTableComponent implements OnInit {
 
-    @Input() people: Person[];
-    @Input() selectedNeed: Need = null;
+    @Input() people:Person[];
+    @Input() selectedNeed:Need = null;
     @Output() personClicked = new EventEmitter();
 
     constructor() {
@@ -20,7 +20,7 @@ export class PeopleTableComponent implements OnInit {
     ngOnInit() {
     }
 
-    isAssignedToSelectedNeed(person: Person) {
+    isAssignedToSelectedNeed(person:Person) {
         return person.id === this.selectedNeed.personId;
     }
 

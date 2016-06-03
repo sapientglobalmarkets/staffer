@@ -8,10 +8,10 @@ import {
 import { ProjectsService } from './projects.service';
 
 describe('Projects Service', () => {
-    beforeEachProviders(() => [ProjectsService]);
+    beforeEachProviders(() => [ ProjectsService ]);
 
     it('should ...',
-        inject([ProjectsService], (service: ProjectsService) => {
+        inject([ ProjectsService ], (service:ProjectsService) => {
             expect(service).toBeTruthy();
         }));
 });
