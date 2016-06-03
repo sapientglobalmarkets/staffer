@@ -27,7 +27,7 @@ export class Need {
     id:number;
     startDate:Date;
     endDate:Date;
-    projectId:number;
+    project:number;
     skillId:number;
     personId:number;
 
@@ -58,6 +58,8 @@ export class NeedsSummary {
     }
 }
 
-export interface AppState {
-    filter:FilterState;
+export class Status {
+    id:string;
+    name:string;
 }
+

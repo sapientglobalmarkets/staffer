@@ -8,14 +8,9 @@ import {
 } from "@angular/core";
 import { MdButton } from "@angular2-material/button";
 import { MD_INPUT_DIRECTIVES } from "@angular2-material/input";
-import {
-    FilterState,
-    Project,
-    Skill,
-    AppState
-} from "../../shared/models/index";
+import { FilterState, Project, Skill, Status } from "../../shared/models/index";
 import { Store } from "@ngrx/store";
-import { changeFilter } from "../../shared/store/actions";
+import { AppState } from "../../shared/store/state";
 
 @Component({
     moduleId: module.id,
@@ -29,25 +24,30 @@ export class NeedsFilterComponent {
 
     filterState:FilterState = new FilterState();
 
-    statuses = [
-        { id: 'all', name: 'All' },
-        { id: 'open', name: 'Open' },
-        { id: 'closed', name: 'Closed' }
-    ];
+    @Input()
+    statuses:Status[] = [];
 
-    @Input() projects:Project[];
-    @Input() skills:Skill[];
-    @Output() filterChanged = new EventEmitter();
+    @Input()
+    projects:Project[];
 
-    constructor(private store:Store<AppState>, ref:ChangeDetectorRef) {
+    @Input()
+    skills:Skill[];
+
+    @Output()
+    filterChange = new EventEmitter<FilterState>();
+
+    constructor(private store:Store<AppState>,
+                ref:ChangeDetectorRef) {
+
         store.select('filter')
-            .subscribe((state:FilterState)=> {
-                this.filterState = state;
+            .subscribe((filter:FilterState)=> {
+                this.filterState = filter;
                 ref.markForCheck();
-            })
+            });
+
     }
 
-    handleFilterChanged() {
-        this.store.dispatch(changeFilter(this.filterState));
+    notifyFilterChange() {
+        this.filterChange.emit(this.filterState);
     }
 }

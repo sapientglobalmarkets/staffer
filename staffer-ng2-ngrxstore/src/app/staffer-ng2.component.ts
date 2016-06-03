@@ -1,17 +1,10 @@
-import { Component } from '@angular/core';
-import { HTTP_PROVIDERS } from '@angular/http';
-import { MdToolbar } from '@angular2-material/toolbar';
-
-import { NeedsPanelComponent } from './needs-panel';
-import { PeoplePanelComponent } from './people-panel';
-import {
-    NeedsService,
-    EventService,
-    PeopleService,
-    ProjectsService,
-    SkillsService
-} from './shared';
-import { NeedsSummary } from './shared/models/index';
+import { Component } from "@angular/core";
+import { MdToolbar } from "@angular2-material/toolbar";
+import { NeedsPanelComponent } from "./needs-panel";
+import { PeoplePanelComponent } from "./people-panel";
+import { EventService } from "./shared";
+import { NeedsSummary } from "./shared/models/index";
+import { ActionCreator } from "./shared/store/action-creator";
 
 @Component({
     moduleId: module.id,
@@ -19,12 +12,18 @@ import { NeedsSummary } from './shared/models/index';
     templateUrl: 'staffer-ng2.component.html',
     styleUrls: [ 'staffer-ng2.component.css' ],
     directives: [ MdToolbar, NeedsPanelComponent, PeoplePanelComponent ],
-    providers: [ HTTP_PROVIDERS, EventService, NeedsService, PeopleService, ProjectsService, SkillsService ]
+    providers: [ EventService ]
 })
 export class StafferNg2AppComponent {
 
     title = 'Staffer';
     needsSummary:NeedsSummary = new NeedsSummary();
+
+    constructor(actionCreator:ActionCreator) {
+
+        actionCreator.loadProjects();
+        actionCreator.loadSkills();
+    }
 
     handleNeedsSummaryChanged(needsSummary:NeedsSummary) {
         this.needsSummary = needsSummary;
