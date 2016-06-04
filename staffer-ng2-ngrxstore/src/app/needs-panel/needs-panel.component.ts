@@ -68,12 +68,4 @@ export class NeedsPanelComponent implements OnInit, OnDestroy {
         this.actionCreator.showPeopleForNeed(need);
     }
 
-    calculateNeedsSummary(needs:Need[]):NeedsSummary {
-        let needsSummary = new NeedsSummary();
-        _.each(needs, (need:Need) => {
-            need.personId ? needsSummary.closed++ : needsSummary.open++;
-        });
-        needsSummary.total = needs.length;
-        return needsSummary;
-    }
 }

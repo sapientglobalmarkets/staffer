@@ -83,7 +83,8 @@ const barrels:string[] = [
     'app/needs-panel/needs-filter',
     'app/needs-panel/needs-table',
     'app/people-panel/people-table',
-    /** @cli-barrel */
+    'app/app-bar',
+  /** @cli-barrel */
 ];
 
 const cliSystemConfigPackages:any = {};
