@@ -27,7 +27,7 @@ export class Need {
     id:number;
     startDate:Date;
     endDate:Date;
-    project:number;
+    projectId:number;
     skillId:number;
     personId:number;
 

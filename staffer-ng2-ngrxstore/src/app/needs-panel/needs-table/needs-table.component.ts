@@ -1,6 +1,6 @@
 import {
     Component, EventEmitter, Input, Output,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy, OnChanges
 } from "@angular/core";
 import { Need } from "../../shared/models/index";
 import { EntityCache } from "../../shared/store/state";
@@ -12,15 +12,20 @@ import { EntityCache } from "../../shared/store/state";
     styleUrls: [ 'needs-table.component.css' ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NeedsTableComponent {
-
+export class NeedsTableComponent implements OnChanges {
     @Input() needs:Need[];
+
     @Input() cache:EntityCache;
     @Output() needSelected = new EventEmitter();
-
     selectedNeed = null;
 
-    onNeedClick(need) {
+    ngOnChanges(changes):any {
+        if (changes.needs && changes.needs.currentValue) {
+            this.notifySelectedNeed(this.needs[ 0 ]);
+        }
+    }
+
+    notifySelectedNeed(need) {
         this.selectedNeed = need;
         this.needSelected.emit(this.selectedNeed);
     }

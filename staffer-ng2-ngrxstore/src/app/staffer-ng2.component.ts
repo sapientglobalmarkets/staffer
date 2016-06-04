@@ -30,6 +30,7 @@ export class StafferNg2AppComponent implements OnInit, OnDestroy {
     ngOnInit():any {
         this.actionCreator.loadProjects();
         this.actionCreator.loadSkills();
+        this.actionCreator.loadSkills();
     }
 
     ngOnDestroy():any {

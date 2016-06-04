@@ -4,7 +4,7 @@ import {
     Input,
     Output,
     ChangeDetectionStrategy,
-    ChangeDetectorRef
+    ChangeDetectorRef, OnInit
 } from "@angular/core";
 import { MdButton } from "@angular2-material/button";
 import { MD_INPUT_DIRECTIVES } from "@angular2-material/input";
@@ -20,8 +20,7 @@ import { AppState } from "../../shared/store/state";
     directives: [ MdButton, MD_INPUT_DIRECTIVES ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NeedsFilterComponent {
-
+export class NeedsFilterComponent implements OnInit {
     filterState:FilterState = new FilterState();
 
     @Input()
@@ -45,6 +44,10 @@ export class NeedsFilterComponent {
                 ref.markForCheck();
             });
 
+    }
+
+    ngOnInit():any {
+        this.notifyFilterChange();
     }
 
     notifyFilterChange() {

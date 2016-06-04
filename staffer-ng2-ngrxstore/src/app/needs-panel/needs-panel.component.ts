@@ -53,6 +53,7 @@ export class NeedsPanelComponent implements OnInit, OnDestroy {
                 this.cache = state.cache;
             });
 
+        
     }
 
     ngOnDestroy():any {
