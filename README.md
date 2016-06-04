@@ -52,6 +52,10 @@ Contributors
 :---: |
 [Naresh Bhatia](https://github.com/nareshbhatia) |
 
+[<img alt="Pavan Podila" src="https://avatars.githubusercontent.com/u/156846?v=3&s=117" width="117">](https://github.com/pavanpodila) |
+:---: |
+[Pavan Podila](https://github.com/pavanpodila) |
+
 Contributing
 ------------
 Contributions welcome! If you are passionate about specific state management patterns and frameworks, feel free to open an issue and suggest what you'd like to contribute. For example, you may want to start a Relay implementation. We look forward to seeing your pull requests.
