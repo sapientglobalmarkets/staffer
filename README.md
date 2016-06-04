@@ -24,7 +24,7 @@ A very basic implementation using Angular 2 + Angular events + RxJS. This implem
 An implementation of Staffer using Angular 2 + [Redux](http://redux.js.org/) + [ng2-redux](https://github.com/angular-redux/ng2-redux).
 
 ### staffer-ng2-ngrxstore
-An implementation of Staffer using Angular 2 + [Redux](http://redux.js.org/) + [@ngrx/store](https://github.com/ngrx/store). (under construction)
+An implementation of Staffer using Angular 2 + [Redux](http://redux.js.org/) + [@ngrx/store](https://github.com/ngrx/store).
 
 ### staffer-ng2-falcor
 An implementation of Staffer using Angular 2 + [Falcor](http://netflix.github.io/falcor/). (under construction)

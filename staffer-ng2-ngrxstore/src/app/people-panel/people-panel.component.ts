@@ -1,5 +1,4 @@
 import { Component, OnDestroy } from "@angular/core";
-import * as _ from "lodash";
 import { PeopleTableComponent } from "./people-table";
 import { AppState } from "../shared";
 import { Need, Person } from "../shared/models/index";
