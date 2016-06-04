@@ -8,5 +8,3 @@ $ ng serve
 ```
 
 Now point your browser to http://localhost:4200/.
-
-Note: This version of Staffer is under construction.
