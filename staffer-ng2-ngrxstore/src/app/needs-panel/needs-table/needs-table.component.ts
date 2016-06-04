@@ -1,49 +1,39 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
-
-import { Need } from '../../shared/models/index'
+import {
+    Component, EventEmitter, Input, Output,
+    ChangeDetectionStrategy
+} from "@angular/core";
+import { Need } from "../../shared/models/index";
+import { EntityCache } from "../../shared/store/state";
 
 @Component({
     moduleId: module.id,
     selector: 'app-needs-table',
     templateUrl: 'needs-table.component.html',
-    styleUrls: ['needs-table.component.css']
+    styleUrls: [ 'needs-table.component.css' ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NeedsTableComponent implements OnInit, OnChanges {
+export class NeedsTableComponent {
 
-    @Input() needs: Need[];
-    @Input() projectMap: any;
-    @Input() skillMap: any;
-    @Input() personMap: any;
+    @Input() needs:Need[];
+    @Input() cache:EntityCache;
     @Output() needSelected = new EventEmitter();
 
     selectedNeed = null;
 
-    constructor() {
-    }
-
-    ngOnInit() {
-    }
-
-    ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-        if (changes['needs'] && changes['needs'].currentValue.length > 0) {
-            this.handleClick(changes['needs'].currentValue[0]);
-        }
-    }
-
-    handleClick(need) {
+    onNeedClick(need) {
         this.selectedNeed = need;
         this.needSelected.emit(this.selectedNeed);
     }
 
     getProjectName(projectId) {
-        return this.projectMap[projectId].name;
+        return this.cache && this.cache.projects[ projectId ].name;
     }
 
     getSkillName(skillId) {
-        return this.skillMap[skillId].name;
+        return this.cache && this.cache.skills[ skillId ].name;
     }
 
     getPersonName(personId) {
-        return personId ? this.personMap[personId].name : null;
+        return personId ? this.cache.people[ personId ].name : null;
     }
 }

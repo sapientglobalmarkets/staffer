@@ -1,101 +1,71 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import * as _ from 'lodash';
-
-import { NeedsFilterComponent } from './needs-filter';
-import { NeedsTableComponent } from './needs-table';
-import { EventService, NeedsService, ProjectsService, SkillsService } from '../shared';
-import { FilterState, Need, NeedsSummary, Project, Skill } from '../shared/models/index'
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import * as _ from "lodash";
+import { NeedsFilterComponent } from "./needs-filter";
+import { NeedsTableComponent } from "./needs-table";
+import {
+    Need,
+    NeedsSummary,
+    Project,
+    Skill,
+    Status
+} from "../shared/models/index";
+import { Store } from "@ngrx/store";
+import { AppState, EntityCache } from "../shared/store/state";
+import { ActionCreator } from "../shared/store/action-creator";
+import { Subscription } from "rxjs/Rx";
 
 @Component({
     moduleId: module.id,
     selector: 'app-needs-panel',
     templateUrl: 'needs-panel.component.html',
-    styleUrls: ['needs-panel.component.css'],
-    directives: [NeedsFilterComponent, NeedsTableComponent]
+    styleUrls: [ 'needs-panel.component.css' ],
+    directives: [ NeedsFilterComponent, NeedsTableComponent ]
 })
-export class NeedsPanelComponent implements OnInit {
+export class NeedsPanelComponent implements OnInit, OnDestroy {
+    needMap:any = {};
 
-    needMap: any = {};
-    projectMap: any = {};
-    skillMap: any = {};
-    personMap: any = {};
+    cache:EntityCache = new EntityCache();
+    skillMap:any = {};
+    personMap:any = {};
+    needs:Need[] = [];
 
-    needs: Need[] = [];
+    allProjects:Project[] = [];
 
-    @Output() needsSummaryChanged = new EventEmitter();
+    allSkills:Skill[] = [];
+    allStatuses:Status[] = [];
+    private subscription:Subscription;
 
-    // Full list needed for filters
-    allProjects: Project[] = [];
-    allSkills: Skill[] = [];
+    constructor(private actionCreator:ActionCreator,
+                private store:Store<AppState>) {
 
-    constructor(
-        private eventService: EventService,
-        private needsService: NeedsService,
-        private projectsService: ProjectsService,
-        private skillsService: SkillsService) {
     }
 
     ngOnInit() {
-        this.getAllProjects();
-        this.getAllSkills();
+
+        this.subscription = this.store
+            .subscribe((state:AppState)=> {
+                this.allProjects = state.projects;
+                this.allSkills = state.skills;
+                this.allStatuses = state.statuses;
+
+
+                this.needs = state.matchingNeeds;
+                this.cache = state.cache;
+            });
+
     }
 
-    handleFilterChanged(filterState: FilterState) {
-         this.getNeeds(filterState);
+    ngOnDestroy():any {
+        this.subscription.unsubscribe();
     }
 
-    handleNeedSelected(selectedNeed: Need) {
-        this.eventService.selectNeed(selectedNeed);
+    onFilterChange(filterState) {
+        this.actionCreator.loadNeeds(filterState);
     }
 
-    getNeeds(filterState: FilterState) {
-        this.needsService.getNeeds(filterState)
-            .subscribe(result => this.extractNeeds(result));
+    onNeedSelected(need:Need) {
+        this.actionCreator.setSelectedNeed(need);
+        this.actionCreator.showPeopleForNeed(need);
     }
 
-    extractNeeds(result: any) {
-        this.needMap = result.needMap;
-        this.projectMap = result.projectMap;
-        this.skillMap = result.skillMap;
-        this.personMap = result.personMap;
-
-        let needsArray = _.values(result.needMap);
-        this.needs = _.sortBy(needsArray, 'startDate') as Need[];
-
-        this.emitNeedsSummary();
-    }
-
-    emitNeedsSummary() {
-        let needsSummary = this.calculateNeedsSummary(this.needs);
-        this.needsSummaryChanged.emit(needsSummary);
-    }
-
-    calculateNeedsSummary(needs: Need[]) : NeedsSummary {
-        let needsSummary = new NeedsSummary();
-        _.each(needs, (need: Need) => {
-            need.personId ? needsSummary.closed++ : needsSummary.open++;
-        });
-        needsSummary.total = needs.length;
-        return needsSummary;
-    }
-
-    getAllProjects() {
-        this.projectsService.getProjects()
-            .subscribe(projectMap => this.extractProjects(projectMap));
-    }
-
-    extractProjects(projectMap: any) {
-        let projectsArray = _.values(projectMap);
-        this.allProjects = _.sortBy(projectsArray, 'name') as Project[];
-    }
-
-    getAllSkills() {
-        this.skillsService.getSkills()
-            .subscribe(skillMap => this.extractSkills(skillMap));
-    }
-
-    extractSkills(skillMap: any) {
-        let skillsArray = _.values(skillMap);
-        this.allSkills = _.sortBy(skillsArray, 'name') as Skill[];
-    }
 }

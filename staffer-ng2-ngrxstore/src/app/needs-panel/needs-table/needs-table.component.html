@@ -6,12 +6,13 @@
         <th>Assignment</th>
     </tr>
     <tr class="need-row pointer" *ngFor="let need of needs"
-        (click)="handleClick(need)"
-        [ngClass]="{ selected: (selectedNeed === need) }">
+        (click)="onNeedClick(need)"
+        [ngClass]="{ selected: (selectedNeed?.id === need.id) }">
         <td class="skill">{{getSkillName(need.skillId)}}</td>
         <td class="project">{{getProjectName(need.projectId)}}</td>
         <td>
-            <span class="start-date">{{need.startDate | date:'shortDate'}}</span><br>
+            <span
+                class="start-date">{{need.startDate | date:'shortDate'}}</span><br>
             <span class="end-date">{{need.endDate | date:'shortDate'}}</span>
         </td>
         <td class="assignment">{{getPersonName(need.personId)}}</td>

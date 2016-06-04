@@ -8,10 +8,10 @@ import {
 import { PeopleService } from './people.service';
 
 describe('People Service', () => {
-    beforeEachProviders(() => [PeopleService]);
+    beforeEachProviders(() => [ PeopleService ]);
 
     it('should ...',
-        inject([PeopleService], (service: PeopleService) => {
+        inject([ PeopleService ], (service:PeopleService) => {
             expect(service).toBeTruthy();
         }));
 });

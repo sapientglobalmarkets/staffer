@@ -24,7 +24,7 @@ A very basic implementation using Angular 2 + Angular events + RxJS. This implem
 An implementation of Staffer using Angular 2 + [Redux](http://redux.js.org/) + [ng2-redux](https://github.com/angular-redux/ng2-redux).
 
 ### staffer-ng2-ngrxstore
-An implementation of Staffer using Angular 2 + [Redux](http://redux.js.org/) + [@ngrx/store](https://github.com/ngrx/store). (under construction)
+An implementation of Staffer using Angular 2 + [Redux](http://redux.js.org/) + [@ngrx/store](https://github.com/ngrx/store).
 
 ### staffer-ng2-falcor
 An implementation of Staffer using Angular 2 + [Falcor](http://netflix.github.io/falcor/). (under construction)
@@ -48,9 +48,13 @@ We hope that this project is able to offer assistance in deciding what patterns 
 
 Contributors
 ------------
-[<img alt="Naresh Bhatia" src="https://avatars.githubusercontent.com/u/1220198?v=3&s=117" width="117">](https://github.com/nareshbhatia) |
-:---: |
-[Naresh Bhatia](https://github.com/nareshbhatia) |
+| [<img alt="Naresh Bhatia" src="https://avatars.githubusercontent.com/u/1220198?v=3&s=117" width="117">](https://github.com/nareshbhatia) | [<img alt="Pavan Podila" src="https://avatars.githubusercontent.com/u/156846?v=3&s=117" width="117">](https://github.com/pavanpodila) |
+| :---: | :---: |
+| [Naresh Bhatia](https://github.com/nareshbhatia) | [Pavan Podila](https://github.com/pavanpodila) |
+
+
+
+
 
 Contributing
 ------------

@@ -1,70 +1,53 @@
-import { Component, OnInit } from '@angular/core';
-import * as _ from 'lodash';
-
-import { PeopleTableComponent } from './people-table';
-import { EventService, PeopleService } from '../shared'
-import { Need, Person } from '../shared/models/index'
+import { Component, OnDestroy } from "@angular/core";
+import { PeopleTableComponent } from "./people-table";
+import { AppState } from "../shared";
+import { Need, Person } from "../shared/models/index";
+import { Store } from "@ngrx/store";
+import { Subscription, Observable } from "rxjs/Rx";
+import { ActionCreator } from "../shared/store/action-creator";
 
 @Component({
     moduleId: module.id,
     selector: 'app-people-panel',
     templateUrl: 'people-panel.component.html',
-    styleUrls: ['people-panel.component.css'],
-    directives: [PeopleTableComponent]
+    styleUrls: [ 'people-panel.component.css' ],
+    directives: [ PeopleTableComponent ]
 })
-export class PeoplePanelComponent implements OnInit {
+export class PeoplePanelComponent implements OnDestroy {
+    people:Person[] = [];
 
-    people: Person[] = [];
-    selectedNeed: Need = null;
+    selectedNeed:Need = null;
+    private subscription:Subscription;
 
-    constructor(
-        private peopleService: PeopleService,
-        private eventService: EventService) {
+    constructor(private store:Store<AppState>,
+                private actionCreator:ActionCreator) {
+        this.subscription = Observable.combineLatest(
+            store.select('matchingPeople'),
+            store.select('selectedNeed'),
+            (people:Person[], selectedNeed:Need)=>({ people, selectedNeed })
+        )
+            .subscribe(({ people, selectedNeed })=> {
+                this.people = people;
+                this.selectedNeed = selectedNeed;
+            });
     }
 
-    ngOnInit() {
-        this.eventService.selectedNeed$
-            .subscribe(selectedNeed => this.handleNeedSelected(selectedNeed));
+    ngOnDestroy():any {
+        this.subscription.unsubscribe();
     }
 
-    handleNeedSelected(selectedNeed: Need) {
-        this.selectedNeed = selectedNeed;
-        this.peopleService.getPeople(selectedNeed)
-            .subscribe(personMap => this.extractPeople(personMap));
-    }
-
-    extractPeople(personMap: any) {
-        let peopleArray = _.values(personMap);
-        this.people = _.sortBy(peopleArray, 'name') as Person[];
-    }
-
-    handlePersonClicked(event: any) {
-        if (event.isChecked) {
-            // Assign the person to the selected need
-            this.peopleService.assign(event.person, this.selectedNeed)
-                .subscribe(result => this.mergeAssignmentResult(result));
-        }
-        else {
-            // Unassign the person from the selected need
-            this.peopleService.unassign(event.person, this.selectedNeed)
-                .subscribe(result => this.mergeAssignmentResult(result));
+    onPersonAssigned({ assigned, person }) {
+        if (assigned) {
+            this.actionCreator.assignPerson({
+                person,
+                need: this.selectedNeed
+            });
+        } else {
+            this.actionCreator.unassignPerson({
+                person,
+                need: this.selectedNeed
+            });
         }
     }
 
-    mergeAssignmentResult(result: any) {
-
-        // Merge need
-        let needId = this.selectedNeed.id;
-        if (result.needMap[needId]) {
-            this.selectedNeed = Object.assign({}, this.selectedNeed, result.needMap[needId]);
-        }
-
-        // Merge people
-        _.each(result.personMap, person => {
-            let existingPerson = _.find(this.people, {'id': person.id});
-            if (existingPerson) {
-                Object.assign(existingPerson, person);
-            }
-        });
-    }
 }

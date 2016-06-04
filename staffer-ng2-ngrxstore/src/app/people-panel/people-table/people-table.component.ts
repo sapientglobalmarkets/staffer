@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+    Component, EventEmitter, Input, OnInit, Output,
+    ChangeDetectionStrategy
+} from '@angular/core';
 
 import { Need, Person } from '../../shared/models/index';
 
@@ -6,13 +9,14 @@ import { Need, Person } from '../../shared/models/index';
     moduleId: module.id,
     selector: 'app-people-table',
     templateUrl: 'people-table.component.html',
-    styleUrls: ['people-table.component.css']
+    styleUrls: [ 'people-table.component.css' ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PeopleTableComponent implements OnInit {
 
-    @Input() people: Person[];
-    @Input() selectedNeed: Need = null;
-    @Output() personClicked = new EventEmitter();
+    @Input() people:Person[];
+    @Input() selectedNeed:Need = null;
+    @Output() personAssigned = new EventEmitter();
 
     constructor() {
     }
@@ -20,14 +24,14 @@ export class PeopleTableComponent implements OnInit {
     ngOnInit() {
     }
 
-    isAssignedToSelectedNeed(person: Person) {
-        return person.id === this.selectedNeed.personId;
+    isAssignedToSelectedNeed(person:Person) {
+        return !!(this.selectedNeed && person.id === this.selectedNeed.personId);
     }
 
-    handleClick(event, person) {
-        this.personClicked.emit({
+    onPersonClick(event, person) {
+        this.personAssigned.emit({
             person: person,
-            isChecked: event.target.checked
+            assigned: event.target.checked
         });
     }
 }
