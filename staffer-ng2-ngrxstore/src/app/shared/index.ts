@@ -5,4 +5,3 @@ export * from './services/projects.service';
 export * from './services/event.service';
 export * from './store/reducers';
 export * from './store/state';
-export * from './store/action-creator';

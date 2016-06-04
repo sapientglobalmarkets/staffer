@@ -9,7 +9,7 @@
         <td>
             <input type="checkbox"
                    [ngModel]="isAssignedToSelectedNeed(person)"
-                   (click)="handleClick($event, person)">
+                   (click)="onPersonClick($event, person)">
         </td>
         <td class="name">{{person.name}}</td>
         <td class="email">{{person.email}}</td>

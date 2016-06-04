@@ -8,9 +8,9 @@ import {
 } from "../models/index";
 
 export class EntityCache {
-    projects: {};
-    skills: {};
-    people: {}
+    projects:{};
+    skills:{};
+    people:{}
 }
 export interface AppState {
     filter:FilterState;
@@ -19,6 +19,7 @@ export interface AppState {
     statuses:Status[];
     matchingNeeds:Need[];
     matchingPeople:Person[];
+    selectedNeed:Need;
 
     cache:EntityCache;
 }
@@ -34,5 +35,6 @@ export const initialState:AppState = {
     ],
     matchingNeeds: [],
     matchingPeople: [],
+    selectedNeed: null,
     cache: new EntityCache()
 };

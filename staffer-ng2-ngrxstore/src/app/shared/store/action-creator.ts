@@ -1,16 +1,20 @@
 import { Injectable } from "@angular/core";
-import { ProjectsService } from "../services/projects.service";
-import { SkillsService } from "../services/skills.service";
 import { Store } from "@ngrx/store";
 import { AppState } from "./state";
-import { NeedsService } from "../services/needs.service";
-import { FilterState } from "../models/index";
+import {
+    NeedsService,
+    PeopleService,
+    SkillsService,
+    ProjectsService
+} from "../index";
+import { FilterState, Need } from "../models/index";
 
 @Injectable()
 export class ActionCreator {
 
     constructor(private projectService:ProjectsService,
                 private skillsService:SkillsService,
+                private peopleService:PeopleService,
                 private needsService:NeedsService,
                 private store:Store<AppState>) {
     }
@@ -28,7 +32,7 @@ export class ActionCreator {
                 this.store.dispatch({
                     type: 'LOAD_PROJECTS',
                     payload: projects
-                })
+                });
             });
     }
 
@@ -38,7 +42,7 @@ export class ActionCreator {
                 this.store.dispatch({
                     type: 'LOAD_SKILLS',
                     payload: skills
-                })
+                });
             });
     }
 
@@ -46,9 +50,46 @@ export class ActionCreator {
         this.needsService.getNeeds(filterState)
             .subscribe(results=> {
                 this.store.dispatch({
-                    type: 'LOAD_NEEDS',
+                    type: 'LOAD_MATCHING_NEEDS',
                     payload: results
-                })
+                });
             });
+    }
+
+    showPeopleForNeed(need:Need) {
+        this.peopleService.getPeople(need)
+            .subscribe(results=> {
+                this.store.dispatch({
+                    type: 'LOAD_MATCHING_PEOPLE',
+                    payload: results
+                });
+            });
+    }
+
+    assignPerson({ person, need }) {
+        this.peopleService.assign(person, need)
+            .subscribe(results=> {
+                this.store.dispatch({
+                    type: 'ASSIGN_PERSON',
+                    payload: Object.assign({}, results, { needId: need.id })
+                });
+            });
+    }
+
+    unassignPerson({ person, need }) {
+        this.peopleService.unassign(person, need)
+            .subscribe(results=> {
+                this.store.dispatch({
+                    type: 'UNASSIGN_PERSON',
+                    payload: Object.assign({}, results, { needId: need.id })
+                });
+            });
+    }
+
+    setSelectedNeed(need:Need) {
+        this.store.dispatch({
+            type: 'SET_SELECTED_NEED',
+            payload: need
+        });
     }
 }

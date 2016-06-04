@@ -3,12 +3,14 @@ import { enableProdMode } from '@angular/core';
 import { StafferNg2AppComponent, environment } from './app/';
 import { provideStore } from '@ngrx/store';
 import {
-    reducer, initialState, ActionCreator,
+    reducer,
+    initialState,
     NeedsService,
     PeopleService,
     ProjectsService,
     SkillsService
 } from './app/shared'
+import { ActionCreator } from './app/shared/store/action-creator';
 import { HTTP_PROVIDERS } from "@angular/http";
 
 if (environment.production) {
@@ -18,5 +20,9 @@ if (environment.production) {
 bootstrap(StafferNg2AppComponent, [
     provideStore(reducer, initialState),
     HTTP_PROVIDERS,
-    ActionCreator, NeedsService, PeopleService, ProjectsService, SkillsService
+    ActionCreator,
+    NeedsService,
+    PeopleService,
+    ProjectsService,
+    SkillsService
 ]);

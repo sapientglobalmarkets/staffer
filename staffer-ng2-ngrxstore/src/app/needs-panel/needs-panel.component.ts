@@ -63,7 +63,9 @@ export class NeedsPanelComponent implements OnInit, OnDestroy {
         this.actionCreator.loadNeeds(filterState);
     }
 
-    handleNeedSelected(selectedNeed:Need) {
+    onNeedSelected(need:Need) {
+        this.actionCreator.setSelectedNeed(need);
+        this.actionCreator.showPeopleForNeed(need);
     }
 
     calculateNeedsSummary(needs:Need[]):NeedsSummary {
