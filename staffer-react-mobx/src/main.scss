@@ -1,0 +1,104 @@
+@import "styles/_utilities.scss";
+
+$app-border-color: rgba(0, 0, 0, 0.12);
+
+$app-link-text-color: #8F8F8F;
+$app-border-color: rgba(0, 0, 0, 0.12);
+$app-text-color: rgba(0, 0, 0, .87);
+$app-text-color-medium: rgba(0, 0, 0, .65);
+$app-text-color-light: rgba(0, 0, 0, .54);
+$app-text-color-reverse: rgba(255, 255, 255, .87);
+
+$color-brand: #009688;
+$color-accent: #2196f3;
+$color-highlight: #e3f2fd;
+
+/* Reset */
+html,
+body,
+.container {
+    height: 100%;
+}
+
+html, body, div, h1 {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    color: $app-text-color;
+}
+
+/* Box-sizing border-box */
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    /* Default font */
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+
+    /* Helps fonts on OSX look more consistent with other systems */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+/* Any container with this class gets a 10 pixel padding */
+.app-content {
+    padding: 10px;
+    height: calc(100% - 20px);
+    overflow: hidden;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* See https://www.smashingmagazine.com/2008/08/top-10-css-table-designs */
+.mintable {
+    font-size: 14px;
+    background: #fff;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.mintable th {
+    font-weight: 500;
+    color: $color-accent;
+    padding: 4px 10px;
+    border-bottom: 2px solid #ccc;
+}
+
+.mintable td {
+    border-bottom: 1px solid #ccc;
+    padding: 6px 10px;
+    vertical-align: top;
+}
+
+.mintable tfoot td {
+    background-color: #dcefff;
+}

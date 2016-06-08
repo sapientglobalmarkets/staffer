@@ -1,0 +1,24 @@
+.flex {
+    display: flex;
+    flex-direction: column;
+
+    &.row {
+        flex-direction: row;
+    }
+
+    & > * {
+        flex: 1;
+    }
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.shrink {
+    flex: 0 1 auto !important;
+}
+
+.v-scroll {
+    overflow: auto;
+}

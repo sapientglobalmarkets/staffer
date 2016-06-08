@@ -1,13 +1,13 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-/dist
+dist
 
 # Dependencies
-/node_modules
+node_modules
 
 # IDEs and editors
-/.idea
+.idea
 /.vscode
 
 # Misc
