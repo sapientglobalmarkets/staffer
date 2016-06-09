@@ -10,7 +10,7 @@ class NeedView extends React.Component {
         let {need, onNeedSelected} = this.props;
         let {skillId, projectId, startDate, endDate, personId} = need;
         let {selectedNeed, entityMap: {skills, persons, projects}}= this.context.store;
-        const selected = need.id === selectedNeed.id;
+        const selected = selectedNeed && need.id === selectedNeed.id;
         const skill = skills[skillId],
             project = projects[projectId],
             person = persons.get(personId);
@@ -70,12 +70,6 @@ export default class NeedsTable extends React.Component {
                 </tbody>
             </table>
         );
-    }
-
-    componentWillReceiveProps({needs}) {
-        if (needs && needs.length > 0) {
-            this.selectNeed(needs[0]);
-        }
     }
 
     selectNeed(need) {

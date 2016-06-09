@@ -61,15 +61,15 @@ class Store {
         fetch(`${NEEDS_URL}?${params}`)
             .then(response=>response.json())
             .then(({needMap, projectMap, personMap, skillMap})=> {
+                this.matchingPeople = [];
                 this.matchingNeeds = values(needMap);
 
                 this.entityMap.projects = projectMap;
                 this.entityMap.skills = skillMap;
                 this.entityMap.persons.merge(personMap);
 
-                if (this.selectedNeed) {
-                    this.selectedNeed = this.matchingNeeds.find(n=>n.id === this.selectedNeed.id);
-                }
+                // Pre-select on load
+                this.selectNeed(this.matchingNeeds[0]);
             });
     }
 
@@ -77,12 +77,16 @@ class Store {
     selectNeed(need) {
         this.selectedNeed = need;
 
+        if (!need) {
+            return;
+        }
+
         const {id, skillId, startDate, endDate} = need;
         var search = new UrlSearchParams();
         search.set('needId', id);
         search.set('skillId', skillId);
-        search.set('availableFrom', startDate);
-        search.set('availableTo', endDate);
+        search.set('availableFrom', new Date(startDate));
+        search.set('availableTo', new Date(endDate));
 
         fetch(`${PEOPLE_URL}?${search}`)
             .then(response=>response.json())

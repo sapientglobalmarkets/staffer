@@ -11,7 +11,7 @@ export default class PeoplePanel extends React.Component {
         let {store: {matchingPeople}} = this.context;
 
         return (
-            <div className="flex">
+            <div className={`flex ${this.props.className}`}>
                 <h1 className="title shrink">People</h1>
                 <div className="scroll">
                     <PeopleTable people={matchingPeople}/>

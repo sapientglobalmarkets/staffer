@@ -15,11 +15,13 @@ class PersonView extends React.Component {
         return (
             <tr key={person.id}>
                 <td>
-                    <input type="checkbox"
-                           checked={assigned}
-                           onChange={event=>onAssignmentChange(event.target.checked)}/>
+                    <label className="name pointer">
+                        <input type="checkbox"
+                               checked={assigned}
+                               onChange={event=>onAssignmentChange(event.target.checked)}/>
+                        {person.name}
+                    </label>
                 </td>
-                <td className="name">{person.name}</td>
                 <td>{person.email}</td>
                 <td>{person.phone}</td>
             </tr>
@@ -35,7 +37,6 @@ export default class PeopleTable extends React.Component {
             <table className="mintable">
                 <thead>
                 <tr>
-                    <th>Assigned</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>

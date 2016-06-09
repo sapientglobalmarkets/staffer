@@ -12,7 +12,7 @@ export default class StafferView extends React.Component {
                 <AppBar className="flex row shrink"/>
                 <div className="flex row">
                     <NeedsPanel/>
-                    <PeoplePanel/>
+                    <PeoplePanel className="shrink"/>
                 </div>
             </div>
         );

@@ -19,6 +19,8 @@ export default class NeedsFilter extends React.Component {
                        onChange={event=>this.notifyFilterChange('minStartDate', event.target.value)}
                        aria-label="From Date"/>
 
+                <span> to </span>
+                
                 <input type="date"
                        defaultValue={filter.maxStartDate}
                        placeholder="End Date"
