@@ -32,6 +32,7 @@
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "rxjs-es": "^5.0.0-beta.8",
+    "url-search-params": "^0.5.0",
     "whatwg-fetch": "^1.0.0"
   }
 }

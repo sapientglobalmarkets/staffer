@@ -1,19 +1,21 @@
 import React from 'react';
+import {observer} from 'mobx-react';
+import {connect} from 'mobx-connect';
+import PeopleTable from './people-table/PeopleTable';
 
+@observer
+@connect('store')
 export default class PeoplePanel extends React.Component {
 
     render() {
+        let {store: {matchingPeople}} = this.context;
+
         return (
             <div className="flex">
                 <h1 className="title shrink">People</h1>
-                <table className="mintable">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Company</th>
-                    </tr>
-                    </thead>
-                </table>
+                <div className="scroll">
+                    <PeopleTable people={matchingPeople}/>
+                </div>
             </div>
         );
     }

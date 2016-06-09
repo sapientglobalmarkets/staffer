@@ -1,38 +1,51 @@
 import './needs-table.scss';
 import React from "react";
+import {connect} from 'mobx-connect';
+import {observer} from 'mobx-react';
 
-function NeedView({need, selected, onNeedSelected}) {
-    let {skill, project, startDate, endDate, person} = need;
+@connect('store')
+@observer
+class NeedView extends React.Component {
+    render() {
+        let {need, onNeedSelected} = this.props;
+        let {skillId, projectId, startDate, endDate, personId} = need;
+        let {selectedNeed, entityMap: {skills, persons, projects}}= this.context.store;
+        const selected = need.id === selectedNeed.id;
+        const skill = skills[skillId],
+            project = projects[projectId],
+            person = persons.get(personId);
 
-    return (
-        <tr className={`need-row pointer ${selected ? 'selected' : ''}`}
-            onClick={()=>onNeedSelected(need)}>
-            <td className="skill">{skill.name}</td>
-            <td className="project">{project.name}</td>
-            <td>
-                <span className="start-date">{formatDate(startDate)}</span>
-                <br />
-                <span className="end-date">{formatDate(endDate)}</span>
-            </td>
-            <td className="assignment">{person ? person.name : ''}</td>
-        </tr>
+        return (
+            <tr className={`need-row pointer ${selected ? 'selected' : ''}`}
+                onClick={()=>onNeedSelected(need)}>
+                <td className="skill">{skill && skill.name}</td>
+                <td className="project">{project && project.name}</td>
+                <td>
+                    <span className="start-date">{formatDate(startDate)}</span>
+                    <br />
+                    <span className="end-date">{formatDate(endDate)}</span>
+                </td>
+                <td className="assignment">{person && person.name}</td>
+            </tr>
 
-    );
-
-    function formatDate(str) {
-        let dt = new Date(str);
-        return `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()}`;
+        );
     }
+
 }
 
+function formatDate(str) {
+    let dt = new Date(str);
+    return `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()}`;
+}
+
+@connect('store')
+@observer
 export default class NeedsTable extends React.Component {
 
-    state = {
-        selectedNeedId: null
-    };
-
     render() {
-        let {needs} = this.props;
+        const {needs} = this.props;
+        const {store:{selectedNeed}} = this.context;
+
         return (
             <table className="mintable">
                 <thead>
@@ -50,7 +63,6 @@ export default class NeedsTable extends React.Component {
                         return (
                             <NeedView need={need}
                                       key={need.id}
-                                      selected={need.id === this.state.selectedNeedId}
                                       onNeedSelected={()=>this.selectNeed(need)}/>
                         );
                     })
@@ -60,8 +72,15 @@ export default class NeedsTable extends React.Component {
         );
     }
 
+    componentWillReceiveProps({needs}) {
+        if (needs && needs.length > 0) {
+            this.selectNeed(needs[0]);
+        }
+    }
+
     selectNeed(need) {
-        this.setState({selectedNeedId: need.id});
+        let {store} = this.context;
+        store.selectNeed(need);
     }
 
 }

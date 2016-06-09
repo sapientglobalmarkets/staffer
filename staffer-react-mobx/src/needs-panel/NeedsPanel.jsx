@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'mobx-connect';
 import {observer} from 'mobx-react';
 import NeedsTable from './needs-table/NeedsTable';
+import NeedsFilter from './needs-filter/NeedsFilter';
 
 @connect
 @observer
@@ -14,8 +15,10 @@ export default class NeedsPanel extends React.Component {
                 <h1 className="title shrink">Needs</h1>
 
                 <div className="flex row">
-                    <div>Needs Filter</div>
-                    <div className="v-scroll">
+                    <div className="shrink">
+                        <NeedsFilter />
+                    </div>
+                    <div className="scroll">
                         <NeedsTable needs={matchingNeeds}/>
                     </div>
                 </div>
