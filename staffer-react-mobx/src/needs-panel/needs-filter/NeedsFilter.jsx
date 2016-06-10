@@ -28,7 +28,7 @@ export default class NeedsFilter extends React.Component {
 
                 <div className="input-container">
                     <label>Project</label>
-                    <select defaultValue={filter.projectId}
+                    <select value={filter.projectId}
                             onChange={(event)=>this.notifyFilterChange('projectId', event.target.value)}>
                         <option value="-1">All</option>
                             {
@@ -42,7 +42,7 @@ export default class NeedsFilter extends React.Component {
 
                 <div className="input-container">
                     <label>Skill</label>
-                    <select defaultValue={filter.skillId}
+                    <select value={filter.skillId}
                             onChange={(event)=>this.notifyFilterChange('skillId', event.target.value)}>
                         <option value="-1">All</option>
                             {
@@ -56,7 +56,7 @@ export default class NeedsFilter extends React.Component {
 
                 <div className="input-container">
                     <label>Status</label>
-                    <select defaultValue={filter.statusId}
+                    <select value={filter.statusId}
                             onChange={(event)=>this.notifyFilterChange('statusId', event.target.value)}>
                             {
                                 values(statuses)

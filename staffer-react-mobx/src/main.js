@@ -6,6 +6,7 @@ import StafferView from './StafferView';
 import ContextProvider from './ContextProvider';
 import store from './store';
 
+
 let root = (
     <ContextProvider context={{store}}>
         <StafferView />
