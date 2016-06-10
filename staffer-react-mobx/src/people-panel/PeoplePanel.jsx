@@ -1,4 +1,3 @@
-import React from 'react';
 import {observer} from 'mobx-react';
 import {connect} from 'mobx-connect';
 import PeopleTable from './people-table/PeopleTable';

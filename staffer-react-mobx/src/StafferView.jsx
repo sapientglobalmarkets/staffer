@@ -1,5 +1,3 @@
-import React from 'react';
-
 import AppBar from './app-bar/AppBar';
 import NeedsPanel from './needs-panel/NeedsPanel';
 import PeoplePanel from './people-panel/PeoplePanel';

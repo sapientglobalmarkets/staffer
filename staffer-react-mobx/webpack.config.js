@@ -2,6 +2,8 @@
 
 let HtmlPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let ProvidePlugin = require('webpack').ProvidePlugin;
+let DefinePlugin = require('webpack').DefinePlugin;
 
 module.exports = {
     entry: {
@@ -52,6 +54,12 @@ module.exports = {
             title: 'Rx Composer',
             template: './src/index.html'
         }),
-        new ExtractTextPlugin('main.css')
+        new ExtractTextPlugin('main.css'),
+        new ProvidePlugin({
+            React: 'react'
+        }),
+        new DefinePlugin({
+            DEV: true
+        })
     ]
 };

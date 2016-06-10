@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default class ContextProvider extends React.Component {
 
     static defaultProps = {};

@@ -1,4 +1,3 @@
-import React from 'react';
 import {connect} from 'mobx-connect';
 import {observer} from 'mobx-react';
 import includes from 'lodash/includes';

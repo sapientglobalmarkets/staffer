@@ -3,6 +3,10 @@ import 'whatwg-fetch';
 import UrlSearchParams from 'url-search-params';
 import values from 'lodash/values';
 
+if (DEV) {
+    require('mobx-react-devtools');
+}
+
 const HOST = 'http://localhost:8080';
 const NEEDS_URL = `${HOST}/needs`;
 const PEOPLE_URL = `${HOST}/people`;
@@ -96,15 +100,13 @@ class Store {
     }
 
     updatePeopleAndNeed(need, {needMap, personMap}) {
-        const needIndex = this.matchingNeeds.findIndex(n=>n.id === need.id);
-        this.matchingNeeds[needIndex] = Object.assign(need, needMap[need.id]);
+        Object.assign(need, needMap[need.id]);
 
         this.entityMap.persons.merge(personMap);
         values(personMap)
             .forEach(updatedPerson=> {
-                const index = this.matchingPeople.findIndex(x=>x.id === updatedPerson.id);
-                const currentPerson = this.matchingPeople[index];
-                this.matchingPeople[index] = Object.assign(currentPerson, updatedPerson);
+                let currentPerson = this.matchingPeople.find(x=>x.id === updatedPerson.id);
+                Object.assign(currentPerson, updatedPerson);
             });
     }
 

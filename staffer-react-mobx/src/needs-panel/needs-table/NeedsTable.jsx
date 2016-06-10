@@ -1,5 +1,4 @@
 import './needs-table.scss';
-import React from "react";
 import {connect} from 'mobx-connect';
 import {observer} from 'mobx-react';
 
