@@ -1,0 +1,45 @@
+@import "styles/theme.css";
+
+
+
+/** @define Button */
+
+:root {
+    --Button-border-color: currentcolor;
+    --Button-border-width: 1px;
+    --Button-disabled-opacity: 0.6;
+    --Button-font: inherit;
+    --Button-padding: 0.4em 0.75em;
+    --Button-border-radius: 3px;
+}
+
+
+.Button {
+    color: var(--color-white);
+    background: var(--color-deep-blue);
+    border-radius: var(--Button-border-radius);
+    margin: 20px auto;
+    display: block;
+    width: 100%;
+}
+
+
+
+/** @define NeedsFilter */
+
+.NeedsFilter {
+
+}
+
+.NeedsFilter-inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+
+
+}
+
+label {
+    margin-bottom: 4px;
+    color: grey;
+}

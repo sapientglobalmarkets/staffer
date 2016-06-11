@@ -3,11 +3,13 @@ import 'whatwg-fetch';
 import UrlSearchParams from 'url-search-params';
 import values from 'lodash/values';
 
+if (DEV) {
+    require('mobx-react-devtools');
+}
+
 const HOST = 'http://localhost:8080';
 const NEEDS_URL = `${HOST}/needs`;
 const PEOPLE_URL = `${HOST}/people`;
-const PROJECTS_URL = `${HOST}/projects`;
-const SKILLS_URL = `${HOST}/skills`;
 
 class Store {
     @observable filter = {
@@ -50,28 +52,6 @@ class Store {
     }
 
     @action
-    init() {
-        this.loadProjects();
-        this.loadSkills();
-        this.loadNeeds();
-    }
-
-    @action
-    loadProjects() {
-        fetch(PROJECTS_URL)
-            .then(response=>response.json())
-            .then(data=>this.entityMap.projects = data);
-    }
-
-    @action
-    loadSkills() {
-        fetch(SKILLS_URL)
-            .then(response=>response.json())
-            .then(data=>this.entityMap.skills = data);
-    }
-
-
-    @action
     loadNeeds() {
         const filter = this.filter;
 
@@ -87,6 +67,9 @@ class Store {
             .then(({needMap, projectMap, personMap, skillMap})=> {
                 this.matchingPeople = [];
                 this.matchingNeeds = values(needMap);
+
+                this.entityMap.projects = projectMap;
+                this.entityMap.skills = skillMap;
                 this.entityMap.persons.merge(personMap);
 
                 // Pre-select on load
@@ -143,7 +126,7 @@ class Store {
 
 }
 let store = new Store();
-setTimeout(()=>store.init());
+setTimeout(()=>store.loadNeeds());
 
 export default store;
 

@@ -1,7 +1,10 @@
+import 'suitcss-components-button';
+import './NeedsFilter.css';
+
 import {connect} from 'mobx-connect';
 import {observer} from 'mobx-react';
 import values from 'lodash/values';
-import './needs-filter.scss';
+
 
 @connect('store')
 @observer
@@ -11,24 +14,28 @@ export default class NeedsFilter extends React.Component {
         const {filter, entityMap: {projects, skills, statuses}} = this.context.store;
 
         return (
-            <div>
-                <input type="date"
-                       defaultValue={filter.minStartDate}
-                       placeholder="Start Date"
-                       onChange={event=>this.notifyFilterChange('minStartDate', event.target.value)}
-                       aria-label="From Date"/>
+            <div className="NeedsFilter">
+                <div className="NeedsFilter-inputContainer">
+                    <label>From</label>
+                    <input type="date"
+                           defaultValue={filter.minStartDate}
+                           placeholder="Start Date"
+                           onChange={event=>this.notifyFilterChange('minStartDate', event.target.value)}
+                           aria-label="From Date"/>
+                </div>
 
-                <span> to </span>
-                
-                <input type="date"
-                       defaultValue={filter.maxStartDate}
-                       placeholder="End Date"
-                       onChange={event=>this.notifyFilterChange('maxStartDate', event.target.value)}
-                       aria-label="To Date"/>
+                <div className="NeedsFilter-inputContainer">
+                    <label>To</label>
+                    <input type="date"
+                           defaultValue={filter.maxStartDate}
+                           placeholder="End Date"
+                           onChange={event=>this.notifyFilterChange('maxStartDate', event.target.value)}
+                           aria-label="To Date"/>
+                </div>
 
-                <div className="input-container">
+                <div className="NeedsFilter-inputContainer">
                     <label>Project</label>
-                    <select value={filter.projectId}
+                    <select defaultValue={filter.projectId}
                             onChange={(event)=>this.notifyFilterChange('projectId', event.target.value)}>
                         <option value="-1">All</option>
                             {
@@ -40,9 +47,9 @@ export default class NeedsFilter extends React.Component {
                     </select>
                 </div>
 
-                <div className="input-container">
+                <div className="NeedsFilter-inputContainer">
                     <label>Skill</label>
-                    <select value={filter.skillId}
+                    <select defaultValue={filter.skillId}
                             onChange={(event)=>this.notifyFilterChange('skillId', event.target.value)}>
                         <option value="-1">All</option>
                             {
@@ -54,9 +61,9 @@ export default class NeedsFilter extends React.Component {
                     </select>
                 </div>
 
-                <div className="input-container">
+                <div className="NeedsFilter-inputContainer">
                     <label>Status</label>
-                    <select value={filter.statusId}
+                    <select defaultValue={filter.statusId}
                             onChange={(event)=>this.notifyFilterChange('statusId', event.target.value)}>
                             {
                                 values(statuses)
@@ -67,7 +74,7 @@ export default class NeedsFilter extends React.Component {
                     </select>
                 </div>
 
-                <button className="search-button"
+                <button className="Button"
                         onClick={()=>this.applyFilter()}>Search
                 </button>
             </div>

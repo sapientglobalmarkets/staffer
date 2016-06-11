@@ -10,14 +10,14 @@ export default class NeedsPanel extends React.Component {
     render() {
         let {store: {matchingNeeds}} = this.context;
         return (
-            <div className="flex">
-                <h1 className="title shrink">Needs</h1>
+            <div className={this.props.className}>
+                <h1 className="title">Needs</h1>
 
-                <div className="flex row">
-                    <div className="shrink">
+                <div className="Grid Grid--withGutter">
+                    <div className="Grid-cell u-size1of3">
                         <NeedsFilter />
                     </div>
-                    <div className="scroll">
+                    <div className="Grid-cell u-size2of3">
                         <NeedsTable needs={matchingNeeds}/>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import './app-bar.scss';
+import './AppBar.css';
 import {connect} from 'mobx-connect';
 import {observer} from 'mobx-react';
 
@@ -11,12 +11,11 @@ export default class AppBar extends React.Component {
         let {open, closed, total} = summary;
 
         return (
-            <div className={`toolbar ${this.props.className}`} color="primary">
-                <h1 className="toolbar-title shrink">Staffer</h1>
-                <span className="toolbar-gap"/>
-                <span className="toolbar-open shrink">Open: {open}</span>
-                <span className="toolbar-closed shrink">Closed: {closed}</span>
-                <span className="toolbar-total shrink">Total: {total}</span>
+            <div className="AppBar" color="primary">
+                <div className="AppBar-title">Staffer</div>
+                <div className="AppBar-item">Open: {open}</div>
+                <div className="AppBar-item">Closed: {closed}</div>
+                <div className="AppBar-item">Total: {total}</div>
             </div>
         );
 

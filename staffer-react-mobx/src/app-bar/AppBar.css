@@ -1,0 +1,24 @@
+@import "styles/theme.css";
+
+/** @define AppBar */
+
+
+
+.AppBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem .5rem;
+    color: var(--color-white);
+    background: var(--color-twitter-blue);
+}
+
+.AppBar-title {
+    flex: 1 0 auto;
+    font-size: 1.5rem
+}
+
+.AppBar-item {
+    margin: 0 1rem;
+}
+

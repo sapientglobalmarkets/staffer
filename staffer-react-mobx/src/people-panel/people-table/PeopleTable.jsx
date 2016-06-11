@@ -1,7 +1,8 @@
+import './PeopleTable.css';
+
 import {connect} from 'mobx-connect';
 import {observer} from 'mobx-react';
 import includes from 'lodash/includes';
-import './people-table.scss';
 
 @connect('store')
 @observer
@@ -13,16 +14,16 @@ class PersonView extends React.Component {
 
         return (
             <tr key={person.id}>
-                <td>
-                    <label className="name pointer">
+                <td className="PeopleTable-col">
+                    <label className="PeopleTable-name">
                         <input type="checkbox"
                                checked={assigned}
                                onChange={event=>onAssignmentChange(event.target.checked)}/>
                         {person.name}
                     </label>
                 </td>
-                <td>{person.email}</td>
-                <td>{person.phone}</td>
+                <td className="PeopleTable-col">{person.email}</td>
+                <td className="PeopleTable-col">{person.phone}</td>
             </tr>
         );
     }
@@ -33,7 +34,7 @@ export default class PeopleTable extends React.Component {
 
     render() {
         return (
-            <table className="mintable">
+            <table className="PeopleTable">
                 <thead>
                 <tr>
                     <th>Name</th>

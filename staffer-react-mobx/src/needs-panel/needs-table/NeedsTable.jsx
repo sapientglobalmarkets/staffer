@@ -1,4 +1,4 @@
-import './needs-table.scss';
+//import './needs-table.scss';
 import {connect} from 'mobx-connect';
 import {observer} from 'mobx-react';
 
