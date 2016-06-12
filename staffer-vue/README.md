@@ -1,27 +1,21 @@
 # staffer-vue
 
-> Vue.js version of Staffer
+> [Vue.js](https://vuejs.org/) version of Staffer
 
 ## Build Setup
 
 ``` bash
-# install dependencies
-npm install
+# install client dependencies
+> npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# install server dependencies
+> cd ../staffer-server-rest
+> npm install
 
-# build for production with minification
-npm run build
+# Start the server
+> cd ../staffer-server-rest
+> gulp serve
 
-# run unit tests
-npm run unit
+# Start the client
+> npm start
 
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
