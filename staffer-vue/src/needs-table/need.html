@@ -1,0 +1,12 @@
+<tr class="need-row pointer"
+    v-on:click="notify()"
+    v-bind:class="{ selected: selected }">
+    <td class="skill">{{need.skill}}</td>
+    <td class="project">{{need.project}}</td>
+    <td>
+        <small
+            class="start-date">{{need.startDate}}</small><br>
+        <small class="end-date">{{need.endDate}}</small>
+    </td>
+    <td class="assignment">{{need.person}}</td>
+</tr>

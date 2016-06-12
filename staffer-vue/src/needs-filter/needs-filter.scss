@@ -1,0 +1,17 @@
+@import "../styles/theme";
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+
+    label {
+        margin-bottom: 4px;
+        font-size: 0.8rem;
+        color: $app-text-color-light;
+    }
+}
+
+.search-button {
+    margin-top: 30px;
+}

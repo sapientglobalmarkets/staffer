@@ -1,0 +1,30 @@
+.flex-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+
+    > * {
+        flex: 1;
+        margin-right: $padding;
+    }
+
+    > *:last-child {
+        margin-right: 0;
+    }
+
+    &.row {
+        flex-direction: row;
+    }
+}
+
+.flex {
+    flex: 1;
+}
+.shrink {
+    flex: 0 1 auto;
+}
+
+.align-center {
+    align-items: center;
+}

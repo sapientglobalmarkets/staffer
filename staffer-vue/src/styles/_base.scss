@@ -1,0 +1,33 @@
+.pointer {
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    font-size: 14px;
+    background: #fff;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+
+    tr.selected {
+        background: $color-highlight;
+    }
+
+    th {
+        font-weight: 500;
+        color: $color-accent;
+        padding: 4px 10px;
+        border-bottom: 2px solid #ccc;
+    }
+
+    td {
+        border-bottom: 1px solid #ccc;
+        padding: 6px 10px;
+        vertical-align: top;
+    }
+}
+
+.scroll {
+    overflow: auto;
+}

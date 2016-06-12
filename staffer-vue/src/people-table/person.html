@@ -1,0 +1,10 @@
+<tr class="person-row">
+    <td>
+        <input type="checkbox"
+               v-model="selected"
+        v-on:change="notify($event)">
+    </td>
+    <td class="name">{{person.name}}</td>
+    <td class="email">{{person.email}}</td>
+    <td class="phone">{{person.phone}}</td>
+</tr>

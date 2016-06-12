@@ -1,0 +1,13 @@
+<table class="mintable needs-table">
+    <tr>
+        <th>Skill</th>
+        <th>Project</th>
+        <th>Date</th>
+        <th>Assignment</th>
+    </tr>
+    <tr is="need-view" v-for="need in matchingNeeds"
+        v-on:assign="notifySelectedNeed"
+        :need="prepareNeed(need)"
+        :selected="isSelected(need)">
+    </tr>
+</table>
