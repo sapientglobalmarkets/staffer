@@ -11,5 +11,5 @@ new Vue({
 
 
 setTimeout(()=> {
-    store.matchingNeeds.push({ personId: 123 });
-}, 3000);
+    store.init();
+});

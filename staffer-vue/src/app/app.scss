@@ -1,5 +1,7 @@
 $padding: 10px;
-@import "flex-box";
+@import "../styles/theme";
+@import "../styles/base";
+@import "../styles/flex-box";
 
 
 html, body {
@@ -25,4 +27,10 @@ body {
 
 .no-wrap {
     white-space: nowrap;
+}
+
+.app-bar {
+    padding: $padding;
+    margin-left: -$padding;
+    margin-right: -$padding;
 }

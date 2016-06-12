@@ -1,0 +1,16 @@
+<table>
+    <thead>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr is="person" v-for="person in matchingPeople"
+        v-on:assign="onAssign"
+        :person="person"
+        :selected="isAssigned(person)"></tr>
+    </tbody>
+</table>

@@ -1,17 +1,22 @@
 import Vue from 'vue';
 import './app.scss';
 import store from '../store';
+import NeedsFilter from '../needs-filter';
+import NeedsTable from '../needs-table';
+import PeopleTable from '../people-table';
 
 export default Vue.extend({
     template: require('./app.html'),
     data: ()=>store,
 
     computed: {
-        summary: ()=> ({
-            open: store.matchingNeeds.filter(x=>!x.personId).length,
-            closed: store.matchingNeeds.filter(x=>x.personId).length,
-            total: store.matchingNeeds.length,
-        }),
+        summary: ()=> store.summary,
+    },
+
+    components: {
+        NeedsFilter,
+        NeedsTable,
+        PeopleTable
     },
 });
 

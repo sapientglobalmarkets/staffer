@@ -1,0 +1,44 @@
+<div class="input-container">
+    <label>Min Start Date</label>
+    <input type="date" v-model="filter.minStartDate">
+</div>
+
+<div class="input-container">
+    <label>Max Start Date</label>
+    <input type="date" v-model="filter.maxStartDate">
+</div>
+
+<div class="input-container">
+    <label>Project</label>
+    <select required
+            v-model="filter.projectId">
+        <option v-bind:value="-1">All</option>
+        <option v-for="p in entities.projects" v-bind:value="p.id">
+            {{p.name}}
+        </option>
+    </select>
+</div>
+
+<div class="input-container">
+    <label>Skill</label>
+    <select required
+            v-model="filter.skillId">
+        <option v-bind:value="-1">All</option>
+        <option v-for="s in entities.skills" v-bind:value="s.id">
+            {{s.name}}
+        </option>
+    </select>
+</div>
+
+<div class="input-container">
+    <label>Status</label>
+    <select v-model="filter.statusId">
+        <option v-for="s in entities.statuses" v-bind:value="s.id">
+            {{s.name}}
+        </option>
+    </select>
+</div>
+
+<button class="search-button" v-on:click="notifyFilterChange()">
+    Search
+</button>

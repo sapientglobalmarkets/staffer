@@ -1,15 +1,24 @@
 <div class="app-frame flex-box">
-    <div class="flex-box shrink row align-center">
-        <h1>Staffer</h1>
+    <div class="flex-box shrink row align-center bg-primary app-bar">
+        <h3>Staffer</h3>
         <div class="flex-box row shrink no-wrap">
-            <span class="inline-block">Open: {{summary.open}}</span>
-            <span class="inline-block">Closed: {{summary.closed}}</span>
-            <span class="inline-block">Total: {{summary.total}}</span>
+            <small class="inline-block">Open: {{summary.open}}</small>
+            <small class="inline-block">Closed: {{summary.closed}}</small>
+            <small class="inline-block">Total: {{summary.total}}</small>
         </div>
     </div>
 
     <div class="flex-box row">
-        <div>Needs Panel</div>
-        <div>People Panel</div>
+        <div class="flex-box row">
+            <div class="shrink">
+                <needs-filter></needs-filter>
+            </div>
+            <div class="scroll">
+                <needs-table></needs-table>
+            </div>
+        </div>
+        <div class="shrink scroll">
+            <people-table></people-table>
+        </div>
     </div>
 </div>
