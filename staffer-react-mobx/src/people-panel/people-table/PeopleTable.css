@@ -1,34 +1,12 @@
-@import "styles/theme.css";
-
-
-
 /** @define PeopleTable */
+
+@import "styles/theme.css";
 
 
 .PeopleTable {
     width: 100%;
 }
 
-.PeopleTable th {
-    color: var(--color-dark-blue);
-    border-bottom: 2px solid var(--color-dark-gray);
-    padding: .5rem;
-}
-
-.PeopleTable th:not(:first-child) {
-    text-align: left;
-}
-
-.PeopleTable-col {
-    border-bottom: 1px solid var(--color-border-gray);
-    padding: .5rem;
-}
-
 .PeopleTable-name {
     font-weight: 500;
-    cursor: pointer;
-}
-
-.PeopleTable-name input {
-    margin-right: .5rem;
 }

@@ -1,0 +1,35 @@
+/** @define NeedsTable */
+
+@import "styles/theme.css";
+
+
+:root {
+    --font-size-smaller: 0.85rem;
+}
+
+.NeedsTable {
+    width: 100%;
+}
+
+.NeedsTable-row {
+    font-size: var(--font-size-smaller);
+}
+
+.NeedsTable-row.is-selected {
+    background-color: var(--color-light-yellow);
+}
+
+.NeedsTable-skill {
+    font-size: var(--font-size);
+    font-weight: 500;
+}
+
+.NeedsTable-startDate {}
+
+.NeedsTable-endDate {
+    color: var(--color-dark-gray);
+}
+
+.NeedsTable-assignment {
+    font-weight: 500;
+}

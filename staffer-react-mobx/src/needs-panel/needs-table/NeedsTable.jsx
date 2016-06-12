@@ -1,4 +1,5 @@
-//import './needs-table.scss';
+import './NeedsTable.css';
+
 import {connect} from 'mobx-connect';
 import {observer} from 'mobx-react';
 
@@ -15,18 +16,16 @@ class NeedView extends React.Component {
             person = persons.get(personId);
 
         return (
-            <tr className={`need-row pointer ${selected ? 'selected' : ''}`}
+            <tr className={`NeedsTable-row ${selected ? 'is-selected' : ''}`}
                 onClick={()=>onNeedSelected(need)}>
-                <td className="skill">{skill && skill.name}</td>
-                <td className="project">{project && project.name}</td>
+                <td className="NeedsTable-skill">{skill && skill.name}</td>
+                <td>{project && project.name}</td>
                 <td>
-                    <span className="start-date">{formatDate(startDate)}</span>
-                    <br />
-                    <span className="end-date">{formatDate(endDate)}</span>
+                    <div className="NeedsTable-startDate">{formatDate(startDate)}</div>
+                    <div className="NeedsTable-endDate">{formatDate(endDate)}</div>
                 </td>
-                <td className="assignment">{person && person.name}</td>
+                <td className="NeedsTable-assignment">{person && person.name}</td>
             </tr>
-
         );
     }
 
@@ -46,7 +45,7 @@ export default class NeedsTable extends React.Component {
         const {store:{selectedNeed}} = this.context;
 
         return (
-            <table className="mintable">
+            <table className="NeedsTable">
                 <thead>
                 <tr>
                     <th>Skill</th>

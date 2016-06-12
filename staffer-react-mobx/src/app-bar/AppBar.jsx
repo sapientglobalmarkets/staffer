@@ -11,7 +11,7 @@ export default class AppBar extends React.Component {
         let {open, closed, total} = summary;
 
         return (
-            <div className="AppBar" color="primary">
+            <div className="AppBar">
                 <div className="AppBar-title">Staffer</div>
                 <div className="AppBar-item">Open: {open}</div>
                 <div className="AppBar-item">Closed: {closed}</div>
@@ -20,7 +20,6 @@ export default class AppBar extends React.Component {
         );
 
     }
-
 }
 
 AppBar.defaultProps = {};

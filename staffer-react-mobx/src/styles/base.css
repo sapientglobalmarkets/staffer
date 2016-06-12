@@ -1,4 +1,13 @@
-@import "./theme.css";
+/* postcss-bem-linter: ignore */
+
+@import "suitcss-base";
+@import "suitcss-utils";
+@import "suitcss-components-grid";
+@import "suitcss-components-button";
+
+@import "styles/theme.css";
+@import "styles/theme-map.css";
+
 
 
 /*
@@ -22,6 +31,37 @@ h3 {
     font-weight: normal;
 }
 
+/*label {*/
+    /*margin-bottom: calc(var(--space-small-px) / 2);*/
+    /*color: var(--color-dark-gray);*/
+/*}*/
+
+input[type="checkbox"] {
+    margin-right: 1rem;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tbody tr:hover {
+    background-color: var(--color-border-gray);
+}
+
+
+td, th {
+    border-bottom: 1px solid var(--color-border-gray);
+    padding: 0.5rem;
+    text-align: left;
+}
+
+th {
+    color: var(--color-dark-blue);
+    border-bottom: 2px solid var(--color-border-gray);
+}
+
+
+
 
 /*
  * Remove text-shadow in selection highlight:
@@ -31,15 +71,11 @@ h3 {
  * Customize the background color to match your design.
  */
 
-::-moz-selection {
-    background: #b3d4fc;
+::selection {
+    background: var(--color-light-blue);
     text-shadow: none;
 }
 
-::selection {
-    background: #b3d4fc;
-    text-shadow: none;
-}
 
 /*
  * A better looking default horizontal rule
@@ -97,6 +133,7 @@ textarea {
     color: #000;
     padding: 0.2em 0;
 }
+
 
 /*
  * Print styles

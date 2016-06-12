@@ -1,0 +1,21 @@
+/**
+ * components-grid
+ */
+
+:root {
+    --Grid-gutter-size: var(--space-large-px);
+}
+
+
+/**
+*   components-button
+*/
+
+:root {
+    --Button-border-width: 1px;
+    --Button-border-color: currentcolor;
+    --Button-color: currentcolor;
+    --Button-font: inherit;
+    --Button-padding: 0.4em 0.75em;
+    --Button-disabled-opacity: 0.6;
+}

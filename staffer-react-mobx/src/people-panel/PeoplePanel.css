@@ -1,0 +1,13 @@
+/** @define PeoplePanel */
+
+@import "styles/theme.css";
+
+:root {
+    --PeoplePanel-container: 2rem;
+}
+
+.PeoplePanel { }
+
+.PeoplePanel-container {
+    padding: var(--PeoplePanel-container) 0 calc(var(--PeoplePanel-container) * 2);
+}

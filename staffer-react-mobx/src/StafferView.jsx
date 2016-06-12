@@ -1,8 +1,4 @@
-import './styles/theme.css';
 import './StafferView.css';
-import 'suitcss-utils-flex';
-import 'suitcss-components-grid';
-import 'suitcss-utils-size';
 
 import AppBar from './app-bar/AppBar';
 import NeedsPanel from './needs-panel/NeedsPanel';

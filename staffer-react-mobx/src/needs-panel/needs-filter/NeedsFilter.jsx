@@ -1,4 +1,4 @@
-import 'suitcss-components-button';
+//import 'suitcss-components-button';
 import './NeedsFilter.css';
 
 import {connect} from 'mobx-connect';
@@ -74,7 +74,7 @@ export default class NeedsFilter extends React.Component {
                     </select>
                 </div>
 
-                <button className="Button"
+                <button className="Button Button--default u-sizeFull"
                         onClick={()=>this.applyFilter()}>Search
                 </button>
             </div>

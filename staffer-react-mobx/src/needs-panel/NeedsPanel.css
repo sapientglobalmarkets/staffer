@@ -1,0 +1,14 @@
+/** @define NeedsPanel */
+@import "styles/theme.css";
+
+:root {
+    --NeedsPanel-container: 2rem;
+}
+
+.NeedsPanel {
+    border-right: 1px solid var(--color-gray);
+}
+
+.NeedsPanel-container {
+    padding: var(--NeedsPanel-container) 0 calc(var(--NeedsPanel-container) * 2);
+}

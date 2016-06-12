@@ -1,9 +1,14 @@
-@import "styles/theme.css";
-
-
-
 /** @define StafferView */
 
+
+:root {
+    --StafferView-container: 1600px;
+    --StafferView-space-large-px: 20px;
+}
+
 .StafferView {
-    margin: 1rem;
+    margin: 0 auto;
+    max-width: var(--StafferView-container);
+    padding: 0 var(--StafferView-space-large-px);
+
 }

@@ -1,4 +1,3 @@
-import 'suitcss-base';
 import './styles/base.css';
 
 import React from 'react';

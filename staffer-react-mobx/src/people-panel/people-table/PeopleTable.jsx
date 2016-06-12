@@ -14,16 +14,16 @@ class PersonView extends React.Component {
 
         return (
             <tr key={person.id}>
-                <td className="PeopleTable-col">
-                    <label className="PeopleTable-name">
+                <td className="PeopleTable-name">
+                    <label>
                         <input type="checkbox"
                                checked={assigned}
                                onChange={event=>onAssignmentChange(event.target.checked)}/>
                         {person.name}
                     </label>
                 </td>
-                <td className="PeopleTable-col">{person.email}</td>
-                <td className="PeopleTable-col">{person.phone}</td>
+                <td>{person.email}</td>
+                <td>{person.phone}</td>
             </tr>
         );
     }
