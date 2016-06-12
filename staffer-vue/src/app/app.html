@@ -11,14 +11,21 @@
     <div class="flex-box row">
         <div class="flex-box row">
             <div class="shrink">
+                <h4>Filter</h4>
                 <needs-filter></needs-filter>
             </div>
-            <div class="scroll">
-                <needs-table></needs-table>
+            <div class="flex-box">
+                <h4 class="shrink">Needs</h4>
+                <div class="scroll">
+                    <needs-table></needs-table>
+                </div>
             </div>
         </div>
-        <div class="shrink scroll">
-            <people-table></people-table>
+        <div class="flex-box">
+            <h4 class="shrink">People</h4>
+            <div class="scroll">
+                <people-table></people-table>
+            </div>
         </div>
     </div>
 </div>
