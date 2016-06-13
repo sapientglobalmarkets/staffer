@@ -14,6 +14,13 @@
  * Base styles
  * ========================================================================== */
 
+@font-face {
+    font-family: "open-sans-regular";
+    src: url("../fonts/opensans-regular-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
     color: var(--text-color);
     background-color: var(--background-color);
@@ -21,9 +28,8 @@ html {
     font-weight: 100;
     font-size: var(--font-size);
     line-height: var(--line-height);
-
+    letter-spacing: 0.05em;
 }
-
 
 h1,
 h2,

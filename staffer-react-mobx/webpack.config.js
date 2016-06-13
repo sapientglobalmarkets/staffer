@@ -42,7 +42,12 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style-loader','css-loader!postcss-loader')
+            },
+
+            {
+                test: /\.woff$/, loader: 'file-loader?name=fonts/[name].[ext]'
             }
+
         ],
     },
 
