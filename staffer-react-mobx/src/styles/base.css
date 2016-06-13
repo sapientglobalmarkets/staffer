@@ -4,7 +4,8 @@
 @import "suitcss-utils";
 @import "suitcss-components-grid";
 @import "suitcss-components-button";
-@import "styles/select";
+@import "suitcss-components-select";
+
 @import "styles/theme.css";
 @import "styles/theme-map.css";
 
