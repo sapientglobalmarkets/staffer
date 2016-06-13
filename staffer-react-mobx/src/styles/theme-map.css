@@ -19,3 +19,13 @@
     --Button-padding: 0.4em 0.75em;
     --Button-disabled-opacity: 0.6;
 }
+
+
+/**
+*   components-select
+*/
+
+:root {
+    --Select-color: --color-dark-gray;
+    --Select-focus-color: --color-dark-blue;
+}

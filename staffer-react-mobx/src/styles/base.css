@@ -4,7 +4,7 @@
 @import "suitcss-utils";
 @import "suitcss-components-grid";
 @import "suitcss-components-button";
-
+@import "styles/select";
 @import "styles/theme.css";
 @import "styles/theme-map.css";
 
@@ -37,14 +37,15 @@ h3 {
     font-weight: normal;
 }
 
-/*label {*/
-    /*margin-bottom: calc(var(--space-small-px) / 2);*/
-    /*color: var(--color-dark-gray);*/
-/*}*/
+input{
+    margin: 0.3rem 0;
+    padding: 0.3rem 0.3rem 0.3rem 0.5rem;
+}
 
 input[type="checkbox"] {
     margin-right: 1rem;
 }
+
 
 table {
     border-collapse: collapse;

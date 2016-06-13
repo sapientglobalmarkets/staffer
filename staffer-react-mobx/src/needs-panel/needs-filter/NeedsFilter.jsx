@@ -16,7 +16,7 @@ export default class NeedsFilter extends React.Component {
         return (
             <div className="NeedsFilter">
                 <div className="NeedsFilter-inputContainer">
-                    <label>From</label>
+                    <label className="NeedsFilter-label">From</label>
                     <input type="date"
                            defaultValue={filter.minStartDate}
                            placeholder="Start Date"
@@ -25,7 +25,7 @@ export default class NeedsFilter extends React.Component {
                 </div>
 
                 <div className="NeedsFilter-inputContainer">
-                    <label>To</label>
+                    <label className="NeedsFilter-label">To</label>
                     <input type="date"
                            defaultValue={filter.maxStartDate}
                            placeholder="End Date"
@@ -34,44 +34,59 @@ export default class NeedsFilter extends React.Component {
                 </div>
 
                 <div className="NeedsFilter-inputContainer">
-                    <label>Project</label>
-                    <select defaultValue={filter.projectId}
-                            onChange={(event)=>this.notifyFilterChange('projectId', event.target.value)}>
-                        <option value="-1">All</option>
-                            {
-                                values(projects)
-                                    .map(p=> {
-                                        return <option value={p.id} key={p.id}>{p.name}</option>
-                                    })
-                            }
-                    </select>
+                    <label className="NeedsFilter-label">Project</label>
+                    <div className="Select">
+                        <select className="Select-control" defaultValue={filter.projectId}
+                                onChange={(event)=>this.notifyFilterChange('projectId', event.target.value)}>
+                            <option value="-1">All</option>
+                                {
+                                    values(projects)
+                                        .map(p=> {
+                                            return <option value={p.id} key={p.id}>{p.name}</option>
+                                        })
+                                }
+                        </select>
+                        <svg className="Select-figure" viewBox="0 0 2 1.5">
+                            <polygon points="0,0 2,0 1,1.5" fill="currentColor"/>
+                        </svg>
+                    </div>
                 </div>
 
                 <div className="NeedsFilter-inputContainer">
-                    <label>Skill</label>
-                    <select defaultValue={filter.skillId}
-                            onChange={(event)=>this.notifyFilterChange('skillId', event.target.value)}>
-                        <option value="-1">All</option>
-                            {
-                                values(skills)
-                                    .map(x=> {
-                                        return <option value={x.id} key={x.id}>{x.name}</option>
-                                    })
-                            }
-                    </select>
+                    <label className="NeedsFilter-label">Skill</label>
+                    <div className="Select">
+                        <select className="Select-control" defaultValue={filter.skillId}
+                                onChange={(event)=>this.notifyFilterChange('skillId', event.target.value)}>
+                            <option value="-1">All</option>
+                                {
+                                    values(skills)
+                                        .map(x=> {
+                                            return <option value={x.id} key={x.id}>{x.name}</option>
+                                        })
+                                }
+                        </select>
+                        <svg className="Select-figure" viewBox="0 0 2 1.5">
+                            <polygon points="0,0 2,0 1,1.5" fill="currentColor"/>
+                        </svg>
+                    </div>
                 </div>
 
                 <div className="NeedsFilter-inputContainer">
-                    <label>Status</label>
-                    <select defaultValue={filter.statusId}
-                            onChange={(event)=>this.notifyFilterChange('statusId', event.target.value)}>
-                            {
-                                values(statuses)
-                                    .map(x=> {
-                                        return <option value={x.id} key={x.id}>{x.name}</option>
-                                    })
-                            }
-                    </select>
+                    <label className="NeedsFilter-label">Status</label>
+                    <div className="Select">
+                        <select className="Select-control" defaultValue={filter.statusId}
+                                onChange={(event)=>this.notifyFilterChange('statusId', event.target.value)}>
+                                {
+                                    values(statuses)
+                                        .map(x=> {
+                                            return <option value={x.id} key={x.id}>{x.name}</option>
+                                        })
+                                }
+                        </select>
+                        <svg className="Select-figure" viewBox="0 0 2 1.5">
+                            <polygon points="0,0 2,0 1,1.5" fill="currentColor"/>
+                        </svg>
+                    </div>
                 </div>
 
                 <button className="Button Button--default u-sizeFull"

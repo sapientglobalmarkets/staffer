@@ -1,7 +1,33 @@
 @import "styles/theme.css";
 @import "styles/theme-map.css";
 
+/** @define Select */
 
+:root {
+    --Select-color: --color-dark-gray;
+    --Select-focus-color: --color-dark-gray;
+    --Select-disabled-opacity: 0.6;
+    --Select-border-radius: 0;
+}
+
+.Select {
+    margin: 0.3rem 0;
+}
+
+.Select-control {
+    padding: 0.3rem 1rem 0.3rem 0.5rem;
+    color: var(--color-charcoal);
+    background: var(--color-white);
+    border-radius: var(--Select-border-radius);
+    border: 1px solid var(--color-gray);
+}
+
+.Select-figure {
+    color: var(--color-charcoal);
+    width: 12px;
+    height: 12px;
+    right: 0.5rem;
+}
 
 /** @define Button */
 
@@ -10,19 +36,20 @@
     /*--Button-border-width: 1px;*/
     /*--Button-disabled-opacity: 0.6;*/
     /*--Button-font: inherit;*/
-    /*--Button-padding: 0.4em 0.75em;*/
-    --Button-border-radius: 3px;
+    --Button-padding: 0.5rem 0.75rem;
+    --Button-border-radius: 0;
 }
 
-
 .Button--default {
+    padding: var(--Button-padding);
     color: var(--color-white);
     background: var(--color-deep-blue);
     border-radius: var(--Button-border-radius);
     margin: 20px auto;
 }
-
-
+.Button--default:hover {
+    background: var(--color-dark-blue);
+}
 
 /** @define NeedsFilter */
 
@@ -34,7 +61,9 @@
     display: flex;
     flex-direction: column;
     margin-top: 12px;
-
-
 }
 
+.NeedsFilter-label {
+    margin-top: calc(var(--space-small-px) - 2);
+    color: var(--color-dark-gray);
+}

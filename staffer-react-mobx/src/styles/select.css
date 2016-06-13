@@ -1,0 +1,137 @@
+/** @define Select; weak */
+
+:root {
+    --Select-color: black;
+    --Select-focus-color: var(--Select-color);
+    --Select-disabled-opacity: 0.5;
+}
+
+.Select {
+    position: relative;
+}
+
+/**
+ * The <select> element
+ *
+ * 1. Allow overriding the iOS user-agent and hide native arrow in Firefox 35+
+ * 2. Can't be changed from `normal` in Firefox
+ * 3. Truncate text
+ */
+
+.Select-control {
+    appearance: none; /* 1 */
+    background: transparent;
+    border: 1px solid var(--Select-color);
+    border-radius: 0;
+    box-sizing: border-box;
+    color: var(--Select-color);
+    cursor: pointer;
+    font: inherit;
+    line-height: normal !important; /* 2 */
+    overflow: hidden; /* 3 */
+    padding: 1em 2em 1em 1em;
+    text-overflow: ellipsis; /* 3 */
+    white-space: nowrap; /* 3 */
+    width: 100%;
+}
+
+/**
+ * The arrow figure. It's optional and can be any element of choice
+ */
+
+.Select-figure {
+    cursor: pointer;
+    height: 1em;
+    pointer-events: none;
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1em;
+}
+
+/**
+ * Remove excess padding and border in Firefox
+ */
+
+.Select-control::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * Normalize disable state cross-browsers
+ */
+
+.Select.is-disabled .Select-control {
+    color: var(--Select-color);
+    cursor: default;
+    opacity: 1;
+}
+
+.Select.is-disabled,
+.Select:not(.is-disabled) .Select-control:disabled {
+    opacity: var(--Select-disabled-opacity);
+}
+
+/**
+ * Work around for a Firefox/IE bug where changing background color
+ * results in a loss of the default focus styles.
+ */
+
+.Select-control:focus {
+    color: var(--Select-focus-color);
+    outline: 1px dotted #212121;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+
+/**
+ * Hide redundant text outline in Firefox
+ */
+
+.Select-control:-moz-focusring {
+    color: transparent !important;
+    text-shadow: 0 0 0 var(--Select-focus-color) !important;
+}
+
+/**
+ * Fallback to native arrow in IE<10, Opera < 9.6, and Firefox<35.
+ * The double selector makes sure it wins over extended theming.
+ */
+
+.Select.Select .Select-figure {
+    display: none\9;
+}
+
+x:-o-prefocus,
+.Select.Select .Select-figure {
+    display: none;
+}
+
+_:-moz-tree-row(hover),
+.Select.Select .Select-figure {
+    display: none;
+}
+
+@supports (filter: blur(0)) {
+    _:-moz-tree-row(hover),
+    .Select.Select .Select-figure {
+        display: block;
+    }
+}
+
+/**
+ * Remove the native arrow and the blue background in IE 10/11+
+ */
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+    .Select-control::-ms-expand {
+        display: none;
+    }
+
+    .Select-control:focus::-ms-value {
+        background: transparent;
+        color: var(--Select-focus-color);
+    }
+}
