@@ -1,8 +1,8 @@
-/** @define AppBar */
+/** @define Header */
 
 @import "styles/theme.css";
 
-.AppBar {
+.Header {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -11,12 +11,12 @@
     background: var(--color-twitter-blue);
 }
 
-.AppBar-title {
+.Header-title {
     flex: 1 0 auto;
     font-size: 1.5rem
 }
 
-.AppBar-item {
+.Header-item {
     margin: 0 1rem;
 }
 

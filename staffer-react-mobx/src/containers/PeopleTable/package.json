@@ -1,0 +1,6 @@
+{
+  "name": "PeopleTeble",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./PeopleTable.js"
+}

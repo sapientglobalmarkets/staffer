@@ -9,6 +9,8 @@ let postcssImport = require('postcss-import');
 let cssNext = require('postcss-cssnext');
 var bemLinter = require('postcss-bem-linter');
 
+var path = require('path');
+
 
 module.exports = {
     entry: {
@@ -18,7 +20,16 @@ module.exports = {
         filename: '[name].js'
     },
 
+    resolveLoader: {
+        root: path.join(__dirname, 'node_modules')
+    },
+
+    resolve: {
+        extensions: ['', '.js', '.jsx', '.css']
+    },
+
     devtool: 'cheap-module-source-map',
+
     devServer: {
         inline: true,
         historyApiFallback: true,
@@ -51,10 +62,6 @@ module.exports = {
         ],
     },
 
-    resolve: {
-        extensions: ['', '.js', '.jsx', '.css']
-    },
-
     postcss: function () {
         return [
             postcssImport({
@@ -63,7 +70,7 @@ module.exports = {
             cssNext({
                 browsers: ['last 2 versions', 'IE > 10']// ...based on this browser list
             }),
-            bemLinter('suit')
+            //bemLinter('suit')
         ];
     },
 

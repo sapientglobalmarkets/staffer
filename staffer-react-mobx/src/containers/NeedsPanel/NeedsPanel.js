@@ -2,8 +2,10 @@ import './NeedsPanel.css';
 
 import {connect} from 'mobx-connect';
 import {observer} from 'mobx-react';
-import NeedsTable from './needs-table/NeedsTable';
-import NeedsFilter from './needs-filter/NeedsFilter';
+import H1 from '../../components/H1';
+
+import NeedsTable from '../NeedsTable';
+import NeedsFilter from '../NeedsFilter';
 
 @connect
 @observer
@@ -14,7 +16,7 @@ export default class NeedsPanel extends React.Component {
         return (
             <div className={`NeedsPanel ${this.props.className}`}>
                 <div className="NeedsPanel-container">
-                    <h1>Needs</h1>
+                    <H1>Needs</H1>
 
                     <div className="Grid Grid--withGutter">
                         <div className="Grid-cell u-size1of4">

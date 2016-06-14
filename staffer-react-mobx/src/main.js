@@ -1,16 +1,19 @@
 import './styles/base.css';
 
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDOM from 'react-dom';
 
-import StafferView from './StafferView';
+import Layout from './containers/Layout';
 import ContextProvider from './ContextProvider';
 import store from './store';
 
 let root = (
     <ContextProvider context={{store}}>
-        <StafferView />
+        <Layout />
     </ContextProvider>
 );
 
-render(root, document.querySelector('.app-content'));
+ReactDOM.render(
+    root,
+    document.querySelector('.app-content')
+);

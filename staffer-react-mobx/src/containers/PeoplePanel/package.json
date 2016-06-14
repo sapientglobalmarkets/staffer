@@ -1,0 +1,6 @@
+{
+  "name": "PeoplePanel",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./PeoplePanel.js"
+}

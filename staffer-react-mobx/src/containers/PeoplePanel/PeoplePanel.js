@@ -2,7 +2,8 @@ import './peoplePanel.css';
 
 import {observer} from 'mobx-react';
 import {connect} from 'mobx-connect';
-import PeopleTable from './people-table/PeopleTable';
+import H1 from '../../components/H1';
+import PeopleTable from '../PeopleTable';
 
 @observer
 @connect('store')
@@ -14,7 +15,7 @@ export default class PeoplePanel extends React.Component {
         return (
             <div className={`PeoplePanel ${this.props.className}`}>
                 <div className="PeoplePanel-container">
-                    <h1>People</h1>
+                    <H1>People</H1>
                     <div className="">
                         <PeopleTable people={matchingPeople}/>
                     </div>

@@ -13,10 +13,11 @@
 
 :root {
     --Button-border-width: 1px;
+    --Button-border-radius: 0;
     --Button-border-color: currentcolor;
     --Button-color: currentcolor;
     --Button-font: inherit;
-    --Button-padding: 0.4em 0.75em;
+    --Button-padding: 0.5rem 0.75rem;
     --Button-disabled-opacity: 0.6;
 }
 
@@ -28,4 +29,14 @@
 :root {
     --Select-color: --color-dark-gray;
     --Select-focus-color: --color-dark-blue;
+}
+
+/**
+*   components-H1
+*/
+:root {
+    --H1-font-weight: normal;
+    --H1-font-family: var(--font-family);
+    --H1-font-size: 2rem;
+    --H1-margin-bottom: 0.25rem;
 }

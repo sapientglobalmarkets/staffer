@@ -3,7 +3,7 @@
 @import "suitcss-base";
 @import "suitcss-utils";
 @import "suitcss-components-grid";
-@import "suitcss-components-button";
+
 @import "suitcss-components-select";
 
 @import "styles/theme.css";

@@ -1,0 +1,10 @@
+@import "styles/theme.css";
+@import "styles/theme-map.css";
+
+/** @define H1 */
+.H1 {
+    font-weight: var(--H1-font-weight);
+    font-family: var(--H1-font-family);
+    font-size: var(--H1-font-size);
+    margin-bottom: var(--H1-margin-bottom);
+}
