@@ -13,4 +13,4 @@ $ npm install
 $ npm start
 ```
 
-Now point your browser to http://localhost:9000/.
+Now point your browser to http://localhost:9000
