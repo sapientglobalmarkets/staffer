@@ -33,5 +33,5 @@
 }
 
 .PeopleTable-name {
-    font-weight: 500;
+    font-family: var(--font-family-bold);
 }

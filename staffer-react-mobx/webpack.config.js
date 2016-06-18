@@ -56,7 +56,7 @@ module.exports = {
             },
 
             {
-                test: /\.woff$/, loader: 'file-loader?name=fonts/[name].[ext]'
+                test: /\.(woff|woff2)$/, loader: 'file-loader?name=fonts/[name].[ext]'
             }
 
         ],

@@ -22,6 +22,24 @@
     font-style: normal;
 }
 
+
+@font-face {
+    font-family: "robotoregular";
+    src: url("../fonts/roboto-regular-webfont.woff2") format("woff2"),
+    url("../fonts/roboto-regular-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "robotobold";
+    src: url("../fonts/roboto-bold-webfont.woff2") format("woff2"),
+    url("../fonts/roboto-bold-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 html {
     color: var(--text-color);
     background-color: var(--background-color);
@@ -36,6 +54,7 @@ h1,
 h2,
 h3 {
     font-weight: normal;
+    font-family: var(--font-family-header);
 }
 
 label {

@@ -42,8 +42,7 @@
 }
 
 .NeedsTable-skill {
-    font-size: var(--font-size);
-    font-weight: 500;
+    font-family: var(--font-family-bold);
 }
 
 .NeedsTable-startDate {}

@@ -79,7 +79,9 @@
 
 :root {
     --font-size: 14px;
-    --font-family: open-sans-regular, Helvetica, Arial, sans-serif;
+    --font-family: robotoregular, Helvetica, Arial, sans-serif;
+    --font-family-bold: robotobold, Helvetica, Arial, sans-serif;
+    --font-family-header: open-sans-regular, Helvetica, Arial, sans-serif;
     --line-height: 1.4;
 }
 
