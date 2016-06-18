@@ -10,5 +10,9 @@
 }
 
 .NeedsPanel-container {
-    padding: var(--NeedsPanel-container) 0 calc(var(--NeedsPanel-container) * 2);
+    padding: var(--NeedsPanel-container) 0;
+}
+
+.NeedsPanel-table {
+    height: 20rem;
 }

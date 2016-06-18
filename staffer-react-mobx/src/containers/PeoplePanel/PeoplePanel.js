@@ -16,7 +16,7 @@ export default class PeoplePanel extends React.Component {
             <div className={`PeoplePanel ${this.props.className}`}>
                 <div className="PeoplePanel-container">
                     <H1>People</H1>
-                    <div className="">
+                    <div className="PeoplePanel-table">
                         <PeopleTable people={matchingPeople}/>
                     </div>
                 </div>

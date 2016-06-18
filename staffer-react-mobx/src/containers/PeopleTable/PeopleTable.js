@@ -13,7 +13,7 @@ class PersonView extends React.Component {
         const assigned = includes(person.needIds, store.selectedNeed.id);
 
         return (
-            <tr key={person.id}>
+            <tr className="PeopleTable-row" key={person.id}>
                 <td className="PeopleTable-name">
                     <label>
                         <input type="checkbox"
@@ -35,14 +35,14 @@ export default class PeopleTable extends React.Component {
     render() {
         return (
             <table className="PeopleTable">
-                <thead>
+                <thead className="PeopleTable-thead">
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody className="PeopleTable-tbody">
                 {
                     this.props.people
                         .map(p=> {

@@ -46,7 +46,7 @@ export default class NeedsTable extends React.Component {
 
         return (
             <table className="NeedsTable">
-                <thead>
+                <thead className="NeedsTable-thead">
                 <tr>
                     <th>Skill</th>
                     <th>Project</th>
@@ -55,7 +55,7 @@ export default class NeedsTable extends React.Component {
                 </tr>
                 </thead>
 
-                <tbody>
+                <tbody className="NeedsTable-tbody">
                 {
                     needs.map(need=> {
                         return (

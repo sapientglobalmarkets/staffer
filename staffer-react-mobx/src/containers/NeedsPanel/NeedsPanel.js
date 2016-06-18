@@ -19,10 +19,10 @@ export default class NeedsPanel extends React.Component {
                     <H1>Needs</H1>
 
                     <div className="Grid Grid--withGutter">
-                        <div className="Grid-cell u-size1of4">
+                        <div className="NeedsPanel-filter Grid-cell u-size1of4">
                             <NeedsFilter />
                         </div>
-                        <div className="Grid-cell u-size3of4">
+                        <div className="NeedsPanel-table Grid-cell u-size3of4">
                             <NeedsTable needs={matchingNeeds}/>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import './Layout.css';
+import './Main.css';
 
 import Header from '../../components/Header';
 import NeedsPanel from '../../containers/NeedsPanel';
@@ -11,12 +11,12 @@ class Layout extends React.Component {
         return (
             <div>
                 <Header />
-                <div className="Layout">
+                <main className="Main">
                     <div className="Grid Grid--withGutter">
                         <NeedsPanel className="Grid-cell u-size7of12"/>
                         <PeoplePanel className="Grid-cell u-size5of12"/>
                     </div>
-                </div>
+                </main>
             </div>
         );
     }
