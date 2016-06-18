@@ -7,10 +7,12 @@
 
 .PeoplePanel { }
 
-.PeoplePanel-container {
-    padding: var(--PeoplePanel-container) 0;
+.PeoplePanel-title {
+    margin: var(--PeoplePanel-container) 0;
 }
 
-.PeoplePanel-table {
-    height: 20rem;
+.PeoplePanel-container {
+    margin-bottom: var(--PeoplePanel-container);
+    height: 33rem;
 }
+

@@ -11,14 +11,15 @@ export default class Header extends React.Component {
         let {open, closed, total} = summary;
 
         return (
-            <div className="Header">
-                <div className="Header-title">Staffer</div>
-                <div className="Header-item">Open: {open}</div>
-                <div className="Header-item">Closed: {closed}</div>
-                <div className="Header-item">Total: {total}</div>
-            </div>
+            <section className="Header">
+                <div className="Header-items">
+                    <div className="Header-title">Staffer</div>
+                    <div className="Header-item">Open: {open}</div>
+                    <div className="Header-item">Closed: {closed}</div>
+                    <div className="Header-item">Total: {total}</div>
+                </div>
+            </section>
         );
-
     }
 }
 

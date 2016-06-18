@@ -1,10 +1,32 @@
 @import "styles/theme.css";
 @import "styles/theme-map.css";
 
-/** @define H1 */
-.H1 {
-    font-weight: var(--H1-font-weight);
-    font-family: var(--H1-font-family);
-    font-size: var(--H1-font-size);
-    margin-bottom: var(--H1-margin-bottom);
+/** @define Select */
+
+:root {
+    --Select-color: --color-dark-gray;
+    --Select-focus-color: --color-dark-gray;
+    --Select-disabled-opacity: 0.6;
+    --Select-border-radius: 0;
 }
+
+.Select {
+    margin: 0.3rem 0;
+}
+
+.Select-control {
+    padding: 0.3rem 1rem 0.3rem 0.5rem;
+    color: var(--color-charcoal);
+    background: var(--color-white);
+    border-radius: var(--Select-border-radius);
+    border: 1px solid var(--color-gray);
+}
+
+.Select-figure {
+    color: var(--color-charcoal);
+    width: 10px;
+    height: 10px;
+    right: 0.5rem;
+}
+
+

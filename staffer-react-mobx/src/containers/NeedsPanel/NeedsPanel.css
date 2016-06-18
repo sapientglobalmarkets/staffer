@@ -9,10 +9,15 @@
     border-right: 1px solid var(--color-gray);
 }
 
+.NeedsPanel-title {
+    margin: var(--NeedsPanel-container) 0;
+}
+
 .NeedsPanel-container {
-    padding: var(--NeedsPanel-container) 0;
+    margin-bottom: var(--NeedsPanel-container);
+    height: 33rem;
 }
 
 .NeedsPanel-table {
-    height: 20rem;
+    margin-left: 1rem;
 }

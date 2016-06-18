@@ -2,7 +2,7 @@
 @import "styles/theme.css";
 
 :root {
-    --Main-container: 1600px;
+    --Main-container: 1400px;
     --Main-space-large-px: 20px;
     --Main-background: var(--color-faint-gray);
 }
@@ -11,6 +11,6 @@
     background-color: var(--Main-background);
     margin: 0 auto;
     max-width: var(--Main-container);
-    padding: 4rem var(--Main-space-large-px);
+    padding: 4rem var(--Main-space-large-px) 0;
 
 }

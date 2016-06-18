@@ -52,7 +52,7 @@
     --color-deep-green: #5c913b;
     --color-deep-purple: #744eaa;
     --color-deep-red: #be1931;
-    --color-light-yellow: #ffd983;
+    --color-light-yellow: #ffe8b4;
     --color-light-green: #a6d388;
     --color-light-purple: #aa8dd8;
     --color-light-red: #ea596e;
@@ -78,7 +78,7 @@
  */
 
 :root {
-    --font-size: 16px;
+    --font-size: 14px;
     --font-family: open-sans-regular, Helvetica, Arial, sans-serif;
     --line-height: 1.4;
 }

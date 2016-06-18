@@ -3,9 +3,7 @@
 @import "styles/theme.css";
 
 .Header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+
     padding: 1rem .5rem;
     color: var(--color-white);
     background: var(--color-twitter-blue);
@@ -18,6 +16,15 @@
 .Header-title {
     flex: 1 0 auto;
     font-size: 1.5rem
+}
+
+.Header-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1400px;
+    padding: 0 20px;
 }
 
 .Header-item {

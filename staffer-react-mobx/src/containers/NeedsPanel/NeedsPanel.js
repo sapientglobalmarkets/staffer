@@ -15,16 +15,13 @@ export default class NeedsPanel extends React.Component {
         let {store: {matchingNeeds}} = this.context;
         return (
             <div className={`NeedsPanel ${this.props.className}`}>
-                <div className="NeedsPanel-container">
-                    <H1>Needs</H1>
-
-                    <div className="Grid Grid--withGutter">
-                        <div className="NeedsPanel-filter Grid-cell u-size1of4">
-                            <NeedsFilter />
-                        </div>
-                        <div className="NeedsPanel-table Grid-cell u-size3of4">
-                            <NeedsTable needs={matchingNeeds}/>
-                        </div>
+                <H1 className="NeedsPanel-title">Needs</H1>
+                <div className="NeedsPanel-container u-flex u-flexAlignItemsStretch">
+                    <div className="NeedsPanel-filter u-size1of4">
+                        <NeedsFilter />
+                    </div>
+                    <div className="NeedsPanel-table u-size3of4">
+                        <NeedsTable needs={matchingNeeds}/>
                     </div>
                 </div>
             </div>
