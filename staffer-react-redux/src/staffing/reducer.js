@@ -46,7 +46,8 @@ function staffingReducer(state = initialState, action) {
         }
         case SET_SELECTED_NEED_RAW:
             return Object.assign({}, state, {
-                selectedNeedId: action.selectedNeedId
+                selectedNeedId: action.selectedNeedId,
+                matchedPeopleIds: []
             });
         case RECEIVE_PROJECTS:
             return Object.assign({}, state, {
