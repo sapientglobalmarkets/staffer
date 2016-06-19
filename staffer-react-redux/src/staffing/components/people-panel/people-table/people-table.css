@@ -1,0 +1,10 @@
+.peopleTable {
+    flex: 1;
+    margin-top: 9px;
+    overflow: auto;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: 500;
+}

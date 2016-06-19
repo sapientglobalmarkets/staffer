@@ -1,0 +1,10 @@
+.openNeeds,
+.closedNeeds,
+.totalNeeds {
+    align-self: center;
+}
+
+.openNeeds,
+.closedNeeds {
+    margin-right: 10px;
+}

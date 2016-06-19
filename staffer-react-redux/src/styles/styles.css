@@ -1,0 +1,217 @@
+/* Global styles */
+@import './colors';
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    color: $app-text-color;
+}
+
+body {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+
+    /* Helps fonts on OSX look more consistent with other systems */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body.jsFontLoaded {
+    font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+:global(#app) {
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+}
+
+:global(.title) {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+/* Any container with this class gets a 10 pixel padding */
+:global(.app-content) {
+    padding: 10px;
+}
+
+:global(.full-width) {
+    width: 100%;
+}
+
+:global(.pointer) {
+    cursor: pointer;
+}
+
+:global(.text-left) {
+    text-align: left;
+}
+
+:global(.text-center) {
+    text-align: center;
+}
+
+:global(.text-right) {
+    text-align: right;
+}
+
+/* See https://www.smashingmagazine.com/2008/08/top-10-css-table-designs */
+:global(.mintable) {
+    font-size: 14px;
+    background: #fff;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+:global(.mintable) th {
+    font-weight: 500;
+    color: $color-accent;
+    padding: 4px 10px;
+    border-bottom: 2px solid #ccc;
+}
+
+:global(.mintable) td {
+    border-bottom: 1px solid #ccc;
+    padding: 6px 10px;
+    vertical-align: top;
+}
+
+:global(.mintable) tfoot td {
+    background-color: #dcefff;
+}
+
+:global(.mintable tr.selected) {
+    background-color: $color-highlight;
+}
+
+/* ---- Flexbox ---- */
+:global(.flex) {
+    display: flex
+}
+
+:global(.flex-column) {
+    flex-direction: column
+}
+
+:global(.flex-wrap) {
+    flex-wrap: wrap
+}
+
+:global(.items-start) {
+    align-items: flex-start
+}
+
+:global(.items-end) {
+    align-items: flex-end
+}
+
+:global(.items-center) {
+    align-items: center
+}
+
+:global(.items-baseline) {
+    align-items: baseline
+}
+
+:global(.items-stretch) {
+    align-items: stretch
+}
+
+:global(.self-start) {
+    align-self: flex-start
+}
+
+:global(.self-end) {
+    align-self: flex-end
+}
+
+:global(.self-center) {
+    align-self: center
+}
+
+:global(.self-baseline) {
+    align-self: baseline
+}
+
+:global(.self-stretch) {
+    align-self: stretch
+}
+
+:global(.justify-start) {
+    justify-content: flex-start
+}
+
+:global(.justify-end) {
+    justify-content: flex-end
+}
+
+:global(.justify-center) {
+    justify-content: center
+}
+
+:global(.justify-between) {
+    justify-content: space-between
+}
+
+:global(.justify-around) {
+    justify-content: space-around
+}
+
+:global(.content-start) {
+    align-content: flex-start
+}
+
+:global(.content-end) {
+    align-content: flex-end
+}
+
+:global(.content-center) {
+    align-content: center
+}
+
+:global(.content-between) {
+    align-content: space-between
+}
+
+:global(.content-around) {
+    align-content: space-around
+}
+
+:global(.content-stretch) {
+    align-content: stretch
+}
+
+/* 1. Fix for Chrome 44 bug. https://code.google.com/p/chromium/issues/detail?id=506893 */
+:global(.flex-auto) {
+    flex: 1 1 auto;
+    min-width: 0; /* 1 */
+    min-height: 0; /* 1 */
+}
+
+:global(.flex-none) {
+    flex: none
+}
+
+:global(.order-0) {
+    order: 0
+}
+
+:global(.order-1) {
+    order: 1
+}
+
+:global(.order-2) {
+    order: 2
+}
+
+:global(.order-3) {
+    order: 3
+}
+
+:global(.order-last) {
+    order: 99999
+}

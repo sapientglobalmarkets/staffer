@@ -1,0 +1,10 @@
+.needsFilter {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+    width: 220px;
+}
+
+.searchButton {
+    margin-top: 30px;
+}
