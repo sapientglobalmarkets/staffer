@@ -1,17 +1,17 @@
 import 'whatwg-fetch';
+import * as _ from 'lodash';
+
 import UrlSearchParams from 'url-search-params';
 
 import {
     SET_FILTER_FIELD,
-    SET_SELECTED_NEED,
+    SET_SELECTED_NEED_RAW,
     RECEIVE_PROJECTS,
     RECEIVE_SKILLS,
     RECEIVE_FILTERED_NEEDS,
-    RECEIVE_MATCHED_PEOPLE
+    RECEIVE_MATCHED_PEOPLE,
+    RECEIVE_ASSIGNMENT_RESPONSE
 } from './constants';
-
-import { getFilter } from './selectors';
-
 
 const HOST = 'http://localhost:8080';
 const NEEDS_URL = `${HOST}/needs`;
@@ -24,13 +24,6 @@ export function setFilterField(key, value) {
         type: SET_FILTER_FIELD,
         key: key,
         value: value
-    };
-}
-
-export function setSelectedNeed(selectedNeedId) {
-    return {
-        type: SET_SELECTED_NEED,
-        selectedNeedId: selectedNeedId
     };
 }
 
@@ -65,14 +58,22 @@ export function receiveMatchedPeople(personMap) {
     };
 }
 
+export function receiveAssignmentResponse(needMap, personMap) {
+    return {
+        type: RECEIVE_ASSIGNMENT_RESPONSE,
+        needMap,
+        personMap
+    };
+}
+
 export function fetchProjects() {
     return dispatch => {
         return fetch(PROJECTS_URL)
             .then(response => response.json())
             .then(projectMap => dispatch(receiveProjects(projectMap)))
             .catch(function(e) {
-                console.log('Failed to fetch projects:', e.message);
-            })
+                console.log('Failed to fetch projects:', e.message); // eslint-disable-line no-console
+            });
     };
 }
 
@@ -82,16 +83,15 @@ export function fetchSkills() {
             .then(response => response.json())
             .then(skillMap => dispatch(receiveSkills(skillMap)))
             .catch(function(e) {
-                console.log('Failed to fetch skills:', e.message);
-            })
+                console.log('Failed to fetch skills:', e.message); // eslint-disable-line no-console
+            });
     };
 }
 
 export function fetchNeeds() {
     return (dispatch, getState) => {
 
-        let staffingState = getState().staffing;
-        const {minStartDate, maxStartDate, projectId, skillId, status} = getFilter(staffingState);
+        const {minStartDate, maxStartDate, projectId, skillId, status} = getState().staffing.filter;
 
         let params = new UrlSearchParams();
         setIfValue('projectId', projectId, params);
@@ -102,18 +102,30 @@ export function fetchNeeds() {
 
         return fetch(`${NEEDS_URL}?${params}`)
             .then(response => response.json())
-            .then(({needMap, projectMap, personMap, skillMap}) =>
-                dispatch(receiveFilteredNeeds(needMap, projectMap, personMap, skillMap)))
-            .catch(function(e) {
-                console.log('Failed to fetch needs:', e.message);
+            .then(({needMap, projectMap, personMap, skillMap}) => {
+                _.each(needMap, need => parseNeed(need));
+                dispatch(receiveFilteredNeeds(needMap, projectMap, personMap, skillMap));
+                let filteredNeedIds = getState().staffing.filteredNeedIds;
+                let selectedNeedId = (filteredNeedIds.length > 0) ? filteredNeedIds[0] : null;
+                return dispatch(setSelectedNeed(selectedNeedId));
             })
+            .catch(function(e) {
+                console.log('Failed to fetch needs:', e.message); // eslint-disable-line no-console
+            });
     };
 }
 
-export function fetchPeopleForNeed(need) {
-    return (dispatch) => {
+export function setSelectedNeed(selectedNeedId) {
+    return (dispatch, getState) => {
 
-        const {id, skillId, startDate, endDate} = need;
+        dispatch(setSelectedNeedRaw(selectedNeedId));
+
+        let needMap = getState().staffing.needMap;
+        if (!selectedNeedId || !needMap[selectedNeedId]) {
+            return dispatch(receiveMatchedPeople({}));
+        }
+
+        const {id, skillId, startDate, endDate} = needMap[selectedNeedId];
 
         let params = new URLSearchParams();
         params.set('needId', id.toString());
@@ -126,8 +138,40 @@ export function fetchPeopleForNeed(need) {
             .then(personMap =>
                 dispatch(receiveMatchedPeople(personMap)))
             .catch(function(e) {
-                console.log('Failed to fetch people:', e.message);
-            })
+                console.log('Failed to fetch people:', e.message); // eslint-disable-line no-console
+            });
+    };
+}
+
+// Internal action - should not be called from outside
+function setSelectedNeedRaw(selectedNeedId) {
+    return {
+        type: SET_SELECTED_NEED_RAW,
+        selectedNeedId: selectedNeedId
+    };
+}
+
+export function changeAssignment(personId, needId, isAssigned) {
+    return (dispatch) => {
+
+        if (isAssigned) {
+            // Assign the person to the selected need
+            fetch(`${PEOPLE_URL}/${personId}/needs/${needId}`, {method: 'post'})
+                .then(response => response.json())
+                .then(({needMap, personMap}) => {
+                    _.each(needMap, need => parseNeed(need));
+                    return dispatch(receiveAssignmentResponse(needMap, personMap));
+                });
+        }
+        else {
+            // Unassign the person from the selected need
+            fetch(`${PEOPLE_URL}/${personId}/needs/${needId}`, {method: 'delete'})
+                .then(response => response.json())
+                .then(({needMap, personMap}) => {
+                    _.each(needMap, need => parseNeed(need));
+                    return dispatch(receiveAssignmentResponse(needMap, personMap));
+                });
+        }
     };
 }
 
@@ -141,4 +185,11 @@ function setIfValue(key, value, params) {
     }
 
     params.set(key, value);
+}
+
+// Convert ISO dates to Date objects
+function parseNeed(need) {
+    need.startDate = new Date(need.startDate);
+    need.endDate = new Date(need.endDate);
+    return need;
 }

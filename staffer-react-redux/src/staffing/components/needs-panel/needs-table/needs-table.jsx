@@ -40,7 +40,7 @@ let NeedsTable = ({needIds, needMap, selectedNeedId, skillMap, projectMap, perso
                     let selected = selectedNeedId && (id === selectedNeedId);
 
                     return (
-                        <tr key={id} className={classNames(s.needRow, 'pointer', {selected: selected})}
+                        <tr key={id} className={classNames('pointer', {selected: selected})}
                             onClick={() => onNeedSelected(id)}>
                             <td className={s.skill}>{skill.name}</td>
                             <td className={s.project}>{project.name}</td>

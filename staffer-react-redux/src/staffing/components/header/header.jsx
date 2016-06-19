@@ -21,7 +21,6 @@ export default function Header() {
                 <ToolbarTitle text="Staffer" style={titleStyle}/>
             </ToolbarGroup>
             <ToolbarGroup>
-                <input type="date" />
                 <span className={s.openNeeds}>Open: 10</span>
                 <span className={s.closedNeeds}>Closed: 40</span>
                 <span className={s.totalNeeds}>Total: 50</span>

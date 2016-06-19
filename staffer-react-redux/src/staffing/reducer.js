@@ -2,11 +2,12 @@ import * as _ from 'lodash';
 
 import {
     SET_FILTER_FIELD,
-    SET_SELECTED_NEED,
+    SET_SELECTED_NEED_RAW,
     RECEIVE_PROJECTS,
     RECEIVE_SKILLS,
     RECEIVE_FILTERED_NEEDS,
-    RECEIVE_MATCHED_PEOPLE
+    RECEIVE_MATCHED_PEOPLE,
+    RECEIVE_ASSIGNMENT_RESPONSE
 } from './constants';
 
 // The initial state of the App
@@ -43,7 +44,7 @@ function staffingReducer(state = initialState, action) {
                 filter: newFilter
             });
         }
-        case SET_SELECTED_NEED:
+        case SET_SELECTED_NEED_RAW:
             return Object.assign({}, state, {
                 selectedNeedId: action.selectedNeedId
             });
@@ -68,15 +69,12 @@ function staffingReducer(state = initialState, action) {
                 .map(need => need.id)
                 .value();
 
-            let selectedNeedId = (filteredNeedIds.length > 0) ? filteredNeedIds[0] : null;
-
             return Object.assign({}, state, {
                 needMap: needMap,
                 projectMap: projectMap,
                 personMap: personMap,
                 skillMap: skillMap,
-                filteredNeedIds: filteredNeedIds,
-                selectedNeedId: selectedNeedId
+                filteredNeedIds: filteredNeedIds
             });
         }
         case RECEIVE_MATCHED_PEOPLE: {
@@ -92,6 +90,16 @@ function staffingReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 personMap: personMap,
                 matchedPeopleIds: matchedPeopleIds
+            });
+        }
+        case RECEIVE_ASSIGNMENT_RESPONSE: {
+            // Merge response maps with state maps (make sure elements in response maps override those in state)
+            let needMap = _.extend({}, state.needMap, action.needMap);
+            let personMap = _.extend({}, state.personMap, action.personMap);
+
+            return Object.assign({}, state, {
+                needMap: needMap,
+                personMap: personMap
             });
         }
         default:
