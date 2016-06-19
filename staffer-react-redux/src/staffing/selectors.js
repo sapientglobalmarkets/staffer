@@ -1,5 +1,4 @@
-import values from 'lodash/values';
-import sortBy from 'lodash/sortBy';
+import * as _ from 'lodash';
 import { createSelector } from 'reselect';
 
 export const getNeedMap = (state) => state.needMap;
@@ -15,15 +14,36 @@ export const getSelectedNeedId = (state) => state.selectedNeedId;
 
 export const getProjects = createSelector(
     [getProjectMap],
-    projectMap => sortBy(values(projectMap), 'name')
+    projectMap => _.sortBy(_.values(projectMap), 'name')
 );
 
 export const getSkills = createSelector(
     [getSkillMap],
-    skillMap => values(skillMap)
+    skillMap => _.values(skillMap)
 );
 
 export const getStatuses = createSelector(
     [getStatusMap],
-    statusMap => values(statusMap)
+    statusMap => _.values(statusMap)
+);
+
+export const getNeedsSummary = createSelector(
+    [getFilteredNeedIds, getNeedMap],
+    (filteredNeedIds, needMap) => {
+
+        let summary = {
+            open: 0,
+            closed: 0,
+            total: 0
+        };
+
+        if (!filteredNeedIds) return summary;
+
+        _.each(filteredNeedIds, (needId) => {
+            let need = needMap[needId];
+            need.personId ? summary.closed++ : summary.open++;
+        });
+        summary.total = filteredNeedIds.length;
+        return summary;
+    }
 );
