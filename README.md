@@ -20,14 +20,20 @@ Below is the list of current Staffer implementations. We would love to have more
 ### staffer-ng2-basic
 A very basic implementation using Angular 2 + Angular events + RxJS. This implementation has a few *intentional* bugs to illustrate the problem of state management. Click on a person to assign her to a need - the Needs Panel on the left and the Needs Summary at the top will not reflect the change. Obviously, this can be fixed using more events, but we have left it there as a baseline to improve upon in other implementations.
 
-### staffer-ng2-redux
-An implementation of Staffer using Angular 2 + [Redux](http://redux.js.org/) + [ng2-redux](https://github.com/angular-redux/ng2-redux).
+### staffer-ng2-falcor
+An implementation of Staffer using Angular 2 + [Falcor](http://netflix.github.io/falcor/). (under construction)
 
 ### staffer-ng2-ngrxstore
 An implementation of Staffer using Angular 2 + [Redux](http://redux.js.org/) + [@ngrx/store](https://github.com/ngrx/store).
 
-### staffer-ng2-falcor
-An implementation of Staffer using Angular 2 + [Falcor](http://netflix.github.io/falcor/). (under construction)
+### staffer-ng2-redux
+An implementation of Staffer using Angular 2 + [Redux](http://redux.js.org/) + [ng2-redux](https://github.com/angular-redux/ng2-redux).
+
+### staffer-react-mobx
+An implementation of Staffer using React + [MobX](https://mobxjs.github.io/mobx/).
+
+### staffer-react-redux
+An implementation of Staffer using React + [Redux](http://redux.js.org/).
 
 Servers
 -------
