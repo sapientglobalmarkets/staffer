@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 
 import s from './staffing-page.css';
 import { fetchProjects, fetchSkills, fetchNeeds } from '../actions';
 import { Header } from './header';
-import { NeedsPanel } from './needs-panel';
-import { PeoplePanel } from './people-panel';
+import { NeedsFilter } from './needs-filter';
+import { NeedsTable } from './needs-table';
+import { PeopleTable } from './people-table';
 
 class StaffingPage extends React.Component {
 
@@ -23,11 +25,29 @@ class StaffingPage extends React.Component {
     render() {
         return (
             <div className="staffing-page flex flex-column flex-auto">
+
                 <Header />
+
                 <div className="flex flex-auto">
-                    <NeedsPanel />
+
+                    {/* Needs Panel */}
+                    <div className={classNames(s.needsPanel, 'flex flex-column app-content')}>
+                        <h1 className="title">Needs</h1>
+                        <div className="flex flex-auto flex-row">
+                            <NeedsFilter />
+                            <NeedsTable />
+                        </div>
+                    </div>
+
                     <div className={s.divider}/>
-                    <PeoplePanel />
+
+                    {/* People Panel */}
+                    <div className={classNames(s.peoplePanel, 'flex flex-column app-content')}>
+                        <h1 className="title">People</h1>
+                        <div className="flex flex-auto flex-row">
+                            <PeopleTable />
+                        </div>
+                    </div>
                 </div>
             </div>
         );

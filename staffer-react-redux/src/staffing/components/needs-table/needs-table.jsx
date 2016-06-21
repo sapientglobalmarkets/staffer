@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 
 import s from './needs-table.css';
-import { setSelectedNeed } from '../../../actions';
+import { setSelectedNeed } from '../../actions';
 import {
     getFilteredNeedIds,
     getNeedMap,
@@ -11,7 +11,7 @@ import {
     getSkillMap,
     getProjectMap,
     getPersonMap
-} from '../../../selectors';
+} from '../../selectors';
 
 function formatDate(str) {
     let dt = new Date(str);

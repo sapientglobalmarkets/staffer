@@ -1,5 +1,13 @@
 @import '../../styles/colors';
 
+.needsPanel {
+    flex: 6
+}
+
 .divider {
     border-right: 1px solid $app-border-color;
+}
+
+.peoplePanel {
+    flex: 4
 }

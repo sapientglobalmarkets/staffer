@@ -3,13 +3,13 @@ import Checkbox from 'material-ui/Checkbox';
 import { connect } from 'react-redux';
 
 import s from './people-table.css';
-import { changeAssignment } from '../../../actions';
+import { changeAssignment } from '../../actions';
 import {
     getMatchedPeopleIds,
     getPersonMap,
     getNeedMap,
     getSelectedNeedId
-} from '../../../selectors';
+} from '../../selectors';
 
 let PeopleTable = ({peopleIds, personMap, needMap, selectedNeedId, onAssignmentChanged}) => {
     return (

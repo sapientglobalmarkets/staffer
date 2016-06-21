@@ -5,8 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import { connect } from 'react-redux';
 
-import { setFilterField, fetchNeeds } from '../../../actions';
-import { getFilter, getProjects, getSkills, getStatuses } from '../../../selectors';
+import { setFilterField, fetchNeeds } from '../../actions';
+import { getFilter, getProjects, getSkills, getStatuses } from '../../selectors';
 
 import s from './needs-filter.css';
 
