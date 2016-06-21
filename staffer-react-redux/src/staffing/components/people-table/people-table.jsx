@@ -11,6 +11,24 @@ import {
     getSelectedNeedId
 } from '../../selectors';
 
+let PersonRow = ({person, selectedNeed, onAssignmentChanged}) => {
+    let {id, name, email, phone} = person;
+
+    return (
+        <tr>
+            <td>
+                <Checkbox
+                    checked={id === selectedNeed.personId}
+                    onCheck={(event, isChecked) =>
+                        onAssignmentChanged(id, selectedNeed.id, isChecked)} />
+            </td>
+            <td className={s.name}>{name}</td>
+            <td className={s.email}>{email}</td>
+            <td className={s.phone}>{phone}</td>
+        </tr>
+    )
+};
+
 let PeopleTable = ({peopleIds, personMap, needMap, selectedNeedId, onAssignmentChanged}) => {
     return (
         <div className={ s.peopleTable }>
@@ -25,22 +43,14 @@ let PeopleTable = ({peopleIds, personMap, needMap, selectedNeedId, onAssignmentC
                 </thead>
                 <tbody>
                 {
-                    peopleIds.map(id => {
-                        let person = personMap[id];
-                        return (
-                            <tr key={id} className="pointer">
-                                <td>
-                                    <Checkbox
-                                        checked={id === needMap[selectedNeedId].personId}
-                                        onCheck={(event, isChecked) =>
-                                            onAssignmentChanged(id, selectedNeedId, isChecked)} />
-                                </td>
-                                <td className={s.name}>{person.name}</td>
-                                <td className={s.email}>{person.email}</td>
-                                <td className={s.phone}>{person.phone}</td>
-                            </tr>
-                        )
-                    })
+                    peopleIds.map(id => (
+                        <PersonRow
+                            key={id}
+                            person={personMap[id]}
+                            selectedNeed={needMap[selectedNeedId]}
+                            onAssignmentChanged={onAssignmentChanged}
+                        />)
+                    )
                 }
                 </tbody>
             </table>

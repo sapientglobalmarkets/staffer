@@ -106,5 +106,4 @@ NeedsTable = connect(
     mapDispatchToProps
 )(NeedsTable);
 
-
 export default NeedsTable;
