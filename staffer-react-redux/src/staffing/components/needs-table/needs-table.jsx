@@ -18,6 +18,25 @@ function formatDate(str) {
     return `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()}`;
 }
 
+let NeedRow = ({need, selectedNeedId, skill, project, person, onNeedSelected}) => {
+    let {id, startDate, endDate} = need;
+    let selected = selectedNeedId && (id === selectedNeedId);
+
+    return (
+        <tr className={classNames('pointer', {selected: selected})}
+            onClick={() => onNeedSelected(id)}>
+            <td className={s.skill}>{skill.name}</td>
+            <td className={s.project}>{project.name}</td>
+            <td>
+                <span className={s.startDate}>{formatDate(startDate)}</span>
+                <br />
+                <span className={s.endDate}>{formatDate(endDate)}</span>
+            </td>
+            <td className={s.assignment}>{person ? person.name : null}</td>
+        </tr>
+    )
+};
+
 let NeedsTable = ({needIds, needMap, selectedNeedId, skillMap, projectMap, personMap, onNeedSelected}) => (
     <div className={ s.needsTable }>
         <table className="mintable full-width">
@@ -33,25 +52,18 @@ let NeedsTable = ({needIds, needMap, selectedNeedId, skillMap, projectMap, perso
             {
                 needIds.map(id => {
                     let need = needMap[id];
-                    let {skillId, projectId, startDate, endDate, personId} = need;
-                    let skill = skillMap[skillId];
-                    let project = projectMap[projectId];
-                    let person = personId ? personMap[personId] : null;
-                    let selected = selectedNeedId && (id === selectedNeedId);
-
+                    let {skillId, projectId, personId} = need;
                     return (
-                        <tr key={id} className={classNames('pointer', {selected: selected})}
-                            onClick={() => onNeedSelected(id)}>
-                            <td className={s.skill}>{skill.name}</td>
-                            <td className={s.project}>{project.name}</td>
-                            <td>
-                                <span className={s.startDate}>{formatDate(startDate)}</span>
-                                <br />
-                                <span className={s.endDate}>{formatDate(endDate)}</span>
-                            </td>
-                            <td className={s.assignment}>{person ? person.name : null}</td>
-                        </tr>
-                    )
+                        <NeedRow
+                            key={id}
+                            need={need}
+                            selectedNeedId={selectedNeedId}
+                            skill={skillMap[skillId]}
+                            project={projectMap[projectId]}
+                            person={personMap[personId]}
+                            onNeedSelected={onNeedSelected}
+                        />
+                    );
                 })
             }
             </tbody>
