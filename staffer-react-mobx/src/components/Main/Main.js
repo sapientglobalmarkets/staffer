@@ -1,11 +1,11 @@
 import './Main.css';
 
-import Header from '../../components/Header';
-import NeedsPanel from '../../containers/NeedsPanel';
-import PeoplePanel from '../../containers/PeoplePanel';
+import Header from '../Header';
+import NeedsPanel from '../NeedsPanel';
+import PeoplePanel from '../PeoplePanel';
 
 
-class Layout extends React.Component {
+export default class Main extends React.Component {
 
     render() {
         return (
@@ -21,5 +21,3 @@ class Layout extends React.Component {
         );
     }
 }
-
-export default Layout;

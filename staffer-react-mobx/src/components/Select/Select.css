@@ -3,12 +3,6 @@
 
 /** @define Select */
 
-:root {
-    --Select-color: --color-dark-gray;
-    --Select-focus-color: --color-dark-gray;
-    --Select-disabled-opacity: 0.6;
-    --Select-border-radius: 0;
-}
 
 .Select {
     margin: 0.3rem 0;
@@ -16,14 +10,14 @@
 
 .Select-control {
     padding: 0.3rem 1rem 0.3rem 0.5rem;
-    color: var(--color-charcoal);
-    background: var(--color-white);
+    color: var(--Select-color);
+    background: var(--Select-background-color);
     border-radius: var(--Select-border-radius);
-    border: 1px solid var(--color-gray);
+    border: 1px solid var(--Select-border-color);
 }
 
 .Select-figure {
-    color: var(--color-charcoal);
+    color: var(--Select-color);
     width: 10px;
     height: 10px;
     right: 0.5rem;

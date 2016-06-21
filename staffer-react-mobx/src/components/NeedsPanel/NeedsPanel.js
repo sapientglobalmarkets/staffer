@@ -4,8 +4,8 @@ import {connect} from 'mobx-connect';
 import {observer} from 'mobx-react';
 import H1 from '../../components/H1';
 
-import NeedsTable from '../NeedsTable';
-import NeedsFilter from '../NeedsFilter';
+import NeedsTable from './NeedsTable';
+import NeedsFilter from './NeedsFilter';
 
 @connect
 @observer

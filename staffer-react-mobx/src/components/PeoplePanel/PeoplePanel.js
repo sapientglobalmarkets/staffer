@@ -1,9 +1,9 @@
-import './peoplePanel.css';
+import './PeoplePanel.css';
 
 import {observer} from 'mobx-react';
 import {connect} from 'mobx-connect';
 import H1 from '../../components/H1';
-import PeopleTable from '../PeopleTable';
+import PeopleTable from './PeopleTable';
 
 @observer
 @connect('store')

@@ -6,6 +6,27 @@
     --Grid-gutter-size: var(--space-large-px);
 }
 
+/**
+*   components-main
+*/
+:root {
+    --Main-container: 1400px;
+    --Main-space-large-px: 20px;
+    --Main-background: var(--color-faint-gray);
+}
+
+
+/**
+*   components-header
+*/
+
+:root {
+    --Header-color: var(--color-white);
+    --Header-background-color: var(--color-twitter-blue);
+    --Header-height: 4rem;
+    --Header-position: fixed;
+}
+
 
 /**
 *   components-button
@@ -27,8 +48,12 @@
 */
 
 :root {
-    --Select-color: --color-dark-gray;
-    --Select-focus-color: --color-dark-blue;
+    --Select-color: currentcolor;
+    --Select-background-color: var(--color-white);
+    --Select-focus-color: var(--color-dark-blue);
+    --Select-disabled-opacity: 0.6;
+    --Select-border-radius: 0;
+    --Select-border-color: var(--color-gray);
 }
 
 /**

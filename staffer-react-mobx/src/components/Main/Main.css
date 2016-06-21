@@ -1,11 +1,7 @@
 /** @define Layout */
 @import "styles/theme.css";
+@import "styles/theme-map.css";
 
-:root {
-    --Main-container: 1400px;
-    --Main-space-large-px: 20px;
-    --Main-background: var(--color-faint-gray);
-}
 
 .Main {
     background-color: var(--Main-background);

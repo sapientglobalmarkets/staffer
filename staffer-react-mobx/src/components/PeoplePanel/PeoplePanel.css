@@ -1,5 +1,6 @@
-/** @define PeoplePanel */
 @import "styles/theme.css";
+
+/** @define PeoplePanel */
 
 :root {
     --PeoplePanel-container: 2rem;
