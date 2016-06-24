@@ -5,6 +5,7 @@ To run this application, first make sure that both staffer-server-rest and staff
 Then run the following commands in this directory:
 
 ```bash
+$ npm install -g angular-cli  (if you have not installed angular-cli globally)
 $ npm install
 $ ng serve
 ```
