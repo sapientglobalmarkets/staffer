@@ -1,8 +1,10 @@
+@import "suitcss-components-select";
+
 @import "styles/theme.css";
 @import "styles/theme-map.css";
 
-/** @define Select */
 
+/** @define Select */
 
 .Select {
     margin: 0.3rem 0;
