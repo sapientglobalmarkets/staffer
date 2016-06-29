@@ -1,0 +1,14 @@
+@import "suitcss-components-button";
+
+/** @define Button */
+.Button--default {
+    padding: var(--Button-padding);
+    color: var(--color-white);
+    background: var(--color-deep-blue);
+    border-radius: var(--Button-border-radius);
+    margin: 20px auto;
+}
+
+.Button--default:hover {
+    background: var(--color-dark-blue);
+}

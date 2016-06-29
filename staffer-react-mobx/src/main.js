@@ -1,9 +1,9 @@
-import './styles/base.css';
+import './styles/main.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Main from './components/Main';
+import Main from './StafferView';
 import ContextProvider from './ContextProvider';
 import store from './store';
 

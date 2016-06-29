@@ -4,12 +4,10 @@
 /** @define NeedsFilter */
 
 .NeedsFilter {
-
+    overflow-y: auto;
 }
 
 .NeedsFilter-inputContainer {
-    display: flex;
-    flex-direction: column;
     margin-top: 12px;
 }
 

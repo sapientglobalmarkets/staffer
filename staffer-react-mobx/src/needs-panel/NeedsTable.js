@@ -45,28 +45,30 @@ export default class NeedsTable extends React.Component {
         const {store:{selectedNeed}} = this.context;
 
         return (
-            <table className="NeedsTable">
-                <thead className="NeedsTable-thead">
-                <tr>
-                    <th>Skill</th>
-                    <th>Project</th>
-                    <th>Date</th>
-                    <th>Assignment</th>
-                </tr>
-                </thead>
+            <div className="NeedsTable u-flexGrow1">
+                <table className="NeedsTable-table">
+                    <thead className="NeedsTable-thead">
+                    <tr>
+                        <th>Skill</th>
+                        <th>Project</th>
+                        <th>Date</th>
+                        <th>Assignment</th>
+                    </tr>
+                    </thead>
 
-                <tbody className="NeedsTable-tbody">
-                {
-                    needs.map(need=> {
-                        return (
-                            <NeedView need={need}
-                                      key={need.id}
-                                      onNeedSelected={()=>this.selectNeed(need)}/>
-                        );
-                    })
-                }
-                </tbody>
-            </table>
+                    <tbody className="NeedsTable-tbody">
+                           {
+                               needs.map(need=> {
+                                   return (
+                                       <NeedView need={need}
+                                                 key={need.id}
+                                                 onNeedSelected={()=>this.selectNeed(need)}/>
+                                   );
+                               })
+                           }
+                    </tbody>
+                </table>
+            </div>
         );
     }
 

@@ -8,33 +8,12 @@
 }
 
 .NeedsTable {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-flow: column;
+    overflow-y: auto;
+    margin-left: 2rem;
 }
 
-.NeedsTable-thead {
-    /* head takes the height it requires,
-    and it's not scaled when table is resized */
-    flex: 0 0 auto;
-    width: calc(100% - 0.9em);
-    display: table;
-    table-layout: fixed;
-}
-
-.NeedsTable-tbody {
-    /* body takes all the remaining available space */
-    flex: 1 1 auto;
-    display: block;
-    overflow-y: scroll;
-}
-
-.NeedsTable-row {
-    width: 100%;
-    display: table;
-    table-layout: fixed;
-    font-size: var(--font-size-smaller);
+.NeedsTable-table {
+    width: 98%;
 }
 
 .NeedsTable-row.is-selected {

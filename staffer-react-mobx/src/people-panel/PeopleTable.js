@@ -34,27 +34,29 @@ export default class PeopleTable extends React.Component {
 
     render() {
         return (
-            <table className="PeopleTable">
-                <thead className="PeopleTable-thead">
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                </tr>
-                </thead>
-                <tbody className="PeopleTable-tbody">
-                {
-                    this.props.people
-                        .map(p=> {
-                            return (
-                                <PersonView person={p}
-                                            onAssignmentChange={(assigned)=>this.changeAssignment(p, assigned)}
-                                            key={p.id}/>
-                            );
-                        })
-                }
-                </tbody>
-            </table>
+            <div className="PeopleTable">
+                <table className="PeopleTable-table">
+                    <thead className="PeopleTable-thead">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                    </tr>
+                    </thead>
+                    <tbody className="PeopleTable-tbody">
+                           {
+                               this.props.people
+                                   .map(p=> {
+                                       return (
+                                           <PersonView person={p}
+                                                       onAssignmentChange={(assigned)=>this.changeAssignment(p, assigned)}
+                                                       key={p.id}/>
+                                       );
+                                   })
+                           }
+                    </tbody>
+                </table>
+            </div>
 
         );
     }

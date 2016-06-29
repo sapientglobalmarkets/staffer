@@ -11,20 +11,20 @@
 */
 :root {
     --Main-container: 1400px;
-    --Main-space-large-px: 20px;
+    --Main-space: 2rem;
     --Main-background: var(--color-faint-gray);
 }
 
 
 /**
-*   components-header
+*   components-app-bar
 */
 
 :root {
-    --Header-color: var(--color-white);
-    --Header-background-color: var(--color-twitter-blue);
-    --Header-height: 4rem;
-    --Header-position: fixed;
+    --AppBar-color: var(--color-white);
+    --AppBar-background-color: var(--color-twitter-blue);
+    --AppBar-height: 4rem;
+    --AppBar-position: fixed;
 }
 
 
@@ -59,9 +59,9 @@
 /**
 *   components-H1
 */
-:root {
-    --H1-font-weight: normal;
-    --H1-font-family: var(--font-family);
-    --H1-font-size: 2rem;
-    --H1-margin-bottom: 0.25rem;
-}
+/*:root {*/
+    /*--H1-font-weight: normal;*/
+    /*--H1-font-family: var(--font-family);*/
+    /*--H1-font-size: 2rem;*/
+    /*--H1-margin-bottom: 0.25rem;*/
+/*}*/

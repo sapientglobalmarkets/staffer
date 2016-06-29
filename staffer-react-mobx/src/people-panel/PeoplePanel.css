@@ -6,7 +6,9 @@
     --PeoplePanel-container: 2rem;
 }
 
-.PeoplePanel { }
+.PeoplePanel {
+    margin-left: 2rem;
+}
 
 .PeoplePanel-title {
     margin: var(--PeoplePanel-container) 0;
@@ -14,6 +16,5 @@
 
 .PeoplePanel-container {
     margin-bottom: var(--PeoplePanel-container);
-    height: 33rem;
 }
 

@@ -1,15 +1,5 @@
 /* postcss-bem-linter: ignore */
 
-@import "suitcss-base";
-@import "suitcss-utils";
-@import "suitcss-components-grid";
-
-@import "suitcss-components-select";
-
-@import "styles/theme.css";
-@import "styles/theme-map.css";
-
-
 
 /*
  * Base styles
@@ -112,3 +102,4 @@ th {
     background: var(--color-light-blue);
     text-shadow: none;
 }
+

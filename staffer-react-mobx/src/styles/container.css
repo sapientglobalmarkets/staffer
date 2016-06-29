@@ -1,7 +1,0 @@
-/** @define Main */
-.Main {
-    background-color: var(--Main-background);
-    margin: 0 auto;
-    max-width: var(--Main-container);
-    padding: 4rem var(--Main-space-large-px) 0;
-}

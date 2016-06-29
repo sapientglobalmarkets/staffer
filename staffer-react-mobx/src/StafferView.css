@@ -1,0 +1,22 @@
+@import "styles/theme.css";
+@import "styles/theme-map.css";
+
+
+/** @define StafferView */
+
+.StafferView {
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+}
+
+
+/** @define Main */
+
+.Main {
+    background-color: var(--Main-background);
+    margin: 0 auto;
+    min-width: calc(var(--Main-container) - 1);
+    max-width: var(--Main-container);
+    padding: 0 var(--Main-space) 0;
+}

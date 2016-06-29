@@ -3,9 +3,9 @@ import './NeedsFilter.css';
 import {connect} from 'mobx-connect';
 import {observer} from 'mobx-react';
 
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import Select from '../../components/Select';
+//import Button from '../../components/Button';
+//import Input from '../../components/Input';
+import Select from '../common/Select';
 
 @connect('store')
 @observer
@@ -24,7 +24,7 @@ export default class NeedsFilter extends React.Component {
         return (
             <div className="NeedsFilter">
                 <div className="NeedsFilter-inputContainer">
-                    <Input label="From"
+                    <input label="From"
                            id="minStartDate"
                            placeholder="Start Date"
                            type="date"
@@ -34,7 +34,7 @@ export default class NeedsFilter extends React.Component {
                 </div>
 
                 <div className="NeedsFilter-inputContainer">
-                    <Input label="To"
+                    <input label="To"
                            id="maxStartDate"
                            placeholder="End Date"
                            type="date"
@@ -62,8 +62,8 @@ export default class NeedsFilter extends React.Component {
                             handleAction={this.notifyFilterChange}/>
                 </div>
 
-                <Button handleAction={this.applyFilter} label="Search"
-                        className="Button Button--default u-sizeFull"/>
+                <button onClick={this.applyFilter}
+                        className="Button Button--default u-sizeFull">Search</button>
             </div>
         );
     }

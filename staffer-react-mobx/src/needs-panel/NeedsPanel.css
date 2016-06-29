@@ -7,6 +7,7 @@
 
 .NeedsPanel {
     border-right: 1px solid var(--color-gray);
+    padding-right: 2rem;
 }
 
 .NeedsPanel-title {
@@ -15,9 +16,4 @@
 
 .NeedsPanel-container {
     margin-bottom: var(--NeedsPanel-container);
-    height: 33rem;
-}
-
-.NeedsPanel-table {
-    margin-left: 1rem;
 }

@@ -1,21 +1,19 @@
-import './Main.css';
+import './StafferView.css';
 
-import Header from '../Header';
-import NeedsPanel from '../NeedsPanel';
-import PeoplePanel from '../PeoplePanel';
+import AppBar from './app-bar/AppBar';
+import NeedsPanel from './needs-panel/NeedsPanel';
+import PeoplePanel from './people-panel/PeoplePanel';
 
 
 export default class Main extends React.Component {
 
     render() {
         return (
-            <div>
-                <Header />
-                <main className="Main">
-                    <div className="Grid Grid--withGutter">
-                        <NeedsPanel className="Grid-cell u-size7of12"/>
-                        <PeoplePanel className="Grid-cell u-size5of12"/>
-                    </div>
+            <div className="StafferView u-flex u-flexCol">
+                <AppBar />
+                <main className="Main u-flex u-flexGrow1">
+                    <NeedsPanel className="u-flex u-flexCol u-flexGrow1"/>
+                    <PeoplePanel className="u-flex u-flexCol"/>
                 </main>
             </div>
         );

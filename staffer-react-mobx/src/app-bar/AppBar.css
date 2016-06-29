@@ -1,0 +1,24 @@
+/** @define Header */
+@import "styles/theme.css";
+@import "styles/theme-map.css";
+
+.AppBar {
+    padding: 1rem .5rem;
+    color: var(--AppBar-color);
+    background: var(--AppBar-background-color);
+}
+
+.AppBar-items {
+    margin: 0 auto;
+    max-width: 1400px;
+    padding: 0 20px;
+}
+
+.AppBar-title {
+    font-size: 1.5rem
+}
+
+.AppBar-item {
+    margin: 0 1rem;
+}
+
