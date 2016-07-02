@@ -4,7 +4,9 @@ Technology used:
 
 - React
 - Mobx
-- Suitcss
+- PostCSS
+- NextCSS
+- SuitCSS
 
 To run this application, first make sure that staffer-server-rest is running. Then run the following commands in this directory:
 

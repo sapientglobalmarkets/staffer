@@ -16,7 +16,7 @@
 .Main {
     background-color: var(--Main-background);
     margin: 0 auto;
-    min-width: calc(var(--Main-container) - 1);
-    max-width: var(--Main-container);
+    min-width: calc(var(--Main-container-min-width) - 1);
+    max-width: var(--Main-container-max-width);
     padding: 0 var(--Main-space) 0;
 }

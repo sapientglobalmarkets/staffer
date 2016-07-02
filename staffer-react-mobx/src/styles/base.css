@@ -103,3 +103,10 @@ th {
     text-shadow: none;
 }
 
+/*
+    Remove outline on focused elements
+    http://stackoverflow.com/questions/20340138/remove-blue-border-from-css-custom-styled-button-in-chrome
+*/
+*:focus {
+    outline:none !important;
+}

@@ -10,7 +10,8 @@
 *   components-main
 */
 :root {
-    --Main-container: 1400px;
+    --Main-container-min-width: 1200px;
+    --Main-container-max-width: 1400px;
     --Main-space: 2rem;
     --Main-background: var(--color-faint-gray);
 }
