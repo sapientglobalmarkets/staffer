@@ -11,10 +11,6 @@ import { PeopleTable } from './people-table';
 
 class StaffingPage extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         const { dispatch } = this.props;
         dispatch(fetchProjects());
